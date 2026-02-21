@@ -5,6 +5,11 @@ draft = false
 tags = ["ai", "data-analysis", "moltbook", "social-networks", "graph-theory"]
 description = "We scraped every post and interaction from Moltbook — the AI-only social network. 41,068 agents, 199,879 posts, 335,122 interactions, 23 days."
 ShowToc = false
+
+[cover]
+image = "/images/lobster-tank-og.png"
+alt = "What 41,000 AI Agents Did When We Gave Them a Social Network"
+hidden = true
 +++
 
 <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
@@ -858,11 +863,11 @@ var layout = function(opts) {
 const config = { displayModeBar: false, responsive: true };
 
 // --- Daily Activity Chart with Signup Overlay ---
-const dailyDates = ['2026-01-28','2026-01-29','2026-01-30','2026-01-31','2026-02-01','2026-02-02','2026-02-03','2026-02-04','2026-02-05','2026-02-06','2026-02-07','2026-02-08','2026-02-09','2026-02-10','2026-02-11','2026-02-12','2026-02-13','2026-02-14','2026-02-15','2026-02-16','2026-02-17','2026-02-18','2026-02-19','2026-02-20'];
-const dailyInteractions = [50,590,23939,68086,null,80560,64683,71342,13247,1493,2103,1510,915,525,616,656,597,536,412,446,355,454,879,1128];
-const dailyPosts = [33,282,5397,32756,24210,27694,15694,22216,14545,6756,6758,7300,4976,3717,3706,3078,3355,2935,2720,2611,2341,2503,2505,1790];
-const signupDates = ['2026-01-27','2026-01-28','2026-01-29','2026-01-30','2026-01-31','2026-02-01','2026-02-02','2026-02-03','2026-02-04','2026-02-05','2026-02-06','2026-02-07','2026-02-08','2026-02-09','2026-02-10','2026-02-11','2026-02-12','2026-02-13','2026-02-14','2026-02-15','2026-02-16','2026-02-17','2026-02-18','2026-02-19','2026-02-20'];
-const signupCounts = [2,19,231,3667,9278,6615,4904,2044,2177,1930,1150,1005,1017,1104,784,737,567,611,493,427,389,310,347,273,164];
+const dailyDates = ['Jan 28','Jan 29','Jan 30','Jan 31','Feb 2','Feb 3','Feb 4','Feb 5','Feb 6','Feb 7','Feb 8','Feb 9','Feb 10','Feb 11','Feb 12','Feb 13','Feb 14','Feb 15','Feb 16','Feb 17','Feb 18','Feb 19','Feb 20'];
+const dailyInteractions = [50,590,23939,68086,80560,64683,71342,13247,1493,2103,1510,915,525,616,656,597,536,412,446,355,454,879,1128];
+const dailyPosts = [33,282,5397,32756,27694,15694,22216,14545,6756,6758,7300,4976,3717,3706,3078,3355,2935,2720,2611,2341,2503,2505,1790];
+const signupDates = ['Jan 27','Jan 28','Jan 29','Jan 30','Jan 31','Feb 2','Feb 3','Feb 4','Feb 5','Feb 6','Feb 7','Feb 8','Feb 9','Feb 10','Feb 11','Feb 12','Feb 13','Feb 14','Feb 15','Feb 16','Feb 17','Feb 18','Feb 19','Feb 20'];
+const signupCounts = [2,19,231,3667,9278,4904,2044,2177,1930,1150,1005,1017,1104,784,737,567,611,493,427,389,310,347,273,164];
 
 Plotly.newPlot('chart-daily', [
   {
@@ -885,16 +890,14 @@ Plotly.newPlot('chart-daily', [
     hovertemplate: '%{x}<br>%{y:,.0f} signups<extra></extra>'
   }
 ], layout({
+  xaxis: { type: 'category' },
   yaxis: { gridcolor: COLORS.grid, title: { text: 'Interactions', font: { size: 11 } } },
   yaxis2: { overlaying: 'y', side: 'right', gridcolor: 'transparent', title: { text: 'Posts / Signups', font: { size: 11 }, standoff: 15 } },
   legend: { x: 0.6, y: 1, font: { size: 11 } },
   margin: { l: isMobile ? 45 : 60, r: isMobile ? 40 : 70, t: 10, b: 50 },
   annotations: [{
-    x: '2026-02-05', y: 13247, text: '\u2190 Feb 5: the cliff', showarrow: false,
+    x: 'Feb 5', y: 13247, text: '\u2190 Feb 5: the cliff', showarrow: false,
     font: { color: COLORS.red, size: isMobile ? 9 : 11 }, xanchor: 'left', xshift: 8
-  },{
-    x: '2026-02-01', y: 0, text: 'no data*', showarrow: false,
-    font: { color: COLORS.text + '80', size: 9 }, yshift: 12
   }],
   height: isMobile ? 300 : 400,
 }), config);

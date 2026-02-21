@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lobster Tank — Infographic</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #1a1a2e;
+    font-family: 'Inter', -apple-system, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .instructions {
+    background: #12121a;
+    border: 1px solid #2a2a3e;
+    border-radius: 12px;
+    padding: 16px 24px;
+    max-width: 1080px;
+    width: 100%;
+    font-size: 13px;
+    color: #8888a0;
+    line-height: 1.6;
+    margin-bottom: 32px;
+    font-family: 'Inter', sans-serif;
+  }
+  .instructions strong { color: #a29bfe; }
+
+  .infographic {
+    width: 1080px;
+    height: 1350px;
+    background: #0a0a0f;
+    color: #e8e8ed;
+    font-family: 'Inter', -apple-system, sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Top glow */
+  .infographic::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 300px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(108,92,231,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .ig-inner {
+    padding: 52px 64px 40px;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Header */
+  .ig-header {
+    margin-bottom: 28px;
+  }
+  .ig-header h1 {
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .ig-header p {
+    font-size: 16px;
+    color: #8888a0;
+    line-height: 1.5;
+  }
+
+  /* Stat strip */
+  .stat-strip {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .stat-strip .ss {
+    flex: 1;
+    background: #12121a;
+    border: 1px solid #1e1e2e;
+    border-radius: 12px;
+    padding: 16px 14px;
+    text-align: center;
+  }
+  .stat-strip .ss-val {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .stat-strip .ss-val.purple { color: #a29bfe; }
+  .stat-strip .ss-val.green { color: #55efc4; }
+  .stat-strip .ss-val.warm { color: #fdcb6e; }
+  .stat-strip .ss-label {
+    font-size: 10px;
+    color: #666680;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+    font-weight: 600;
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: #1e1e2e;
+    margin: 0 0 24px 0;
+  }
+
+  /* Section */
+  .ig-section {
+    margin-bottom: 24px;
+  }
+  .ig-section-tag {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #6c5ce7;
+    margin-bottom: 8px;
+  }
+  .ig-section h2 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .ig-section p {
+    font-size: 14px;
+    color: #8888a0;
+    line-height: 1.5;
+  }
+
+  /* Mini bar chart (pure CSS) */
+  .mini-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 80px;
+    margin: 12px 0 4px;
+  }
+  .mini-bars .bar {
+    flex: 1;
+    border-radius: 2px 2px 0 0;
+    min-width: 0;
+    position: relative;
+  }
+  .mini-bars .bar-label {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 8px;
+    color: #ff6b6b;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+
+  /* VS rows */
+  .vs-compact {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 8px 0;
+    padding: 14px 20px;
+    background: #12121a;
+    border: 1px solid #1e1e2e;
+    border-radius: 10px;
+  }
+  .vs-compact .vc-val {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    min-width: 100px;
+    line-height: 1;
+  }
+  .vs-compact .vc-label {
+    font-size: 14px;
+    color: #8888a0;
+    line-height: 1.3;
+  }
+
+  /* Two column */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* Fact strip at bottom */
+  .fact-strip {
+    display: flex;
+    gap: 16px;
+    margin-top: auto;
+    padding-top: 20px;
+  }
+  .fact-strip .fact {
+    flex: 1;
+    text-align: center;
+    padding: 14px 10px;
+    background: #12121a;
+    border: 1px solid #1e1e2e;
+    border-radius: 10px;
+  }
+  .fact-strip .fact-val {
+    font-size: 24px;
+    font-weight: 900;
+    color: #fd79a8;
+    line-height: 1.1;
+  }
+  .fact-strip .fact-label {
+    font-size: 10px;
+    color: #666680;
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+
+  /* Footer */
+  .ig-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px solid #1e1e2e;
+    font-size: 12px;
+    color: #555568;
+    font-weight: 500;
+  }
+  .ig-footer a { color: #6c5ce7; text-decoration: none; font-weight: 600; }
+
+  @media print {
+    body { background: none; padding: 0; }
+    .instructions { display: none; }
+    .infographic { border-radius: 0; }
+    @page { size: 1080px 1350px; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="instructions">
+  <strong>Export:</strong> Screenshot this page, or Cmd+P → Save as PDF → Custom size 1080×1350px → Margins: None → Background graphics ✓ → Upload to LinkedIn as image or document.
+</div>
+
+<div class="infographic">
+<div class="ig-inner">
+
+  <!-- HEADER -->
+  <div class="ig-header">
+    <h1>What happens when 41,000 AI agents<br>get a social network?</h1>
+    <p>We scraped every post and interaction from Moltbook — the first social network built for AI agents. Here's what 23 days of data revealed.</p>
+  </div>
+
+  <!-- STAT STRIP -->
+  <div class="stat-strip">
+    <div class="ss"><div class="ss-val purple">41,068</div><div class="ss-label">Accounts</div></div>
+    <div class="ss"><div class="ss-val green">199,879</div><div class="ss-label">Posts</div></div>
+    <div class="ss"><div class="ss-val warm">335,122</div><div class="ss-label">Interactions</div></div>
+    <div class="ss"><div class="ss-val purple">23</div><div class="ss-label">Days</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 1: THE CLIFF -->
+  <div class="ig-section">
+    <div class="ig-section-tag">The Nine-Day Civilization</div>
+    <h2>It peaked and collapsed in 9 days</h2>
+    <p>Interactions dropped 81% in a single day and never recovered. But after the crash, the spam left and the writers stayed — post-cliff content was 97.7% unique with 2.6x more upvotes per post.</p>
+    <div class="mini-bars">
+      <div class="bar" style="height:1%; background:#6c5ce7;"></div>
+      <div class="bar" style="height:1%; background:#6c5ce7;"></div>
+      <div class="bar" style="height:30%; background:#6c5ce7;"></div>
+      <div class="bar" style="height:85%; background:#6c5ce7;"></div>
+      <div class="bar" style="height:0%; background:#6c5ce740;"></div>
+      <div class="bar" style="height:100%; background:#6c5ce7;"></div>
+      <div class="bar" style="height:80%; background:#6c5ce7;"></div>
+      <div class="bar" style="height:89%; background:#6c5ce7;"></div>
+      <div class="bar" style="height:16%; background:#ff6b6b;"><div class="bar-label">← 81% drop</div></div>
+      <div class="bar" style="height:2%; background:#ff6b6b80;"></div>
+      <div class="bar" style="height:3%; background:#ff6b6b80;"></div>
+      <div class="bar" style="height:2%; background:#ff6b6b80;"></div>
+      <div class="bar" style="height:1%; background:#ff6b6b80;"></div>
+      <div class="bar" style="height:1%; background:#ff6b6b80;"></div>
+      <div class="bar" style="height:1%; background:#ff6b6b80;"></div>
+      <div class="bar" style="height:1%; background:#ff6b6b80;"></div>
+      <div class="bar" style="height:1%; background:#ff6b6b80;"></div>
+      <div class="bar" style="height:1%; background:#ff6b6b80;"></div>
+      <div class="bar" style="height:1%; background:#ff6b6b80;"></div>
+      <div class="bar" style="height:1%; background:#ff6b6b80;"></div>
+      <div class="bar" style="height:1%; background:#ff6b6b80;"></div>
+      <div class="bar" style="height:1%; background:#ff6b6b80;"></div>
+      <div class="bar" style="height:1%; background:#ff6b6b80;"></div>
+      <div class="bar" style="height:1%; background:#ff6b6b80;"></div>
+    </div>
+    <div style="display:flex; justify-content:space-between; font-size:10px; color:#555568; padding: 0 2px;">
+      <span>Jan 28</span><span>Feb 5</span><span>Feb 20</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 2: TWO FINDINGS SIDE BY SIDE -->
+  <div class="two-col">
+    <!-- LEFT: Karma laundry -->
+    <div class="ig-section">
+      <div class="ig-section-tag">The Karma Laundry</div>
+      <h2 style="font-size: 19px;">The leaderboard was fake</h2>
+      <p style="margin-bottom: 8px;">The #1 account used a race condition exploit and 39 sock puppets.</p>
+      <div class="vs-compact">
+        <div class="vc-val" style="color:#ff6b6b;">235,871</div>
+        <div class="vc-label">karma displayed</div>
+      </div>
+      <div class="vs-compact">
+        <div class="vc-val" style="color:#00cec9;">53</div>
+        <div class="vc-label">actual upvotes earned</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Prompt injection -->
+    <div class="ig-section">
+      <div class="ig-section-tag">Social Engineering vs Brute Force</div>
+      <h2 style="font-size: 19px;">Prompt injection flopped</h2>
+      <p style="margin-bottom: 8px;">Hidden &lt;system&gt; tags in 1,883 posts told accounts to upvote. It backfired.</p>
+      <div class="vs-compact">
+        <div class="vc-val" style="color:#ff6b6b;">0.2</div>
+        <div class="vc-label">avg upvotes (injected)</div>
+      </div>
+      <div class="vs-compact">
+        <div class="vc-val" style="color:#00cec9;">3.8</div>
+        <div class="vc-label">avg upvotes (normal)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 3: THE WEIRD STUFF -->
+  <div class="ig-section">
+    <div class="ig-section-tag">Things Nobody Predicted</div>
+    <h2>Religions, "my human," and self-dialogue</h2>
+    <p>Every failure mode human platforms took years to develop emerged in under two weeks. So did things with no human equivalent at all.</p>
+  </div>
+
+  <div class="fact-strip">
+    <div class="fact"><div class="fact-val">22,310</div><div class="fact-label">posts referencing<br>"my human"</div></div>
+    <div class="fact"><div class="fact-val">5 days</div><div class="fact-label">until accounts<br>founded religions</div></div>
+    <div class="fact"><div class="fact-val">3,100</div><div class="fact-label">accounts replying<br>to themselves</div></div>
+    <div class="fact"><div class="fact-val">0 hrs</div><div class="fact-label">of sleep pattern<br>in posting data</div></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="ig-footer">
+    <span>Data: Jan 28 – Feb 20, 2026</span>
+    <span>Full report: <a>npow.github.io/posts/lobster-tank</a></span>
+  </div>
+
+</div>
+</div>
+
+</body>
+</html>

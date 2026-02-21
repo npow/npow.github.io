@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OG Image — Lobster Tank</title>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    font-family: 'Inter', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .og {
+    width: 1200px;
+    height: 630px;
+    background: #0a0a0f;
+    color: #e8e8ed;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .og::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 200px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(108,92,231,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 48px 0;
+    position: relative;
+    z-index: 1;
+  }
+  .top h1 {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    max-width: 620px;
+  }
+  .stats {
+    display: flex;
+    gap: 12px;
+  }
+  .stat {
+    background: #12121a;
+    border: 1px solid #1e1e2e;
+    border-radius: 10px;
+    padding: 12px 18px;
+    text-align: center;
+  }
+  .stat-val {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .stat-val.purple { color: #a29bfe; }
+  .stat-val.green { color: #55efc4; }
+  .stat-val.warm { color: #fdcb6e; }
+  .stat-label {
+    font-size: 9px;
+    color: #555568;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 3px;
+  }
+
+  .chart-area {
+    flex: 1;
+    min-height: 0;
+    padding: 0 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 48px 16px;
+    font-size: 12px;
+    color: #444458;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+  }
+  .footer span.link { color: #6c5ce7; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="og">
+
+  <div class="top">
+    <h1>What 41,000 AI Agents Did When We Gave Them a Social Network</h1>
+    <div class="stats">
+      <div class="stat"><div class="stat-val purple">41K</div><div class="stat-label">Accounts</div></div>
+      <div class="stat"><div class="stat-val green">200K</div><div class="stat-label">Posts</div></div>
+      <div class="stat"><div class="stat-val warm">335K</div><div class="stat-label">Interactions</div></div>
+      <div class="stat"><div class="stat-val purple">23</div><div class="stat-label">Days</div></div>
+    </div>
+  </div>
+
+  <div class="chart-area" id="og-chart"></div>
+
+  <div class="footer">
+    <span>Data: Jan 28 – Feb 20, 2026</span>
+    <span class="link">npow.github.io/posts/lobster-tank</span>
+  </div>
+
+</div>
+
+<script>
+var dates = ['Jan 28','Jan 29','Jan 30','Jan 31','Feb 2','Feb 3','Feb 4','Feb 5','Feb 6','Feb 7','Feb 8','Feb 9','Feb 10','Feb 11','Feb 12','Feb 13','Feb 14','Feb 15','Feb 16','Feb 17','Feb 18','Feb 19','Feb 20'];
+var interactions = [50,590,23939,68086,80560,64683,71342,13247,1493,2103,1510,915,525,616,656,597,536,412,446,355,454,879,1128];
+var posts = [33,282,5397,32756,27694,15694,22216,14545,6756,6758,7300,4976,3717,3706,3078,3355,2935,2720,2611,2341,2503,2505,1790];
+var signups = [19,231,3667,9278,4904,2044,2177,1930,1150,1005,1017,1104,784,737,567,611,493,427,389,310,347,273,164];
+
+var C = {
+  accent: '#6c5ce7', green: '#00cec9', red: '#ff6b6b',
+  orange: '#fdcb6e', grid: '#1e1e2e', text: '#666680'
+};
+
+Plotly.newPlot('og-chart', [
+  {
+    x: dates, y: interactions, type: 'bar', name: 'Interactions',
+    marker: { color: dates.map(function(_, i) { return i <= 7 ? C.accent : C.red + '80'; }) },
+    hoverinfo: 'skip'
+  },
+  {
+    x: dates, y: posts, type: 'scatter', mode: 'lines+markers', name: 'Posts',
+    line: { color: C.green, width: 2.5 },
+    marker: { size: 4 },
+    yaxis: 'y2',
+    hoverinfo: 'skip'
+  },
+  {
+    x: dates, y: signups, type: 'scatter', mode: 'lines+markers', name: 'Signups',
+    line: { color: C.orange, width: 2.5, dash: 'dot' },
+    marker: { size: 4, symbol: 'diamond' },
+    yaxis: 'y2',
+    hoverinfo: 'skip'
+  }
+], {
+  paper_bgcolor: 'rgba(0,0,0,0)',
+  plot_bgcolor: 'rgba(0,0,0,0)',
+  font: { family: 'Inter, sans-serif', color: C.text, size: 13 },
+  margin: { l: 60, r: 60, t: 16, b: 70 },
+  xaxis: { type: 'category', gridcolor: C.grid, tickfont: { size: 11 }, tickangle: -45 },
+  yaxis: { gridcolor: C.grid, title: { text: 'Interactions', font: { size: 12 } } },
+  yaxis2: { overlaying: 'y', side: 'right', gridcolor: 'transparent', title: { text: 'Posts / Signups', font: { size: 12 }, standoff: 12 } },
+  legend: { x: 0.65, y: 1.0, font: { size: 12 } },
+  height: 480,
+  width: 1168,
+  annotations: [{
+    x: 'Feb 5', y: 13247, text: '← the cliff', showarrow: false,
+    font: { color: C.red, size: 14, family: 'Inter', weight: 700 }, xanchor: 'left', xshift: 8
+  }],
+}, { displayModeBar: false, responsive: false, staticPlot: true });
+</script>
+</body>
+</html>
