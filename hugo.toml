@@ -20,7 +20,7 @@ buildExpired = false
   env = "production"
   description = "npow's blog"
   author = "npow"
-  defaultTheme = "light"
+  defaultTheme = "auto"
   ShowReadingTime = true
   ShowShareButtons = false
   ShowPostNavLinks = true
@@ -30,7 +30,7 @@ buildExpired = false
   ShowAllPagesInArchive = true
   ShowPageNums = true
   ShowToc = true
-  comments = false
+  comments = true
 
   [params.homeInfoParams]
     Title = "Hey there"
@@ -41,7 +41,7 @@ buildExpired = false
     url = "https://github.com/npow"
 
   [params.editPost]
-    URL = "https://github.com/npow/npow.github.io/tree/main/content"
+    URL = "https://github.com/npow/npow.github.io/tree/master/content"
     Text = "Suggest Changes"
     appendFilePath = true
 
@@ -55,6 +55,9 @@ buildExpired = false
   keys = ["title", "permalink", "summary", "content"]
 
 [markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
   [markup.highlight]
     style = "dracula"
     lineNos = false

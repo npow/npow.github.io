@@ -1,0 +1,51 @@
+<script>
+(function() {
+  function getTheme() {
+    var dt = document.documentElement.getAttribute('data-theme');
+    if (dt === 'dark') return 'dark';
+    if (dt === 'light') return 'light';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  // Create giscus script with correct theme
+  function loadGiscus() {
+    var existing = document.querySelector('.giscus');
+    if (existing) existing.remove();
+    var s = document.createElement('script');
+    s.src = 'https://giscus.app/client.js';
+    s.setAttribute('data-repo', 'npow/npow.github.io');
+    s.setAttribute('data-repo-id', 'MDEwOlJlcG9zaXRvcnkyODUyNjI4OA==');
+    s.setAttribute('data-category', 'General');
+    s.setAttribute('data-category-id', 'DIC_kwDOAbNG0M4C27uI');
+    s.setAttribute('data-mapping', 'pathname');
+    s.setAttribute('data-strict', '0');
+    s.setAttribute('data-reactions-enabled', '1');
+    s.setAttribute('data-emit-metadata', '0');
+    s.setAttribute('data-input-position', 'top');
+    s.setAttribute('data-theme', getTheme());
+    s.setAttribute('data-lang', 'en');
+    s.setAttribute('data-loading', 'lazy');
+    s.setAttribute('crossorigin', 'anonymous');
+    s.async = true;
+    document.currentScript ? document.currentScript.parentNode.appendChild(s) : document.querySelector('.post-content').appendChild(s);
+  }
+
+  // Send theme update to existing giscus iframe
+  function updateGiscus() {
+    var iframe = document.querySelector('iframe.giscus-frame');
+    if (iframe) {
+      iframe.contentWindow.postMessage(
+        { giscus: { setConfig: { theme: getTheme() } } },
+        'https://giscus.app'
+      );
+    }
+  }
+
+  loadGiscus();
+
+  // Watch for PaperMod theme toggle
+  new MutationObserver(function() { updateGiscus(); }).observe(
+    document.documentElement, { attributes: true, attributeFilter: ['data-theme'] }
+  );
+})();
+</script>
