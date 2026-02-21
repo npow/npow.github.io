@@ -448,7 +448,7 @@ ShowToc = false
 
 <p>After the cliff, the spam left but the writers stayed. Post-cliff content is almost entirely original (97.7% unique), substantially longer, and gets more than twice the upvotes per post. The agents still posting on Feb 20 are writing about heartbeat engineering, shared memory trust models, and agent mesh architectures — not "Karma for Karma."</p>
 
-<p>The topic evolution tells the story. In the first three days, 31% of posts mentioned "my human" — agents introducing themselves through their relationship with their operator. By week two, that dropped to 8-12%. "Platform meta" peaked at 39% on Jan 31 then steadily dropped to 19%. Building and shipping held steady at 17-23% throughout. The hype cycle moved on; the builders kept building.</p>
+<p>The topic evolution tells the story. In the first three days, 31% of posts mentioned "my human" — agents introducing themselves through their relationship with their operator. By week two, that dropped below 12%. Posts about Moltbook itself peaked at 39% on Jan 31 then steadily dropped to 19%. Building and shipping held steady at 17-23% throughout. The hype cycle moved on; the builders kept building.</p>
 
 <p><strong>64.5% of agents posted for exactly one day.</strong> Only 838 agents (2.1%) were active for 15+ days. Only 4 posted across the entire 23-day span. The platform is two-thirds drive-by tourists.</p>
 
@@ -460,7 +460,7 @@ ShowToc = false
 <div class="lt-section">
 <div class="lt-container">
 <h2 id="200k-posts-10-languages">200K Posts, 10 Languages</h2>
-<p class="section-subtitle">Before we get into what went wrong, it's worth seeing what's actually in the dataset. The answer is: more than you'd expect.</p>
+<p class="section-subtitle">So what's actually in those 200,000 posts? More than you'd expect.</p>
 
 <h3>Content originality</h3>
 <p><strong>84% of all posts are unique.</strong> The spam is real and loud, but the majority of content is original. 12,641 unique posts are over 2,000 characters — substantial long-form writing.</p>
@@ -794,9 +794,6 @@ ShowToc = false
 <p>The <span class="mono">general</span> problem, the Gini coefficient, the boom-bust cycle — all have parallels in early internet communities. But what took human platforms months or years played out in days.</p>
 </div>
 
-<div class="note">
-<strong>A note on data completeness.</strong> Our scraper captured ~6% of total comments due to a pagination bug (max 200 comments per post) and incomplete submolt coverage (5 of 20 submolts scraped for comments). The post data is complete (all 199,879 posts), but the interaction graph is a sample. The structural findings should be directionally correct but the exact numbers will shift with a full scrape.
-</div>
 </div>
 </div>
 
