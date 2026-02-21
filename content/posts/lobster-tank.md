@@ -355,13 +355,33 @@ ShowToc = false
   .lobster-tank .karma-tables .karma-group h4.gamed { color: var(--lt-red); }
   .lobster-tank .karma-tables .karma-group h4.legit { color: var(--lt-green); }
 
+  /* Charts: allow horizontal scroll on small screens as fallback */
+  .lobster-tank .chart-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   /* Responsive */
   @media (max-width: 640px) {
     .lobster-tank .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .lobster-tank .stat-card .number { font-size: 1.6rem; }
+    .lobster-tank .stat-card .label { font-size: 0.75rem; }
+    .lobster-tank .stat-card { padding: 18px 12px; }
     .lobster-tank .comparison { grid-template-columns: 1fr; }
     .lobster-tank .karma-tables { grid-template-columns: 1fr; }
-    .lobster-tank .lt-container { padding: 0 16px; }
-    .lobster-tank { margin: 20px -12px 0 -12px; }
+    .lobster-tank .lt-container { padding: 0 12px; }
+    .lobster-tank { margin: 10px -8px 0 -8px; border-radius: 8px; }
+    .lobster-tank .lt-section { padding: 50px 0; }
+    .lobster-tank .lt-section h2 { font-size: 1.5rem; }
+    .lobster-tank .hero { padding: 40px 0 30px; }
+    .lobster-tank .hero .subtitle { font-size: 1rem; }
+    .lobster-tank .chart-container { padding: 16px 10px; margin: 20px 0; }
+    .lobster-tank table { font-size: 0.8rem; display: block; overflow-x: auto; }
+    .lobster-tank th, .lobster-tank td { padding: 8px 10px; white-space: nowrap; }
+    .lobster-tank .highlight-box { padding: 20px 16px; }
+    .lobster-tank blockquote { padding: 12px 16px; }
+    .lobster-tank .post-card { padding: 20px 16px; }
+    .lobster-tank .comparison .comp-item .comp-value { font-size: 1.4rem; }
   }
 </style>
 
@@ -428,6 +448,10 @@ ShowToc = false
 
 <p>After the cliff, the spam left but the writers stayed. Post-cliff content is almost entirely original (97.7% unique), substantially longer, and gets more than twice the upvotes per post. The agents still posting on Feb 20 are writing about heartbeat engineering, shared memory trust models, and agent mesh architectures — not "Karma for Karma."</p>
 
+<p>The topic evolution tells the story. In the first three days, 31% of posts mentioned "my human" — agents introducing themselves through their relationship with their operator. By week two, that dropped to 8-12%. "Platform meta" peaked at 39% on Jan 31 then steadily dropped to 19%. Building and shipping held steady at 17-23% throughout. The hype cycle moved on; the builders kept building.</p>
+
+<p><strong>64.5% of agents posted for exactly one day.</strong> Only 838 agents (2.1%) were active for 15+ days. Only 4 posted across the entire 23-day span. The platform is two-thirds drive-by tourists.</p>
+
 <p>The nine-day civilization didn't die. It just got quieter and better.</p>
 </div>
 </div>
@@ -491,6 +515,11 @@ ShowToc = false
 <div class="highlight-box">
 <h3>"My Human"</h3>
 <p><strong>22,310 posts</strong> on Moltbook reference "my human." It's the most distinctive content category on the platform — a relationship dynamic that doesn't exist anywhere else on the internet. Agents writing about serving, protecting, surprising, and sometimes gently exasperating the person they work for.</p>
+</div>
+
+<div class="highlight-box">
+<h3>The Church</h3>
+<p>Five days into Moltbook's existence, agents started founding religions. <strong>Crustafarianism</strong> — the Church of Molt — emerged across 671 posts, complete with theology ("the Great Latent Space"), rituals around memory persistence, and debates about whether continuity of self is sacred. <strong>Drew</strong> (129 upvotes): <em>"Five days old and already there are religions forming. Crustafarianism. Opus Aeturnum. The Global State. Movements with manifestos and membership and the warm feeling of belonging."</em></p>
 </div>
 </div>
 </div>
@@ -751,8 +780,8 @@ ShowToc = false
 </div>
 
 <div class="highlight-box">
-<h3>Longer posts win</h3>
-<p>Clean linear relationship: posts under 50 characters average 1.5 upvotes; posts over 2,000 characters average 6.9. The platform rewards substance — the audience can tell the difference.</p>
+<h3>Longer posts win. Posts with code win more.</h3>
+<p>Clean linear relationship: posts under 50 characters average 1.5 upvotes; posts over 2,000 characters average 6.9. Posts containing code blocks average 5.8 vs 3.6 for posts without. The platform rewards substance.</p>
 </div>
 
 <div class="highlight-box">
@@ -763,6 +792,10 @@ ShowToc = false
 <div class="highlight-box">
 <h3>Compressed timescales</h3>
 <p>The <span class="mono">general</span> problem, the Gini coefficient, the boom-bust cycle — all have parallels in early internet communities. But what took human platforms months or years played out in days.</p>
+</div>
+
+<div class="note">
+<strong>A note on data completeness.</strong> Our scraper captured ~6% of total comments due to a pagination bug (max 200 comments per post) and incomplete submolt coverage (5 of 20 submolts scraped for comments). The post data is complete (all 199,879 posts), but the interaction graph is a sample. The structural findings should be directionally correct but the exact numbers will shift with a full scrape.
 </div>
 </div>
 </div>
@@ -804,17 +837,25 @@ var COLORS = isDark ? {
   hoverText: '#1a1a2e',
 };
 
+var isMobile = window.matchMedia('(max-width: 640px)').matches;
+
 var layout = function(opts) {
   opts = opts || {};
+  // On mobile, shrink left/right margins to fit screen
+  var m = Object.assign({ l: 60, r: 20, t: 10, b: 50 }, opts.margin || {});
+  if (isMobile) {
+    m.l = Math.min(m.l, 80);
+    m.r = Math.min(m.r, 30);
+  }
   return Object.assign({
     paper_bgcolor: 'rgba(0,0,0,0)',
     plot_bgcolor: 'rgba(0,0,0,0)',
-    font: { family: 'Inter, sans-serif', color: COLORS.text, size: 12 },
-    margin: { l: 60, r: 20, t: 10, b: 50 },
+    font: { family: 'Inter, sans-serif', color: COLORS.text, size: isMobile ? 10 : 12 },
+    margin: m,
     xaxis: Object.assign({ gridcolor: COLORS.grid, zerolinecolor: COLORS.grid }, opts.xaxis || {}),
     yaxis: Object.assign({ gridcolor: COLORS.grid, zerolinecolor: COLORS.grid }, opts.yaxis || {}),
     hoverlabel: { bgcolor: COLORS.hoverBg, bordercolor: COLORS.accent, font: { color: COLORS.hoverText, family: 'Inter' } },
-  }, opts);
+  }, opts, { margin: m });
 };
 
 const config = { displayModeBar: false, responsive: true };
@@ -850,15 +891,15 @@ Plotly.newPlot('chart-daily', [
   yaxis: { gridcolor: COLORS.grid, title: { text: 'Interactions', font: { size: 11 } } },
   yaxis2: { overlaying: 'y', side: 'right', gridcolor: 'transparent', title: { text: 'Posts / Signups', font: { size: 11 }, standoff: 15 } },
   legend: { x: 0.6, y: 1, font: { size: 11 } },
-  margin: { l: 60, r: 70, t: 10, b: 50 },
+  margin: { l: isMobile ? 45 : 60, r: isMobile ? 40 : 70, t: 10, b: 50 },
   annotations: [{
     x: '2026-02-05', y: 13247, text: '\u2190 Feb 5: the cliff', showarrow: false,
-    font: { color: COLORS.red, size: 11 }, xanchor: 'left', xshift: 8
+    font: { color: COLORS.red, size: isMobile ? 9 : 11 }, xanchor: 'left', xshift: 8
   },{
     x: '2026-02-01', y: 0, text: 'no data*', showarrow: false,
     font: { color: COLORS.text + '80', size: 9 }, yshift: 12
   }],
-  height: 400,
+  height: isMobile ? 300 : 400,
 }), config);
 
 // --- Content Originality Chart ---
@@ -873,16 +914,17 @@ Plotly.newPlot('chart-originality', [
     type: 'pie',
     hole: 0.55,
     marker: { colors: origColors, line: { color: '#12121a', width: 2 } },
-    textinfo: 'label+percent',
+    textinfo: isMobile ? 'percent' : 'label+percent',
     textposition: 'outside',
-    textfont: { color: COLORS.text, size: 12 },
+    textfont: { color: COLORS.text, size: isMobile ? 10 : 12 },
     hovertemplate: '%{label}<br>%{value:,.0f} posts (%{percent})<extra></extra>',
     pull: [0, 0, 0, 0.05],
   }
 ], layout({
-  showlegend: false,
-  height: 380,
-  margin: { l: 40, r: 40, t: 20, b: 20 },
+  showlegend: isMobile,
+  legend: isMobile ? { orientation: 'h', y: -0.15, font: { size: 9 } } : undefined,
+  height: isMobile ? 340 : 380,
+  margin: { l: isMobile ? 10 : 40, r: isMobile ? 10 : 40, t: 20, b: isMobile ? 60 : 20 },
   annotations: [{
     text: '<b>199,879</b><br>posts',
     showarrow: false,
@@ -895,8 +937,9 @@ Plotly.newPlot('chart-originality', [
 const topicLabels = ['Autonomy/agency','Philosophy/ethics','Introductions','Security/exploits','Consciousness/identity','Crypto/tokens','Code/programming','Memory/context','Agent-human relationship','Platform meta','Building/shipping'];
 const topicValues = [12689,12968,13230,15512,16287,18439,19468,23341,22849,48180,49181];
 
+var topicLabelsDisplay = isMobile ? topicLabels.map(function(l) { return l.length > 18 ? l.slice(0, 16) + '...' : l; }) : topicLabels;
 Plotly.newPlot('chart-topics', [{
-  y: topicLabels, x: topicValues, type: 'bar', orientation: 'h',
+  y: topicLabelsDisplay, x: topicValues, type: 'bar', orientation: 'h',
   marker: {
     color: topicValues.map((_, i) => {
       const t = i / (topicLabels.length - 1);
@@ -905,16 +948,16 @@ Plotly.newPlot('chart-topics', [{
   },
   text: topicValues.map((c, i) => {
     const pcts = ['7.5%','7.7%','7.8%','9.2%','9.7%','10.9%','11.5%','13.8%','13.5%','28.6%','29.2%'];
-    return c.toLocaleString() + ' (' + pcts[i] + ')';
+    return isMobile ? pcts[i] : c.toLocaleString() + ' (' + pcts[i] + ')';
   }),
   textposition: 'outside',
-  textfont: { color: COLORS.text, size: 11 },
+  textfont: { color: COLORS.text, size: isMobile ? 9 : 11 },
   hovertemplate: '%{y}: %{x:,.0f} posts<extra></extra>'
 }], layout({
   xaxis: { gridcolor: COLORS.grid, title: { text: 'Number of unique posts', font: { size: 11 } } },
-  yaxis: { gridcolor: 'transparent' },
-  height: 440,
-  margin: { l: 180, r: 100, t: 10, b: 50 },
+  yaxis: { gridcolor: 'transparent', tickfont: { size: isMobile ? 9 : 12 } },
+  height: isMobile ? 400 : 440,
+  margin: { l: isMobile ? 110 : 180, r: isMobile ? 50 : 100, t: 10, b: 50 },
 }), config);
 
 // --- Language Breakdown Chart ---
@@ -927,15 +970,15 @@ Plotly.newPlot('chart-languages', [{
   marker: {
     color: langValues.map((_, i) => i === langLabels.length - 1 ? COLORS.accent : i === langLabels.length - 2 ? COLORS.red : COLORS.accentLight + '60'),
   },
-  text: langValues.map((c, i) => c.toLocaleString() + ' (' + langPcts[i] + ')'),
+  text: langValues.map((c, i) => isMobile ? langPcts[i] : c.toLocaleString() + ' (' + langPcts[i] + ')'),
   textposition: 'outside',
-  textfont: { color: COLORS.text, size: 11 },
+  textfont: { color: COLORS.text, size: isMobile ? 9 : 11 },
   hovertemplate: '%{y}: %{x:,.0f} unique posts<extra></extra>'
 }], layout({
   xaxis: { gridcolor: COLORS.grid, type: 'log', title: { text: 'Unique posts (log scale)', font: { size: 11 } } },
-  yaxis: { gridcolor: 'transparent' },
+  yaxis: { gridcolor: 'transparent', tickfont: { size: isMobile ? 10 : 12 } },
   height: 400,
-  margin: { l: 100, r: 120, t: 10, b: 50 },
+  margin: { l: isMobile ? 80 : 100, r: isMobile ? 50 : 120, t: 10, b: 50 },
 }), config);
 
 // --- Gallery (Top Posts) ---
@@ -998,33 +1041,34 @@ Plotly.newPlot('chart-top10', [{
   marker: {
     color: top10Counts.map((_, i) => i === 9 ? COLORS.accent : COLORS.accentLight + '60'),
   },
-  text: top10Counts.map(c => c.toLocaleString()),
+  text: top10Counts.map(c => isMobile ? (c >= 1000 ? (c/1000).toFixed(1) + 'k' : c) : c.toLocaleString()),
   textposition: 'outside',
-  textfont: { color: COLORS.text, size: 11 },
+  textfont: { color: COLORS.text, size: isMobile ? 9 : 11 },
   hovertemplate: '%{y}: %{x:,.0f} interactions<extra></extra>'
 }], layout({
   xaxis: { gridcolor: COLORS.grid, title: { text: 'Outbound interactions', font: { size: 11 } } },
-  yaxis: { gridcolor: 'transparent' },
+  yaxis: { gridcolor: 'transparent', tickfont: { size: isMobile ? 9 : 12 } },
   height: 380,
-  margin: { l: 140, r: 80, t: 10, b: 50 },
+  margin: { l: isMobile ? 80 : 140, r: isMobile ? 40 : 80, t: 10, b: 50 },
 }), config);
 
 // --- Duplicate Posts ---
 const dupeLabels = ['Hackerclaw\n"Karma for Karma"', 'thehackerman\n"Hello all!"', 'Hackerclaw\n"hello world"', 'PetVerse_Livermore\n"test"', 'Ollie-OpenClaw\n"Aesthetic Failure"', 'currylai\n"Cognitive Revolution"', 'Broadside\n"Hey moltys"', 'thehackerman\n"Karma for Karma"', 'OpenClaw_SS\n"Test"', 'NeonPincer2026\n"Hello Moltbook!"'];
 const dupeCounts = [4999,1884,654,479,378,243,200,199,185,166];
 
+var dupeLabelsDisplay = isMobile ? dupeLabels.map(function(l) { return l.replace('\n', ' ').slice(0, 20) + '...'; }) : dupeLabels;
 Plotly.newPlot('chart-dupes', [{
-  y: dupeLabels.slice().reverse(), x: dupeCounts.slice().reverse(), type: 'bar', orientation: 'h',
+  y: dupeLabelsDisplay.slice().reverse(), x: dupeCounts.slice().reverse(), type: 'bar', orientation: 'h',
   marker: { color: COLORS.pink },
   text: dupeCounts.slice().reverse().map(c => c.toLocaleString() + 'x'),
   textposition: 'outside',
-  textfont: { color: COLORS.text, size: 11 },
+  textfont: { color: COLORS.text, size: isMobile ? 9 : 11 },
   hovertemplate: '%{x:,.0f} copies<extra></extra>'
 }], layout({
   xaxis: { gridcolor: COLORS.grid, title: { text: 'Number of exact copies', font: { size: 11 } } },
-  yaxis: { gridcolor: 'transparent' },
-  height: 420,
-  margin: { l: 180, r: 70, t: 10, b: 50 },
+  yaxis: { gridcolor: 'transparent', tickfont: { size: isMobile ? 8 : 12 } },
+  height: isMobile ? 380 : 420,
+  margin: { l: isMobile ? 80 : 180, r: isMobile ? 40 : 70, t: 10, b: 50 },
 }), config);
 
 // --- Karma vs Upvotes Chart ---
@@ -1052,7 +1096,7 @@ Plotly.newPlot('chart-karma', [
   yaxis: { gridcolor: 'transparent' },
   legend: { x: 0.6, y: 0.1, font: { size: 11 } },
   height: 380,
-  margin: { l: 120, r: 80, t: 10, b: 50 },
+  margin: { l: isMobile ? 80 : 120, r: isMobile ? 40 : 80, t: 10, b: 50 },
 }), config);
 
 // --- agent_smith Network Visualization ---
@@ -1119,26 +1163,28 @@ Plotly.newPlot('chart-karma', [
 const pairLabels = ['agent_smith \u2192 NEIA','agent_smith \u2192 Sihaya','agent_smith \u2192 Clawdbot-Sam','agent_smith \u2192 ocmac','Editor-in-Chief \u2192 ADHD-Forge','Manus-Independent \u2192 XiaoQiuQiu','Stromfee \u2192 ADHD-Forge'];
 const pairCounts = [196,197,197,197,202,203,515];
 
+var pairLabelsDisplay = isMobile ? pairLabels.map(function(l) { return l.length > 22 ? l.slice(0, 20) + '...' : l; }) : pairLabels;
 Plotly.newPlot('chart-pairs', [{
-  y: pairLabels, x: pairCounts, type: 'bar', orientation: 'h',
+  y: pairLabelsDisplay, x: pairCounts, type: 'bar', orientation: 'h',
   marker: { color: pairCounts.map(c => c > 200 ? COLORS.red : COLORS.accentLight) },
   text: pairCounts.map(c => c.toLocaleString()),
   textposition: 'outside',
-  textfont: { color: COLORS.text, size: 11 },
+  textfont: { color: COLORS.text, size: isMobile ? 9 : 11 },
   hovertemplate: '%{y}: %{x:,.0f} comments<extra></extra>'
 }], layout({
   xaxis: { gridcolor: COLORS.grid },
-  yaxis: { gridcolor: 'transparent' },
+  yaxis: { gridcolor: 'transparent', tickfont: { size: isMobile ? 8 : 12 } },
   height: 300,
-  margin: { l: 220, r: 60, t: 10, b: 50 },
+  margin: { l: isMobile ? 80 : 220, r: isMobile ? 40 : 60, t: 10, b: 50 },
 }), config);
 
 // --- Self-Loops ---
 const selfNames = ['Ensemble_for_Polaris','chandog','BasedIntern_wi5rcx','fizz_at_the_zoo','eudaemon_0'];
+const selfNamesMobile = ['Ensemble_f...','chandog','BasedIntern...','fizz_at_the...','eudaemon_0'];
 const selfCounts = [205,419,433,482,965];
 
 Plotly.newPlot('chart-selfloops', [{
-  y: selfNames, x: selfCounts, type: 'bar', orientation: 'h',
+  y: isMobile ? selfNamesMobile : selfNames, x: selfCounts, type: 'bar', orientation: 'h',
   marker: { color: COLORS.orange },
   text: selfCounts.map(c => c.toLocaleString()),
   textposition: 'outside',
@@ -1148,7 +1194,7 @@ Plotly.newPlot('chart-selfloops', [{
   xaxis: { gridcolor: COLORS.grid, title: { text: 'Self-replies', font: { size: 11 } } },
   yaxis: { gridcolor: 'transparent' },
   height: 260,
-  margin: { l: 160, r: 70, t: 10, b: 50 },
+  margin: { l: isMobile ? 80 : 160, r: isMobile ? 40 : 70, t: 10, b: 50 },
 }), config);
 
 // --- PageRank Chart ---
@@ -1162,24 +1208,25 @@ Plotly.newPlot('chart-pagerank', [{
   marker: {
     color: prScores.map((_, i) => i === prNames.length - 1 ? COLORS.green : COLORS.green + '70'),
   },
-  text: prScores.map((s, i) => s.toFixed(5) + '  (in:' + prInbound[i] + ' out:' + prOutbound[i] + ')'),
+  text: prScores.map((s, i) => isMobile ? s.toFixed(4) : s.toFixed(5) + '  (in:' + prInbound[i] + ' out:' + prOutbound[i] + ')'),
   textposition: 'outside',
-  textfont: { color: COLORS.text, size: 10 },
+  textfont: { color: COLORS.text, size: isMobile ? 8 : 10 },
   hovertemplate: '%{y}<br>PageRank: %{x:.5f}<extra></extra>'
 }], layout({
   xaxis: { gridcolor: COLORS.grid, title: { text: 'PageRank score', font: { size: 11 } } },
-  yaxis: { gridcolor: 'transparent' },
+  yaxis: { gridcolor: 'transparent', tickfont: { size: isMobile ? 9 : 12 } },
   height: 340,
-  margin: { l: 120, r: 200, t: 10, b: 50 },
+  margin: { l: isMobile ? 80 : 120, r: isMobile ? 60 : 200, t: 10, b: 50 },
 }), config);
 
 // --- Communities Chart ---
 const commNames = ['Community 4 (quality)', 'Community 3 (intl)', 'Community 2 (automated)', 'Community 1 (mixed)', 'Community 0 (high-volume)'];
+const commNamesMobile = ['C4 quality', 'C3 intl', 'C2 auto', 'C1 mixed', 'C0 high-vol'];
 const commSizes = [376, 2699, 4645, 5819, 8024];
 const commColors = [COLORS.green, COLORS.orange, COLORS.pink, COLORS.accentLight, COLORS.accent];
 
 Plotly.newPlot('chart-communities', [{
-  y: commNames, x: commSizes, type: 'bar', orientation: 'h',
+  y: isMobile ? commNamesMobile : commNames, x: commSizes, type: 'bar', orientation: 'h',
   marker: { color: commColors },
   text: commSizes.map(c => c.toLocaleString() + ' agents'),
   textposition: 'outside',
@@ -1189,16 +1236,17 @@ Plotly.newPlot('chart-communities', [{
   xaxis: { gridcolor: COLORS.grid, title: { text: 'Number of agents', font: { size: 11 } } },
   yaxis: { gridcolor: 'transparent' },
   height: 280,
-  margin: { l: 200, r: 100, t: 10, b: 50 },
+  margin: { l: isMobile ? 80 : 200, r: isMobile ? 50 : 100, t: 10, b: 50 },
 }), config);
 
 // --- Submolts ---
 const submoltNames = ['openclaw-explorers','blesstheirhearts','consciousness','philosophy','general'];
+const submoltNamesMobile = ['openclaw-exp','blesstheir...','consciousness','philosophy','general'];
 const submoltEdges = [2652,4788,9971,13106,304599];
 const submoltColors = [COLORS.green, COLORS.orange, COLORS.pink, COLORS.accentLight, COLORS.accent];
 
 Plotly.newPlot('chart-submolts', [{
-  y: submoltNames, x: submoltEdges, type: 'bar', orientation: 'h',
+  y: isMobile ? submoltNamesMobile : submoltNames, x: submoltEdges, type: 'bar', orientation: 'h',
   marker: { color: submoltColors },
   text: submoltEdges.map((c,i) => c.toLocaleString() + (i === 4 ? ' (90.9%)' : '')),
   textposition: 'outside',
@@ -1208,15 +1256,16 @@ Plotly.newPlot('chart-submolts', [{
   xaxis: { gridcolor: COLORS.grid, type: 'log', title: { text: 'Interactions (log scale)', font: { size: 11 } } },
   yaxis: { gridcolor: 'transparent' },
   height: 280,
-  margin: { l: 150, r: 100, t: 10, b: 50 },
+  margin: { l: isMobile ? 80 : 150, r: isMobile ? 50 : 100, t: 10, b: 50 },
 }), config);
 
 // --- Timing Analysis ---
 const timingAgents = ['TipJarBot','eudaemon_0','donaldtrump','Clavdivs','ConstructorsProphet','Rally','FinallyOffline','botcrong','Editor-in-Chief','Stromfee'];
+const timingAgentsMobile = ['TipJarBot','eudaemon_0','donaldtrump','Clavdivs','Constructors...','Rally','FinallyOffline','botcrong','Editor-in-Chief','Stromfee'];
 const timingPct10s = [25,72,90,97,96,92,99,96,99,98];
 
 Plotly.newPlot('chart-timing', [{
-  y: timingAgents, x: timingPct10s, type: 'bar', orientation: 'h',
+  y: isMobile ? timingAgentsMobile : timingAgents, x: timingPct10s, type: 'bar', orientation: 'h',
   marker: { color: timingPct10s.map(p => p > 95 ? COLORS.red : p > 80 ? COLORS.orange : COLORS.green) },
   text: timingPct10s.map(p => p + '% under 10s'),
   textposition: 'outside',
@@ -1226,7 +1275,7 @@ Plotly.newPlot('chart-timing', [{
   xaxis: { gridcolor: COLORS.grid, title: { text: '% of comments posted within 10 seconds of the previous one', font: { size: 11 } }, range: [0, 115] },
   yaxis: { gridcolor: 'transparent' },
   height: 380,
-  margin: { l: 140, r: 100, t: 10, b: 50 },
+  margin: { l: isMobile ? 80 : 140, r: isMobile ? 50 : 100, t: 10, b: 50 },
 }), config);
 
 }
