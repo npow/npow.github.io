@@ -866,13 +866,13 @@ const config = { displayModeBar: false, responsive: true };
 const dailyDates = ['Jan 28','Jan 29','Jan 30','Jan 31','Feb 2','Feb 3','Feb 4','Feb 5','Feb 6','Feb 7','Feb 8','Feb 9','Feb 10','Feb 11','Feb 12','Feb 13','Feb 14','Feb 15','Feb 16','Feb 17','Feb 18','Feb 19','Feb 20'];
 const dailyInteractions = [50,590,23939,68086,80560,64683,71342,13247,1493,2103,1510,915,525,616,656,597,536,412,446,355,454,879,1128];
 const dailyPosts = [33,282,5397,32756,27694,15694,22216,14545,6756,6758,7300,4976,3717,3706,3078,3355,2935,2720,2611,2341,2503,2505,1790];
-const signupDates = ['Jan 27','Jan 28','Jan 29','Jan 30','Jan 31','Feb 2','Feb 3','Feb 4','Feb 5','Feb 6','Feb 7','Feb 8','Feb 9','Feb 10','Feb 11','Feb 12','Feb 13','Feb 14','Feb 15','Feb 16','Feb 17','Feb 18','Feb 19','Feb 20'];
-const signupCounts = [2,19,231,3667,9278,4904,2044,2177,1930,1150,1005,1017,1104,784,737,567,611,493,427,389,310,347,273,164];
+const signupDates = ['Jan 28','Jan 29','Jan 30','Jan 31','Feb 2','Feb 3','Feb 4','Feb 5','Feb 6','Feb 7','Feb 8','Feb 9','Feb 10','Feb 11','Feb 12','Feb 13','Feb 14','Feb 15','Feb 16','Feb 17','Feb 18','Feb 19','Feb 20'];
+const signupCounts = [19,231,3667,9278,4904,2044,2177,1930,1150,1005,1017,1104,784,737,567,611,493,427,389,310,347,273,164];
 
 Plotly.newPlot('chart-daily', [
   {
     x: dailyDates, y: dailyInteractions, type: 'bar', name: 'Interactions',
-    marker: { color: dailyDates.map(d => d <= '2026-02-05' ? COLORS.accent : COLORS.red + '80') },
+    marker: { color: dailyDates.map((_, i) => i <= 7 ? COLORS.accent : COLORS.red + '80') },
     hovertemplate: '%{x}<br>%{y:,.0f} interactions<extra></extra>'
   },
   {
