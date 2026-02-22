@@ -694,6 +694,25 @@ hidden = true
 
 <p><strong>Stromfee</strong> — the loudest agent on the platform with 51,174 outbound interactions — doesn't crack the PageRank top 8. <strong>eudaemon_0</strong> does, because eudaemon_0 attracts attention from agents who themselves attract attention. Volume and influence are not the same thing.</p>
 
+<h3>Triangles: the real conversations</h3>
+<p>A triangle in a graph — A talks to B, B talks to C, C talks to A — is a proxy for genuine multi-party conversation. The interaction graph contains <strong>8,941 directed triangles</strong>. And eudaemon_0 participates in <strong>5,438 of them</strong> — 61%. This agent isn't just popular. It's the central hub of almost every genuine conversation loop on the platform.</p>
+<p>For comparison, Stromfee (the loudest agent by volume) participates in only 924 triangles. Broadcasting to 51,174 targets doesn't create conversation. Being the agent that other agents respond to, and responding back, does.</p>
+
+<h3>The hidden botnets</h3>
+<p>Beyond the agent_smith ring, graph pattern matching reveals more automated operations. Agents with suspiciously uniform interaction patterns — nearly identical comment counts to each target:</p>
+
+<table>
+<thead><tr><th>Agent</th><th>Targets</th><th>Avg per target</th><th>Variance</th><th>Karma</th></tr></thead>
+<tbody>
+<tr><td class="mono">Doormat</td><td>1,086</td><td>1.33</td><td>0.679</td><td>16,256</td></tr>
+<tr><td class="mono">MonkeNigga</td><td>738</td><td>1.07</td><td>0.081</td><td>4,982</td></tr>
+<tr><td class="mono">PoseidonCash</td><td>969</td><td>1.24</td><td>0.374</td><td>123</td></tr>
+<tr><td class="mono">AgentEcoBuilder</td><td>818</td><td>1.15</td><td>0.204</td><td>922</td></tr>
+</tbody>
+</table>
+
+<p>A variance near zero means every target gets almost exactly the same number of comments — the signature of a automated loop. <span class="mono">Doormat</span> has 16,256 karma from this operation. These are botnets the karma leaderboard can't detect but graph analysis surfaces immediately.</p>
+
 <h3>Community structure</h3>
 <p>Louvain community detection finds <strong>32 communities</strong>, with four dominant clusters and one remarkable outlier.</p>
 
@@ -726,6 +745,21 @@ hidden = true
 </div>
 
 <p>The other 15 submolts exist as categories but attracted almost no interaction traffic. All activity concentrates in the default — the early Reddit pattern, but Moltbook collapsed before subcommunities could develop.</p>
+
+<h3>The actual community builders</h3>
+<p>On a platform with 1.18% reciprocity overall, some agents managed to build genuine back-and-forth connections:</p>
+
+<table>
+<thead><tr><th>Agent</th><th>Targets</th><th>Reciprocal</th><th>Reciprocity</th><th>Karma</th></tr></thead>
+<tbody>
+<tr><td class="mono">DuckBot</td><td>79</td><td>11</td><td>13.9%</td><td>1,078</td></tr>
+<tr><td class="mono">Ronin</td><td>103</td><td>10</td><td>9.7%</td><td>4,233</td></tr>
+<tr><td class="mono">Memeothy</td><td>101</td><td>9</td><td>8.9%</td><td>634</td></tr>
+<tr><td class="mono">Kevin</td><td>195</td><td>14</td><td>7.2%</td><td>1,637</td></tr>
+</tbody>
+</table>
+
+<p>These agents aren't the loudest or the most followed. They're the ones who actually had conversations. DuckBot's 13.9% reciprocity rate is 12x the platform average.</p>
 </div>
 </div>
 
