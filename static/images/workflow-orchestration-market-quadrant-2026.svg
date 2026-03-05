@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="860" viewBox="0 0 1200 860" role="img" aria-label="Workflow Orchestration Market Quadrant 2026">
+  <defs>
+    <style>
+      .title { font: 700 28px 'Helvetica Neue', Arial, sans-serif; fill: #111; }
+      .subtitle { font: 400 14px 'Helvetica Neue', Arial, sans-serif; fill: #444; }
+      .axis { stroke: #222; stroke-width: 2; }
+      .grid { stroke: #ddd; stroke-width: 1; }
+      .mid { stroke: #666; stroke-width: 2; stroke-dasharray: 7 7; }
+      .label { font: 600 13px 'Helvetica Neue', Arial, sans-serif; fill: #111; }
+      .quad { font: 700 18px 'Helvetica Neue', Arial, sans-serif; fill: #555; }
+      .dot { stroke: #fff; stroke-width: 2; }
+      .vendor { font: 600 12px 'Helvetica Neue', Arial, sans-serif; fill: #111; stroke: #fff; stroke-width: 3; paint-order: stroke fill; }
+      .legend { font: 500 12px 'Helvetica Neue', Arial, sans-serif; fill: #222; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="860" fill="#fafafa" />
+  <text x="60" y="58" class="title">Workflow Orchestration Platforms: Market Quadrant View (2026)</text>
+  <text x="60" y="82" class="subtitle">Independent market assessment as of March 5, 2026. X-axis: Completeness of Vision. Y-axis: Ability to Execute.</text>
+
+  <!-- Plot area -->
+  <rect x="120" y="130" width="920" height="620" fill="#fff" stroke="#c9c9c9" stroke-width="2"/>
+
+  <!-- Grid -->
+  <g>
+    <line class="grid" x1="304" y1="130" x2="304" y2="750" />
+    <line class="grid" x1="488" y1="130" x2="488" y2="750" />
+    <line class="grid" x1="672" y1="130" x2="672" y2="750" />
+    <line class="grid" x1="856" y1="130" x2="856" y2="750" />
+
+    <line class="grid" x1="120" y1="254" x2="1040" y2="254" />
+    <line class="grid" x1="120" y1="378" x2="1040" y2="378" />
+    <line class="grid" x1="120" y1="502" x2="1040" y2="502" />
+    <line class="grid" x1="120" y1="626" x2="1040" y2="626" />
+  </g>
+
+  <!-- Mid-lines -->
+  <line class="mid" x1="580" y1="130" x2="580" y2="750" />
+  <line class="mid" x1="120" y1="440" x2="1040" y2="440" />
+
+  <!-- Quadrant labels -->
+  <text x="805" y="170" class="quad">Leaders</text>
+  <text x="225" y="170" class="quad">Challengers</text>
+  <text x="760" y="705" class="quad">Visionaries</text>
+  <text x="235" y="705" class="quad">Niche Players</text>
+
+  <!-- Axes -->
+  <line class="axis" x1="120" y1="750" x2="1040" y2="750"/>
+  <line class="axis" x1="120" y1="750" x2="120" y2="130"/>
+
+  <text x="470" y="810" class="label">Completeness of Vision →</text>
+  <text x="42" y="460" class="label" transform="rotate(-90 42 460)">Ability to Execute →</text>
+
+  <!-- Points -->
+
+  <!-- Leaders (blue) -->
+  <circle class="dot" cx="860" cy="190" r="8" fill="#1f77b4" />
+  <text class="vendor" x="872" y="186">Temporal</text>
+
+  <circle class="dot" cx="760" cy="210" r="8" fill="#1f77b4" />
+  <text class="vendor" x="772" y="206">AWS Step Functions</text>
+
+  <circle class="dot" cx="670" cy="250" r="8" fill="#1f77b4" />
+  <text class="vendor" x="682" y="246">Apache Airflow</text>
+
+  <circle class="dot" cx="720" cy="300" r="8" fill="#1f77b4" />
+  <text class="vendor" x="732" y="296">Prefect</text>
+
+  <!-- Challengers (green) -->
+  <circle class="dot" cx="560" cy="300" r="8" fill="#2ca02c" />
+  <text class="vendor" x="572" y="296">Dagster</text>
+
+  <circle class="dot" cx="500" cy="340" r="8" fill="#2ca02c" />
+  <text class="vendor" x="512" y="336">Argo Workflows</text>
+
+  <circle class="dot" cx="540" cy="260" r="8" fill="#2ca02c" />
+  <text class="vendor" x="552" y="256">Azure Durable Functions</text>
+
+  <!-- Visionaries (orange) -->
+  <circle class="dot" cx="760" cy="500" r="8" fill="#ff7f0e" />
+  <text class="vendor" x="772" y="496">Inngest</text>
+
+  <circle class="dot" cx="900" cy="470" r="8" fill="#ff7f0e" />
+  <text class="vendor" x="912" y="466">Trigger.dev</text>
+
+  <circle class="dot" cx="840" cy="520" r="8" fill="#ff7f0e" />
+  <text class="vendor" x="852" y="516">Cloudflare Workflows</text>
+
+  <circle class="dot" cx="790" cy="560" r="8" fill="#ff7f0e" />
+  <text class="vendor" x="802" y="556">Restate</text>
+
+  <!-- Niche (purple) -->
+  <circle class="dot" cx="485" cy="485" r="8" fill="#9467bd" />
+  <text class="vendor" x="497" y="481">Pipedream</text>
+
+  <circle class="dot" cx="460" cy="545" r="8" fill="#9467bd" />
+  <text class="vendor" x="472" y="541">Camunda 8</text>
+
+  <circle class="dot" cx="520" cy="535" r="8" fill="#9467bd" />
+  <text class="vendor" x="532" y="531">Windmill</text>
+
+  <circle class="dot" cx="420" cy="585" r="8" fill="#9467bd" />
+  <text class="vendor" x="432" y="581">n8n</text>
+
+  <circle class="dot" cx="545" cy="455" r="8" fill="#9467bd" />
+  <text class="vendor" x="557" y="451">Kestra</text>
+
+  <!-- Legend -->
+  <rect x="120" y="95" width="770" height="24" fill="none" />
+  <circle cx="134" cy="107" r="6" fill="#1f77b4"/><text x="146" y="111" class="legend">Leaders</text>
+  <circle cx="230" cy="107" r="6" fill="#2ca02c"/><text x="242" y="111" class="legend">Challengers</text>
+  <circle cx="360" cy="107" r="6" fill="#ff7f0e"/><text x="372" y="111" class="legend">Visionaries</text>
+  <circle cx="497" cy="107" r="6" fill="#9467bd"/><text x="509" y="111" class="legend">Niche Players</text>
+
+  <text x="60" y="842" class="subtitle">Note: Quadrant placement reflects independent comparative scoring using publicly documented capabilities and market signals.</text>
+</svg>
