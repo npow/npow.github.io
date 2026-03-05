@@ -65,7 +65,7 @@ Result: teams still bolt on spending controls after incidents, creating permanen
 
 ### 7. Multi-agent causality debt
 
-Multi-agent flows are now common, and tracing/persistence capabilities exist. OpenTelemetry distributed tracing, [LangSmith](https://www.langchain.com/langsmith), and [Arize Phoenix](https://phoenix.arize.com/) all contribute to cross-boundary observability. But end-to-end causal lineage across nested agents, tools, and external systems with consistent attribution still has to be composed across multiple tools [\[4\]](https://docs.langchain.com/oss/python/langgraph/persistence)[\[12\]](https://openai.github.io/openai-agents-python/tracing/).
+Multi-agent flows are now common, and tracing/persistence capabilities exist. OpenTelemetry distributed tracing, [LangSmith](https://www.langchain.com/langsmith), [Arize Phoenix](https://phoenix.arize.com/), and [Pydantic Logfire](https://logfire.pydantic.dev/) all contribute to cross-boundary observability. But end-to-end causal lineage across nested agents, tools, and external systems with consistent attribution still has to be composed across multiple tools [\[4\]](https://docs.langchain.com/oss/python/langgraph/persistence)[\[12\]](https://openai.github.io/openai-agents-python/tracing/).
 
 Result: postmortems still commonly ask, "Which sub-agent actually caused this action?" — and that missing causality becomes chronic incident-response debt.
 
