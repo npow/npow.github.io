@@ -12,190 +12,13 @@ Most orchestrator comparisons read like feature shopping. That misses the operat
 
 In production, what matters is where run state lives, how failures recover, and how painful operations become after month six.
 
-This post maps the workflow orchestration market as of March 2026.
-
-I created this market map because the space is crowded, the terminology is inconsistent, and most comparisons skip the architecture tradeoffs that actually drive outcomes.
+This post maps the workflow orchestration market as of March 2026, scoring 16 platforms across execution maturity and product vision. The [methodology](#methodology) is at the end for those who want to check the work.
 
 I included tools that do real orchestration (durable run state, retries, multi-step execution, and run visibility). I excluded pure cron runners and raw compute runtimes that do not own orchestration state.
 
 **Disclosure:** This is independent analysis. I have no financial relationship, advisory role, or paid arrangement with any vendor listed. I have used several of these platforms in production contexts. Scores reflect my assessment from public evidence as of March 2026 and are directional rather than statistically precise.
 
-## The 7-Dimension Taxonomy
-
-Before scoring vendors, I classify platforms across seven dimensions:
-
-1. **Control model:** schedule-driven, event-driven, DAG-driven, or durable state-machine-driven.
-2. **State model:** ephemeral state, database-backed run state, event history, or code-level durable state.
-3. **Execution model:** worker dispatch, API orchestration, embedded task runtime, or coordinator-only.
-4. **Durability model:** best-effort, at-least-once with retries, and idempotency/compensation strategy.
-5. **Hosting model:** self-hosted, managed cloud, or hybrid control plane plus user-owned compute.
-6. **Developer model:** code SDK, YAML/DSL, visual automation, or BPMN/process modeling.
-7. **Workload fit:** data pipelines, app workflows, integration automation, ML pipelines, or human-in-loop processes.
-
-The quadrant and scoring tables are a compressed view of this framework.
-They are useful for orientation, but the taxonomy is the better lens for architecture decisions.
-
-## Landscape Map
-
-<figure style="margin: 1.25rem 0 1.5rem;">
-  <a href="/images/workflow-orchestration-landscape-2026.svg" target="_blank" rel="noopener noreferrer">
-    <img
-      src="/images/workflow-orchestration-landscape-2026.svg"
-      alt="Workflow Orchestration Landscape 2026"
-      style="display:block; width:100%; max-width:100%; margin:0 auto; height:auto;"
-    />
-  </a>
-</figure>
-
-## Incumbent Coverage
-
-The scored quadrant uses a representative cohort, not an exhaustive vendor census.
-To keep the taxonomy complete, here are major incumbents by category:
-
-| Category | Major incumbents |
-| --- | --- |
-| Durable execution / app workflows | [Temporal](https://temporal.io/) · [AWS Step Functions](https://aws.amazon.com/step-functions/) · [Azure Durable Functions](https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview) · [Google Cloud Workflows](https://cloud.google.com/workflows) |
-| Data / DAG orchestration | [Apache Airflow](https://airflow.apache.org/) · [Google Cloud Composer](https://cloud.google.com/composer) · [Dagster](https://dagster.io/) · [Prefect](https://www.prefect.io/) · [Argo Workflows](https://argoproj.github.io/workflows/) |
-| Event-native workflow orchestration | [Inngest](https://www.inngest.com/) · [Trigger.dev](https://trigger.dev/) · [Cloudflare Workflows](https://developers.cloudflare.com/workflows/) · [Restate](https://restate.dev/) |
-| Integration / automation orchestration | [Pipedream](https://pipedream.com/) · [n8n](https://n8n.io/) · [Workato](https://www.workato.com/) · [Zapier](https://zapier.com/) |
-| BPM / process-centric orchestration | [Camunda 8](https://camunda.com/) · [IBM Business Automation Workflow](https://www.ibm.com/products/business-automation-workflow) · [Pega Process AI](https://www.pega.com/products/process-ai) |
-| Enterprise workload schedulers | [BMC Control-M](https://www.bmc.com/it-solutions/control-m.html) · [Stonebranch](https://www.stonebranch.com/) · [Tidal](https://www.tidalsoftware.com/) |
-
-Not every incumbent above is scored in the quadrant.
-The scoring set emphasizes platforms with publicly comparable evidence and clear developer-facing workflow positioning.
-
-**Excluded from scoring:** Workato and Zapier serve primarily non-developer automation buyers and lack the code-first runtime semantics this comparison prioritizes. [Orkes](https://orkes.io/) (commercial Conductor) is a credible durable execution platform that would sit between the Leaders and Visionaries; it was excluded because its public documentation and changelog activity make per-indicator evidence thinner than the scored cohort.
-
-## How I Built the Map
-
-I score two axes:
-
-- Ability to Execute (Y-axis)
-- Completeness of Vision (X-axis)
-
-The scoring model uses five dimensions:
-
-- Reliability and recovery
-- State model and upgrade behavior
-- Operational maturity
-- Ecosystem depth
-- Product momentum
-
-Evidence comes from official documentation, changelog and release history, GitHub activity, and community engagement signals (forum activity, job posting trends, conference presence).
-
-## Scoring Model
-
-This map uses a two-axis weighted model with public evidence:
-
-- Ability to Execute = 0.35 * reliability + 0.35 * operations + 0.30 * ecosystem
-- Completeness of Vision = 0.45 * state model direction + 0.55 * product momentum
-
-Each dimension is scored from public evidence.
-Plotted values indicate relative position, not absolute rank.
-
-<details>
-<summary><strong>Appendix: Full Scoring Data</strong></summary>
-
-Indicator set behind each dimension:
-
-- Reliability: retry policy depth, backfill/replay support, long-running state handling, failure recovery primitives.
-- Operations: deployment model maturity, observability/run visibility, governance/RBAC posture, version/upgrade operations clarity.
-- Ecosystem: integration breadth, execution target flexibility, SDK/language surface, ecosystem/community depth.
-- State model direction: explicit state semantics, migration/versioning model quality, idempotency/determinism guidance, advanced primitives (signals/waits/compensation).
-- Product momentum: release cadence, meaningful feature velocity, documentation/changelog quality, roadmap coherence.
-
-Indicator scoring method:
-
-- Each indicator is scored 0 to 4 from public evidence.
-- Dimension points are summed (0 to 16) and converted with 1 + 9 * (points / 16).
-- Final axis values are weighted results rounded to one decimal place.
-
-Quadrant cut lines:
-
-- Ability to Execute >= 6.5 is upper half.
-- Completeness of Vision >= 6.5 is right half.
-
-Per-vendor indicator totals (/16):
-
-| Vendor | R pts | O pts | E pts | S pts | M pts |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Temporal | 15 | 14 | 14 | 14 | 13 |
-| AWS Step Functions | 14 | 14 | 14 | 11 | 13 |
-| Apache Airflow | 13 | 12 | 12 | 9 | 11 |
-| Prefect | 12 | 12 | 12 | 11 | 12 |
-| Dagster | 11 | 11 | 11 | 9 | 9 |
-| Argo Workflows | 11 | 10 | 11 | 8 | 9 |
-| Azure Durable Functions | 12 | 11 | 11 | 7 | 9 |
-| Inngest | 9 | 8 | 9 | 12 | 13 |
-| Trigger.dev | 8 | 8 | 8 | 13 | 14 |
-| Cloudflare Workflows | 8 | 7 | 8 | 12 | 13 |
-| Restate | 7 | 7 | 7 | 14 | 13 |
-| Pipedream | 7 | 7 | 7 | 6 | 7 |
-| Camunda 8 | 7 | 7 | 7 | 5 | 6 |
-| Windmill | 6 | 6 | 7 | 6 | 7 |
-| n8n | 6 | 6 | 6 | 5 | 6 |
-| Kestra | 7 | 6 | 7 | 7 | 7 |
-
-Computed axis totals:
-
-| Vendor | Ability | Vision | Quadrant |
-| --- | ---: | ---: | --- |
-| Temporal | 9.0 | 8.6 | Leaders |
-| AWS Step Functions | 8.8 | 7.8 | Leaders |
-| Apache Airflow | 8.1 | 6.7 | Leaders |
-| Prefect | 7.6 | 7.4 | Leaders |
-| Dagster | 7.2 | 6.0 | Challengers |
-| Argo Workflows | 7.0 | 5.8 | Challengers |
-| Azure Durable Functions | 7.4 | 5.6 | Challengers |
-| Inngest | 5.8 | 8.0 | Visionaries |
-| Trigger.dev | 5.6 | 8.4 | Visionaries |
-| Cloudflare Workflows | 5.4 | 8.1 | Visionaries |
-| Restate | 5.0 | 8.6 | Visionaries |
-| Pipedream | 4.8 | 4.6 | Niche Players |
-| Camunda 8 | 4.9 | 4.2 | Niche Players |
-| Windmill | 4.6 | 4.8 | Niche Players |
-| n8n | 4.5 | 4.0 | Niche Players |
-| Kestra | 4.7 | 4.9 | Niche Players |
-
-Subscores used for the totals:
-
-- Temporal: Rel 9.4, Ops 8.9, Eco 8.7, State 8.7, Momentum 8.5.
-- AWS Step Functions: Rel 9.0, Ops 8.8, Eco 8.6, State 7.2, Momentum 8.3.
-- Apache Airflow: Rel 8.4, Ops 8.0, Eco 7.8, State 6.1, Momentum 7.2.
-- Prefect: Rel 7.7, Ops 7.5, Eco 7.6, State 7.1, Momentum 7.6.
-- Dagster: Rel 7.3, Ops 7.0, Eco 7.2, State 5.8, Momentum 6.1.
-- Argo Workflows: Rel 7.1, Ops 6.8, Eco 7.0, State 5.5, Momentum 6.0.
-- Azure Durable Functions: Rel 7.6, Ops 7.3, Eco 7.2, State 5.2, Momentum 5.9.
-- Inngest: Rel 5.9, Ops 5.5, Eco 6.0, State 7.8, Momentum 8.2.
-- Trigger.dev: Rel 5.6, Ops 5.4, Eco 5.7, State 8.2, Momentum 8.6.
-- Cloudflare Workflows: Rel 5.3, Ops 5.2, Eco 5.6, State 7.9, Momentum 8.3.
-- Restate: Rel 4.9, Ops 4.8, Eco 5.2, State 8.7, Momentum 8.5.
-- Pipedream: Rel 4.9, Ops 4.8, Eco 4.7, State 4.5, Momentum 4.7.
-- Camunda 8: Rel 5.1, Ops 4.9, Eco 4.8, State 4.0, Momentum 4.3.
-- Windmill: Rel 4.6, Ops 4.5, Eco 4.7, State 4.6, Momentum 4.9.
-- n8n: Rel 4.5, Ops 4.4, Eco 4.6, State 3.8, Momentum 4.2.
-- Kestra: Rel 4.8, Ops 4.6, Eco 4.7, State 4.7, Momentum 5.0.
-
-Score rationale notes by vendor:
-
-- **Temporal:** Reliability 15/16 — deterministic replay model, timer/signal primitives, long-running workflow durability, well-documented failure compensation. State model 14/16 — explicit versioning API, patch-based workflow migration, signals/queries/update primitives. Ecosystem 14/16 — multi-language SDKs (Go, Java, Python, TypeScript, PHP, Ruby), Temporal Cloud as managed offering, active third-party integrations.
-- **AWS Step Functions:** State model 11/16 — JSON state-passing has a 256 KB payload limit; state-transition model creates boundaries for complex branching logic that code-first platforms avoid. Operations 14/16 — managed SLA, CloudWatch integration, IAM-native governance.
-- **Apache Airflow:** Scored as the open-source project; managed offerings (MWAA, Cloud Composer, Astronomer) may score higher on operational dimensions. State model 9/16 — DAG-based scheduling with no durable execution primitives; no signals, waits, or compensation patterns.
-- **Prefect:** State model 11/16 — deferred execution model and flow/task versioning is more mature than Airflow but less opinionated than Temporal; cross-service orchestration requires more application-level convention. Momentum 12/16 — active Prefect Cloud development and consistent release cadence.
-- **Dagster:** State model 9/16 — asset-centric materialization model is strong for data lineage but offers limited signal/wait/compensation primitives; not designed for long-running app workflows.
-- **Argo Workflows:** Operations 10/16 — Kubernetes governance and upgrade overhead is material; observability depends on cluster-level tooling rather than built-in workflow visibility.
-- **Azure Durable Functions:** State model 7/16 — event-sourcing execution model is conceptually sound but workflow versioning and migration guidance is thinner than Temporal; portability outside Azure is the primary ceiling.
-- **Inngest:** State model 12/16 — event-native step execution with clear durable step semantics and failure retry model. Operations 8/16 — step execution limits, cold-start characteristics, and observability depth vary by deployment mode (managed cloud vs. self-hosted).
-- **Trigger.dev:** State model 13/16 — strong durable execution semantics with explicit failure recovery and retry primitives; clear determinism model in v3/v4. Momentum 14/16 — fastest release cadence in this comparison set. Lower Ability to Execute reflects shorter production history relative to incumbents.
-- **Cloudflare Workflows:** State model 12/16 — Durable Objects-backed execution model provides genuine durability at the edge. Operations 7/16 — newer GA platform; observability and governance tooling is still maturing.
-- **Restate:** State model 14/16 — highest score in this dimension. Restate's journal-based execution model provides the most explicit idempotency and compensation semantics of any platform in this set; determinism guarantees are enforced at the runtime level rather than by convention. Vision score (8.6) reflects architectural clarity, not ecosystem breadth. Ability to Execute is lower because production deployment base and ecosystem are smaller than established platforms.
-- **Camunda 8:** This map scores developer-centric, code-first workflow positioning. Camunda 8's BPMN/Zeebe model is an enterprise-grade process orchestration platform that would score materially higher in an enterprise BPM or human-in-loop process comparison. The Niche placement reflects its narrower competitive footprint in the code-first, API-driven workflow segment this map emphasizes, not a judgment on its enterprise standing.
-
-</details>
-
-## The Map
-
-How to read this quickly:
+## The Quadrant
 
 - Higher means stronger current execution maturity.
 - Further right means stronger forward-looking product direction.
@@ -327,6 +150,160 @@ These are directional hypotheses, not forecasts.
 No single platform dominates every workflow class. Data pipelines, durable application workflows, and event-driven product automation reward different architecture choices.
 
 Use this as a map of tradeoffs, not a universal ranking. Placements reflect relative positioning as of March 2026 and will move as products and ecosystems evolve.
+
+---
+
+## Full Landscape
+
+The quadrant scores 16 platforms in a representative cohort. The broader landscape below shows the full market by category, including platforms not scored in the quadrant.
+
+<figure style="margin: 1.25rem 0 1.5rem;">
+  <a href="/images/workflow-orchestration-landscape-2026.svg" target="_blank" rel="noopener noreferrer">
+    <img
+      src="/images/workflow-orchestration-landscape-2026.svg"
+      alt="Workflow Orchestration Full Landscape 2026"
+      style="display:block; width:100%; max-width:100%; margin:0 auto; height:auto;"
+    />
+  </a>
+</figure>
+
+### Incumbent Coverage by Category
+
+| Category | Major incumbents |
+| --- | --- |
+| Durable execution / app workflows | [Temporal](https://temporal.io/) · [AWS Step Functions](https://aws.amazon.com/step-functions/) · [Azure Durable Functions](https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview) · [Google Cloud Workflows](https://cloud.google.com/workflows) |
+| Data / DAG orchestration | [Apache Airflow](https://airflow.apache.org/) · [Google Cloud Composer](https://cloud.google.com/composer) · [Dagster](https://dagster.io/) · [Prefect](https://www.prefect.io/) · [Argo Workflows](https://argoproj.github.io/workflows/) |
+| Event-native workflow orchestration | [Inngest](https://www.inngest.com/) · [Trigger.dev](https://trigger.dev/) · [Cloudflare Workflows](https://developers.cloudflare.com/workflows/) · [Restate](https://restate.dev/) |
+| Integration / automation orchestration | [Pipedream](https://pipedream.com/) · [n8n](https://n8n.io/) · [Workato](https://www.workato.com/) · [Zapier](https://zapier.com/) |
+| BPM / process-centric orchestration | [Camunda 8](https://camunda.com/) · [IBM Business Automation Workflow](https://www.ibm.com/products/business-automation-workflow) · [Pega Process AI](https://www.pega.com/products/process-ai) |
+| Enterprise workload schedulers | [BMC Control-M](https://www.bmc.com/it-solutions/control-m.html) · [Stonebranch](https://www.stonebranch.com/) · [Tidal](https://www.tidalsoftware.com/) |
+
+**Excluded from scoring:** Workato and Zapier serve primarily non-developer automation buyers and lack the code-first runtime semantics this comparison prioritizes. [Orkes](https://orkes.io/) (commercial Conductor) is a credible durable execution platform that would sit between the Leaders and Visionaries; it was excluded because its public documentation and changelog activity make per-indicator evidence thinner than the scored cohort.
+
+## Methodology
+
+The quadrant scores two axes across 16 platforms using five weighted dimensions. The landscape map above uses the same 7-dimension taxonomy to place a broader vendor set into categories without scoring.
+
+### Scoring Model
+
+- Ability to Execute = 0.35 × reliability + 0.35 × operations + 0.30 × ecosystem
+- Completeness of Vision = 0.45 × state model direction + 0.55 × product momentum
+
+Evidence comes from official documentation, changelog and release history, GitHub activity, and community engagement signals (forum activity, job posting trends, conference presence). Plotted values indicate relative position, not absolute rank.
+
+### The 7-Dimension Taxonomy
+
+Platforms are classified across seven dimensions before scoring:
+
+1. **Control model:** schedule-driven, event-driven, DAG-driven, or durable state-machine-driven.
+2. **State model:** ephemeral state, database-backed run state, event history, or code-level durable state.
+3. **Execution model:** worker dispatch, API orchestration, embedded task runtime, or coordinator-only.
+4. **Durability model:** best-effort, at-least-once with retries, and idempotency/compensation strategy.
+5. **Hosting model:** self-hosted, managed cloud, or hybrid control plane plus user-owned compute.
+6. **Developer model:** code SDK, YAML/DSL, visual automation, or BPMN/process modeling.
+7. **Workload fit:** data pipelines, app workflows, integration automation, ML pipelines, or human-in-loop processes.
+
+The quadrant is a compressed view of this framework. The taxonomy is the better lens for architecture decisions.
+
+<details>
+<summary><strong>Appendix: Full Scoring Data</strong></summary>
+
+Indicator set behind each dimension:
+
+- Reliability: retry policy depth, backfill/replay support, long-running state handling, failure recovery primitives.
+- Operations: deployment model maturity, observability/run visibility, governance/RBAC posture, version/upgrade operations clarity.
+- Ecosystem: integration breadth, execution target flexibility, SDK/language surface, ecosystem/community depth.
+- State model direction: explicit state semantics, migration/versioning model quality, idempotency/determinism guidance, advanced primitives (signals/waits/compensation).
+- Product momentum: release cadence, meaningful feature velocity, documentation/changelog quality, roadmap coherence.
+
+Indicator scoring method:
+
+- Each indicator is scored 0 to 4 from public evidence.
+- Dimension points are summed (0 to 16) and converted with 1 + 9 × (points / 16).
+- Final axis values are weighted results rounded to one decimal place.
+
+Quadrant cut lines:
+
+- Ability to Execute >= 6.5 is upper half.
+- Completeness of Vision >= 6.5 is right half.
+
+Per-vendor indicator totals (/16):
+
+| Vendor | R pts | O pts | E pts | S pts | M pts |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Temporal | 15 | 14 | 14 | 14 | 13 |
+| AWS Step Functions | 14 | 14 | 14 | 11 | 13 |
+| Apache Airflow | 13 | 12 | 12 | 9 | 11 |
+| Prefect | 12 | 12 | 12 | 11 | 12 |
+| Dagster | 11 | 11 | 11 | 9 | 9 |
+| Argo Workflows | 11 | 10 | 11 | 8 | 9 |
+| Azure Durable Functions | 12 | 11 | 11 | 7 | 9 |
+| Inngest | 9 | 8 | 9 | 12 | 13 |
+| Trigger.dev | 8 | 8 | 8 | 13 | 14 |
+| Cloudflare Workflows | 8 | 7 | 8 | 12 | 13 |
+| Restate | 7 | 7 | 7 | 14 | 13 |
+| Pipedream | 7 | 7 | 7 | 6 | 7 |
+| Camunda 8 | 7 | 7 | 7 | 5 | 6 |
+| Windmill | 6 | 6 | 7 | 6 | 7 |
+| n8n | 6 | 6 | 6 | 5 | 6 |
+| Kestra | 7 | 6 | 7 | 7 | 7 |
+
+Computed axis totals:
+
+| Vendor | Ability | Vision | Quadrant |
+| --- | ---: | ---: | --- |
+| Temporal | 9.0 | 8.6 | Leaders |
+| AWS Step Functions | 8.8 | 7.8 | Leaders |
+| Apache Airflow | 8.1 | 6.7 | Leaders |
+| Prefect | 7.6 | 7.4 | Leaders |
+| Dagster | 7.2 | 6.0 | Challengers |
+| Argo Workflows | 7.0 | 5.8 | Challengers |
+| Azure Durable Functions | 7.4 | 5.6 | Challengers |
+| Inngest | 5.8 | 8.0 | Visionaries |
+| Trigger.dev | 5.6 | 8.4 | Visionaries |
+| Cloudflare Workflows | 5.4 | 8.1 | Visionaries |
+| Restate | 5.0 | 8.6 | Visionaries |
+| Pipedream | 4.8 | 4.6 | Niche Players |
+| Camunda 8 | 4.9 | 4.2 | Niche Players |
+| Windmill | 4.6 | 4.8 | Niche Players |
+| n8n | 4.5 | 4.0 | Niche Players |
+| Kestra | 4.7 | 4.9 | Niche Players |
+
+Subscores used for the totals:
+
+- Temporal: Rel 9.4, Ops 8.9, Eco 8.7, State 8.7, Momentum 8.5.
+- AWS Step Functions: Rel 9.0, Ops 8.8, Eco 8.6, State 7.2, Momentum 8.3.
+- Apache Airflow: Rel 8.4, Ops 8.0, Eco 7.8, State 6.1, Momentum 7.2.
+- Prefect: Rel 7.7, Ops 7.5, Eco 7.6, State 7.1, Momentum 7.6.
+- Dagster: Rel 7.3, Ops 7.0, Eco 7.2, State 5.8, Momentum 6.1.
+- Argo Workflows: Rel 7.1, Ops 6.8, Eco 7.0, State 5.5, Momentum 6.0.
+- Azure Durable Functions: Rel 7.6, Ops 7.3, Eco 7.2, State 5.2, Momentum 5.9.
+- Inngest: Rel 5.9, Ops 5.5, Eco 6.0, State 7.8, Momentum 8.2.
+- Trigger.dev: Rel 5.6, Ops 5.4, Eco 5.7, State 8.2, Momentum 8.6.
+- Cloudflare Workflows: Rel 5.3, Ops 5.2, Eco 5.6, State 7.9, Momentum 8.3.
+- Restate: Rel 4.9, Ops 4.8, Eco 5.2, State 8.7, Momentum 8.5.
+- Pipedream: Rel 4.9, Ops 4.8, Eco 4.7, State 4.5, Momentum 4.7.
+- Camunda 8: Rel 5.1, Ops 4.9, Eco 4.8, State 4.0, Momentum 4.3.
+- Windmill: Rel 4.6, Ops 4.5, Eco 4.7, State 4.6, Momentum 4.9.
+- n8n: Rel 4.5, Ops 4.4, Eco 4.6, State 3.8, Momentum 4.2.
+- Kestra: Rel 4.8, Ops 4.6, Eco 4.7, State 4.7, Momentum 5.0.
+
+Score rationale notes by vendor:
+
+- **Temporal:** Reliability 15/16 — deterministic replay model, timer/signal primitives, long-running workflow durability, well-documented failure compensation. State model 14/16 — explicit versioning API, patch-based workflow migration, signals/queries/update primitives. Ecosystem 14/16 — multi-language SDKs (Go, Java, Python, TypeScript, PHP, Ruby), Temporal Cloud as managed offering, active third-party integrations.
+- **AWS Step Functions:** State model 11/16 — JSON state-passing has a 256 KB payload limit; state-transition model creates boundaries for complex branching logic that code-first platforms avoid. Operations 14/16 — managed SLA, CloudWatch integration, IAM-native governance.
+- **Apache Airflow:** Scored as the open-source project; managed offerings (MWAA, Cloud Composer, Astronomer) may score higher on operational dimensions. State model 9/16 — DAG-based scheduling with no durable execution primitives; no signals, waits, or compensation patterns.
+- **Prefect:** State model 11/16 — deferred execution model and flow/task versioning is more mature than Airflow but less opinionated than Temporal; cross-service orchestration requires more application-level convention. Momentum 12/16 — active Prefect Cloud development and consistent release cadence.
+- **Dagster:** State model 9/16 — asset-centric materialization model is strong for data lineage but offers limited signal/wait/compensation primitives; not designed for long-running app workflows.
+- **Argo Workflows:** Operations 10/16 — Kubernetes governance and upgrade overhead is material; observability depends on cluster-level tooling rather than built-in workflow visibility.
+- **Azure Durable Functions:** State model 7/16 — event-sourcing execution model is conceptually sound but workflow versioning and migration guidance is thinner than Temporal; portability outside Azure is the primary ceiling.
+- **Inngest:** State model 12/16 — event-native step execution with clear durable step semantics and failure retry model. Operations 8/16 — step execution limits, cold-start characteristics, and observability depth vary by deployment mode (managed cloud vs. self-hosted).
+- **Trigger.dev:** State model 13/16 — strong durable execution semantics with explicit failure recovery and retry primitives; clear determinism model in v3/v4. Momentum 14/16 — fastest release cadence in this comparison set. Lower Ability to Execute reflects shorter production history relative to incumbents.
+- **Cloudflare Workflows:** State model 12/16 — Durable Objects-backed execution model provides genuine durability at the edge. Operations 7/16 — newer GA platform; observability and governance tooling is still maturing.
+- **Restate:** State model 14/16 — highest score in this dimension. Restate's journal-based execution model provides the most explicit idempotency and compensation semantics of any platform in this set; determinism guarantees are enforced at the runtime level rather than by convention. Vision score (8.6) reflects architectural clarity, not ecosystem breadth. Ability to Execute is lower because production deployment base and ecosystem are smaller than established platforms.
+- **Camunda 8:** This map scores developer-centric, code-first workflow positioning. Camunda 8's BPMN/Zeebe model is an enterprise-grade process orchestration platform that would score materially higher in an enterprise BPM or human-in-loop process comparison. The Niche placement reflects its narrower competitive footprint in the code-first, API-driven workflow segment this map emphasizes, not a judgment on its enterprise standing.
+
+</details>
 
 ## References
 
