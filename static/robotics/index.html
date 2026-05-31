@@ -47,6 +47,10 @@ footer{padding:34px 0 60px;color:#6b7280;font-size:13px}
   details.dseg-d > table.dirtbl{ margin-top:4px; }
   .dircontrols{ margin:6px 0 8px; }
   .dircontrols button{ font:600 12px Helvetica,Arial,sans-serif; padding:5px 11px; margin-right:8px; border:1px solid #c7d2fe; background:#eef2ff; color:#4f46e5; border-radius:6px; cursor:pointer; }
+  table.playtbl{ width:100%; border-collapse:collapse; font-size:12px; margin:10px 0; }
+  table.playtbl th{ background:#f3f4f6; text-align:left; padding:6px 8px; border:1px solid #e5e7eb; font-weight:600; }
+  table.playtbl td{ padding:6px 8px; border:1px solid #eef0f2; vertical-align:top; }
+  section.blk ul{ margin:8px 0; padding-left:20px; } section.blk li{ margin:5px 0; font-size:14.5px; color:#374151; }
 </style></head><body>
 <header class="hero"><div class="wrap">
   <div class="eyebrow">A field briefing · best-effort census</div>
@@ -64,7 +68,7 @@ footer{padding:34px 0 60px;color:#6b7280;font-size:13px}
 
 <nav class="toc"><div class="wrap">
   <a href="#map">The map</a><a href="#money">Where the money is</a><a href="#top">Best-funded</a>
-  <a href="#when">When it was built</a><a href="#where">Where it's built</a><a href="#runs">Where the AI runs</a><a href="#directory">Directory</a>
+  <a href="#when">When it was built</a><a href="#where">Where it's built</a><a href="#runs">Where the AI runs</a><a href="#research">Research frontier</a><a href="#oss">Open-source stack</a><a href="#directory">Directory</a>
 </div></nav>
 
 <div class="wrap">
@@ -110,8 +114,58 @@ footer{padding:34px 0 60px;color:#6b7280;font-size:13px}
   <p class="cap">Bubble = a use case; x = where its thinking layer runs; size = # companies; color = placement (red onboard · amber hybrid · green cloud).</p>
 </section>
 
-<section>
-    <h2 id="directory"><a class="hself" href="#directory">Company directory — the full census, by segment</a><a class="hlink" href="#directory" aria-hidden="true">#</a></h2>
+<section class="blk" id="research">
+    <h2>Where the research is heading</h2>
+    <p>The three flagship 2026 reports and an open-source corroboration pass agree on roughly the same live frontier. The headline is that <b>the hard problem has moved from the robot's body to its brain</b> — specifically, from building capable hardware (now widely available and increasingly cheap) to teaching one piece of software to do many tasks, on many robots, reliably enough to deploy. A few directions recur across every source:</p>
+
+<p><b>Vision-Language-Action (VLA) models are now the center of gravity.</b> Instead of hand-coding each task, teams take a model that already understands images and language, and add a third channel — robot <i>actions</i> — so it can be told what to do in plain words and then move accordingly. This shift, which crossed from research into real deployments in 2025–2026, is what most of the field's other work now orbits.</p>
+
+<p><b>Data, not algorithms, is the binding constraint.</b> Robots learn mostly by copying human demonstrations (imitation learning) collected through teleoperation — a person remotely puppeteering the robot. The cost of that data has fallen sharply (reported around $340/hr in 2024 to roughly $118/hr in early 2026), and imitation learning has overtaken reinforcement learning as the main way manipulation skills are taught. To stretch scarce real data further, the field pools demonstrations across many robot types (so one policy transfers between different machines) and increasingly manufactures synthetic data.</p>
+
+<p><b>World models are emerging as the synthetic-data engine.</b> These are learned simulators that can imagine realistic video and physics, letting teams generate huge volumes of training trajectories cheaply and letting a robot "rehearse" an action before doing it. Reports expect them to become a standard ingredient by 2027.</p>
+
+<p><b>Architectures are converging on a fast/slow split.</b> A slower, high-level model "thinks before acting" — reasoning about the goal and breaking it into steps — and hands sub-goals to a fast, low-level controller that produces smooth motion in real time. For generating that motion, <b>flow matching</b> (a newer technique) is displacing plain diffusion because it yields smoother continuous control.</p>
+
+<p><b>Bigger isn't automatically better.</b> Unlike large language models, robot foundation models reportedly hit diminishing returns past roughly 7B parameters, so a strong push toward <i>efficiency</i> — compact models that run on the robot itself, plus tricks to keep them acting while the next move is computed — runs alongside the push for capability.</p>
+
+<p>The named open frontiers the reports still flag as unsolved: <b>dexterous manipulation</b> (fine, contact-rich hand skills), <b>whole-body humanoid control</b>, <b>long-horizon and compositional tasks</b> (stitching many skills together and recovering from mistakes without reprogramming), <b>generalization and robustness</b> in the messy real world, an emerging <b>reinforcement-learning post-training</b> stage layered on top of imitation (mirroring how LLMs are fine-tuned), and — repeatedly stressed — <b>evaluation, safety and standards</b>, where bodies like NIST are only now beginning to build the "Consumer Reports for humanoids" that the field lacks.</p>
+    <p class="cap">Synthesized from the roboticscenter.ai, F-Prime Capital, and Robot Report 2026 outlooks plus an open-source-model survey (May 2026).</p>
+  </section>
+
+  <section class="blk" id="oss">
+    <h2>The open-source stack — models &amp; techniques</h2>
+    <p>One striking pattern across the sources: the strongest robot "brains" are increasingly <b>open-weight</b> — published with downloadable model weights anyone can fine-tune — closing the gap with closed, proprietary systems. Below are the open-source models named most consistently across the reports, followed by the handful of techniques the field has converged on. (A model's <i>parameter count</i> is a rough proxy for size; smaller can run on cheaper hardware.)</p>
+
+<table class="playtbl">
+<thead><tr><th>Model</th><th>Who maintains it</th><th>What it is</th></tr></thead>
+<tbody>
+<tr><td><b>OpenVLA</b></td><td>Stanford, with Berkeley, Google DeepMind, TRI, MIT</td><td>~7B-parameter open VLA trained on ~970k demonstrations from Open X-Embodiment; the de-facto open baseline, fine-tunable on a single GPU.</td></tr>
+<tr><td><b>&pi;0 / &pi;0.5</b> (via <b>openpi</b>)</td><td>Physical Intelligence</td><td>Generalist VLA that introduced flow matching for smooth ~50&nbsp;Hz control; code and weights open-sourced in the openpi repo (early 2026). Later versions (&pi;*0.6 / RECAP) add reinforcement-learning post-training.</td></tr>
+<tr><td><b>Isaac GR00T N1 / N1.5</b></td><td>NVIDIA</td><td>Open (Apache-2.0) ~3B foundation model aimed at humanoids; a dual-system design (reasoning model + diffusion-transformer action head) trained on real, simulated and internet-video data.</td></tr>
+<tr><td><b>SmolVLA</b></td><td>Hugging Face</td><td>Compact 450M-parameter open VLA that runs on consumer hardware, trained on community-collected data; matches larger models on standard benchmarks.</td></tr>
+<tr><td><b>Octo</b></td><td>UC Berkeley</td><td>Lightweight (~93M) open generalist policy with diffusion-based actions; a key pre-VLA baseline that's easy to fine-tune to new robots.</td></tr>
+<tr><td><b>RT-X / Open X-Embodiment</b></td><td>Google DeepMind + a 34-lab consortium</td><td>The seminal Robotics Transformer line and the open cross-embodiment dataset/framework most open models are pretrained and benchmarked on.</td></tr>
+<tr><td><b>LeRobot</b></td><td>Hugging Face</td><td>The open library/ecosystem that ships most of the above (plus ACT, Diffusion Policy), open datasets, and support for low-cost teleoperation hardware — the on-ramp newcomers actually use.</td></tr>
+<tr><td><b>NVIDIA Cosmos</b></td><td>NVIDIA</td><td>Open <i>world-model</i> family trained on ~20M hours of video; generates synthetic training data and predictive rollouts. 2M+ downloads by early 2026.</td></tr>
+</tbody>
+</table>
+
+<p><b>The dominant techniques</b> (what these models actually do under the hood):</p>
+<ul>
+<li><b>Vision-Language-Action (VLA) policies</b> — a vision-language model adapted to output robot actions; the central paradigm.</li>
+<li><b>Imitation learning / behavior cloning from teleoperation</b> — learning by copying human demonstrations; the workhorse data loop (open hardware like ALOHA and SO-100/101).</li>
+<li><b>Action chunking</b> — predicting a short sequence of future moves at once rather than one step, which smooths motion and cuts error build-up (originated with ACT).</li>
+<li><b>Diffusion policy &amp; flow matching</b> — two ways of generating smooth, multi-modal continuous motion; flow matching is now the preferred choice in frontier models.</li>
+<li><b>Cross-embodiment training</b> — pooling data across many robot types so one policy transfers between different machines.</li>
+<li><b>Dual-system "think-before-act"</b> — a slow high-level planner paired with a fast low-level controller for real-time control.</li>
+<li><b>Sim-to-real transfer</b> — training in simulation (with randomized physics/visuals) then deploying on real hardware.</li>
+<li><b>World-model / synthetic-data generation</b> — using learned simulators to amplify scarce real data (reportedly ~40% gains when mixed with real data).</li>
+</ul>
+    <p class="cap">Open-weight models named most consistently across the 2026 reports; each verified current as of May 2026.</p>
+  </section>
+
+  <section class="blk" id="directory">
+    <h2>Company directory — every company, by use case</h2>
     <p class="lead">The full census — every company we mapped, grouped by use case then by region, with what it does, HQ country, disclosed funding, stage and founding year. ~3,074 listings; a company serving several use cases is listed under each (~2,522 unique firms — the charts above are deduped to unique). <span class="dim">&mdash;</span> = undisclosed.</p>
     <div class="dircontrols"><button onclick="dirAll(true)">Expand all</button><button onclick="dirAll(false)">Collapse all</button> <span class="cap" style="font-style:normal">— 24 use cases, click any to expand</span></div>
     <details class="dseg-d" id="dir-1"><summary class="dseg">1. Fixed industrial arms <span class="hq">(111)</span></summary><table class="dirtbl"><thead><tr><th>Company</th><th>What it does</th><th>HQ</th><th>Funding</th><th>Stage</th><th>Founded</th><th>Site</th></tr></thead><tbody>
