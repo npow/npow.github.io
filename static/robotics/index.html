@@ -70,7 +70,7 @@ footer{padding:34px 0 60px;color:#6b7280;font-size:13px}
 </div></header>
 
 <nav class="toc"><div class="wrap">
-  <a href="#map">The map</a><a href="#money">Where the money is</a><a href="#top">Best-funded</a>
+  <a href="#map">The map</a><a href="#money">Where the money is</a><a href="#top">Best-funded</a><a href="#capital-time">Capital over time</a><a href="#hiring">Hiring</a>
   <a href="#when">When it was built</a><a href="#where">Where it's built</a><a href="#geopolitics">Geopolitics</a><a href="#deployment">Deployment</a><a href="#runs">Where the AI runs</a><a href="#primer">Primer</a><a href="#timeline">Timeline</a><a href="#research">Research frontier</a><a href="#oss">Open-source stack</a><a href="#data">Data</a><a href="#benchmarks">Benchmarks</a><a href="#safety">Safety</a><a href="#directory">Directory</a>
 </div></nav>
 
@@ -99,7 +99,23 @@ footer{padding:34px 0 60px;color:#6b7280;font-size:13px}
   <p class="cap">Top companies by money raised ($M, log scale), colored by HQ region.</p>
 </section>
 
-<section class="blk" id="when"><h2>When it was built</h2>
+<section class="blk" id="capital-time">
+    <h2>Where capital has flowed — over time</h2>
+    <p class="lead">The single total hides the story; the flow over time tells it. Robotics funding ramped from ~$1B/yr (2015) to a <b>$31B peak in 2021</b>, cooled through 2022&ndash;23, then came roaring back — 2024&ndash;26 are among the biggest years on record, but now overwhelmingly via <b>mega-rounds</b> ($100M+), with early-stage flat. Below: capital deployed per year, by region and by use case.</p>
+    <div class="chart" id="ct-region"></div>
+    <div class="chart" id="ct-seg" style="margin-top:18px"></div>
+    <p class="cap">Annual disclosed capital deployed, reconstructed from 1032 companies&rsquo; dated funding rounds (~$175.4B — roughly 90% of all disclosed capital is dated). Mega-rounds (&ge;$100M) now make up ~80&ndash;96% of dollars. 2026 is a partial year. Undated or undisclosed rounds are excluded.</p>
+  </section>
+
+  <section class="blk" id="hiring">
+    <h2>Who&rsquo;s hiring now</h2>
+    <p class="lead">A live momentum signal: open job postings pulled directly from companies&rsquo; public hiring boards. The pattern is stark — <b>defense, drones, and autonomous vehicles</b> are hiring hardest, led by Anduril (1,500+ open roles), Waymo, Shield AI, and Zoox. Humanoid and manipulation startups are scaling teams fast but off a smaller base.</p>
+    <div class="chart" id="hr-top"></div>
+    <div class="chart" id="hr-seg" style="margin-top:18px"></div>
+    <p class="cap">Live open roles (distinct, deduped by title) from 155 companies with a public Greenhouse / Lever / Ashby job board — this skews to funded, US, and defense/AV firms and covers only a slice of all companies; it is <b>not</b> a hiring census, and a blank is &ldquo;unknown,&rdquo; not zero.</p>
+  </section>
+
+  <section class="blk" id="when"><h2>When it was built</h2>
   <p class="lead">A young, fast-forming industry: most of today's robotics companies were founded in the last decade, accelerating into the 2020s as learning-based control and cheap compute lowered the barrier to building a capable robot.</p>
   <div class="chart" id="c-founded"></div>
   <p class="cap">Companies by founding year (where known, 1990–2026).</p>
@@ -3700,5 +3716,36 @@ function dirAll(open){document.querySelectorAll('details.dseg-d').forEach(d=>d.o
 function openHashDir(){var m=location.hash.match(/^#(dir-\d+)$/);if(!m)return;var d=document.getElementById(m[1]);if(d&&d.tagName==='DETAILS'){d.open=true;setTimeout(function(){d.scrollIntoView({block:'start'});},60);}}
 window.addEventListener('hashchange',openHashDir);
 window.addEventListener('load',openHashDir);
+</script>
+
+<script>
+(function(){
+ if(typeof Plotly==="undefined")return;
+ var E={"YEARS": [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026], "reg_series": {"North America": [0.312, 0.33, 1.246, 6.629, 4.676, 9.532, 17.808, 8.06, 5.152, 14.102, 13.706, 31.285], "China": [0.372, 0.142, 0.31, 2.508, 1.002, 4.083, 8.571, 2.289, 1.201, 2.843, 6.568, 5.664], "Europe": [0.049, 0.097, 0.145, 0.407, 0.413, 0.668, 2.095, 2.136, 1.561, 2.921, 2.856, 2.021], "Japan & Korea": [0.042, 0.149, 0.768, 0.135, 0.301, 0.196, 1.421, 0.268, 0.885, 0.572, 0.571, 0.169], "Other Asia-Pacific": [0.0, 0.062, 0.038, 0.176, 0.173, 0.094, 0.731, 0.442, 0.231, 0.505, 0.401, 0.181], "Middle East": [0.036, 0.15, 0.072, 0.098, 0.123, 0.163, 0.416, 0.209, 0.126, 0.192, 0.276, 0.16], "Other": [0.0, 0.0, 0.0, 0.002, 0.0, 0.04, 0.013, 0.072, 0.002, 0.06, 0.04, 0.006]}, "seg_series": {"12. Road delivery / robotaxis / AVs": [0.006, 0.038, 0.63, 5.183, 2.38, 6.834, 14.341, 2.846, 1.97, 8.8, 1.913, 18.796], "23. Defense / military": [0.0, 0.014, 0.021, 0.123, 0.171, 0.345, 0.736, 1.501, 0.112, 2.117, 4.136, 6.971], "18. Drones / UAVs": [0.076, 0.095, 0.092, 0.207, 0.393, 0.257, 1.634, 1.074, 1.383, 1.848, 2.639, 3.778], "3. Stationary latency-tolerant": [0.107, 0.176, 0.445, 0.682, 0.635, 2.246, 2.097, 1.764, 0.316, 1.109, 2.785, 0.675], "16. Humanoids": [0.0, 0.0, 0.0, 0.008, 0.004, 0.02, 0.005, 0.269, 0.217, 1.847, 4.947, 3.961], "5. Surgical / medical": [0.078, 0.023, 0.133, 0.307, 0.514, 0.534, 1.962, 0.663, 0.812, 0.462, 1.06, 0.058], "11. Sidewalk / last-mile delivery": [0.0, 0.0, 0.049, 0.092, 1.0, 0.595, 1.209, 0.152, 0.072, 0.759, 1.755, 0.15], "24. Space / planetary": [0.015, 0.072, 0.163, 0.121, 0.1, 0.181, 1.703, 0.029, 0.62, 0.639, 0.772, 1.3], "Other": [0.528, 0.512, 1.045, 3.231, 1.494, 3.765, 7.368, 5.179, 3.657, 3.615, 4.412, 3.796]}, "segorder": ["12. Road delivery / robotaxis / AVs", "23. Defense / military", "18. Drones / UAVs", "3. Stationary latency-tolerant", "16. Humanoids", "5. Surgical / medical", "11. Sidewalk / last-mile delivery", "24. Space / planetary", "Other"], "total_by_year": [0.81, 0.93, 2.58, 9.95, 6.69, 14.78, 31.05, 13.48, 9.16, 21.2, 24.42, 39.48], "mega_pct": [31, 21, 48, 80, 73, 78, 83, 63, 55, 77, 78, 96], "hire_top": [{"n": "Anduril Industries", "roles": 1504, "r": "North America"}, {"n": "Waymo", "roles": 418, "r": "North America"}, {"n": "Shield AI", "roles": 326, "r": "North America"}, {"n": "Dedrone (Axon)", "roles": 307, "r": "North America"}, {"n": "Esri Site Scan", "roles": 271, "r": "North America"}, {"n": "Zoox (Amazon)", "roles": 215, "r": "North America"}, {"n": "Applied Intuition", "roles": 213, "r": "North America"}, {"n": "Zipline", "roles": 188, "r": "North America"}, {"n": "Helsing", "roles": 129, "r": "Europe"}, {"n": "Lila Sciences", "roles": 119, "r": "North America"}, {"n": "Figure AI", "roles": 107, "r": "North America"}, {"n": "Nuro", "roles": 103, "r": "North America"}, {"n": "AEVEX Aerospace", "roles": 100, "r": "North America"}, {"n": "Field AI", "roles": 96, "r": "North America"}, {"n": "Wayve", "roles": 93, "r": "Europe"}, {"n": "Aurora Innovation", "roles": 90, "r": "North America"}, {"n": "Apptronik", "roles": 84, "r": "North America"}, {"n": "Mujin", "roles": 81, "r": "Japan & Korea"}, {"n": "ARX Robotics", "roles": 75, "r": "Europe"}, {"n": "Mach", "roles": 74, "r": "North America"}, {"n": "Motional", "roles": 73, "r": "North America"}, {"n": "Allen Control Systems", "roles": 68, "r": "North America"}, {"n": "Waabi", "roles": 60, "r": "North America"}, {"n": "Kodiak AI (Kodiak Robotics)", "roles": 58, "r": "North America"}], "hire_seg": [["23. Defense / military", 1850], ["18. Drones / UAVs", 1670], ["12. Road delivery / robotaxis / AVs", 1287], ["16. Humanoids", 385], ["11. Sidewalk / last-mile delivery", 281], ["2. AI pick / pack arms", 242], ["3. Stationary latency-tolerant", 241], ["17. Quadruped inspection", 232], ["24. Space / planetary", 218], ["15. Mining / subsea / hazardous", 135], ["14. Construction", 111], ["1. Fixed industrial arms", 88]], "hire_reg": [["North America", 6149], ["Europe", 768], ["Japan & Korea", 131], ["China", 58], ["Other Asia-Pacific", 47], ["Middle East", 25]], "cov": {"cos_rounds": 1032, "disclosed_b": 175.4, "hire_boards": 155, "hire_roles": 7178}};
+ var RC={"North America":"#4f46e5","China":"#dc2626","Europe":"#0891b2","Japan & Korea":"#d97706","Other Asia-Pacific":"#16a34a","Middle East":"#9333ea","Other":"#9ca3af"};
+ var PAL=["#4f46e5","#0891b2","#dc2626","#d97706","#16a34a","#9333ea","#db2777","#0d9488","#9ca3af"];
+ var LAY={font:{family:"Helvetica,Arial,sans-serif",size:12,color:"#374151"},paper_bgcolor:"rgba(0,0,0,0)",plot_bgcolor:"rgba(0,0,0,0)",barmode:"stack",legend:{orientation:"h",y:-0.18,font:{size:11}}};
+ var CFG={displayModeBar:false,responsive:true};
+ // capital by region over time
+ try{
+  var rt=Object.keys(E.reg_series).map(function(r){return {type:"bar",name:r,x:E.YEARS,y:E.reg_series[r],marker:{color:RC[r]||"#9ca3af"},hovertemplate:r+" %{x}: $%{y}B<extra></extra>"};});
+  Plotly.newPlot("ct-region",rt,Object.assign({},LAY,{height:420,title:{text:"Capital deployed by region ($B/yr)",font:{size:13}},xaxis:{dtick:1,gridcolor:"#f1f1f1"},yaxis:{title:"$B",gridcolor:"#f1f1f1"},margin:{l:48,r:10,t:34,b:60}}),CFG);
+ }catch(e){console.error(e);}
+ // capital by segment over time
+ try{
+  var st=E.segorder.map(function(s,i){return {type:"bar",name:s.replace(/^\d+\.\s*/,""),x:E.YEARS,y:E.seg_series[s],marker:{color:PAL[i%PAL.length]},hovertemplate:"%{x}: $%{y}B<extra></extra>"};});
+  Plotly.newPlot("ct-seg",st,Object.assign({},LAY,{height:440,title:{text:"Capital deployed by use case ($B/yr, top 8)",font:{size:13}},xaxis:{dtick:1,gridcolor:"#f1f1f1"},yaxis:{title:"$B",gridcolor:"#f1f1f1"},margin:{l:48,r:10,t:34,b:90}}),CFG);
+ }catch(e){console.error(e);}
+ // top hirers
+ try{
+  var t=E.hire_top.slice().reverse();
+  Plotly.newPlot("hr-top",[{type:"bar",orientation:"h",x:t.map(function(d){return d.roles;}),y:t.map(function(d){return d.n;}),marker:{color:t.map(function(d){return RC[d.r]||"#9ca3af";})},text:t.map(function(d){return d.roles;}),textposition:"outside",textfont:{size:10},hovertemplate:"%{y}: %{x} open roles<extra></extra>"}],Object.assign({},LAY,{barmode:"group",height:560,title:{text:"Most open roles (distinct, live)",font:{size:13}},xaxis:{title:"Open roles",gridcolor:"#f1f1f1"},yaxis:{automargin:true},margin:{l:10,r:60,t:34,b:40},showlegend:false}),CFG);
+ }catch(e){console.error(e);}
+ // hiring by segment
+ try{
+  var hs=E.hire_seg.slice().reverse();
+  Plotly.newPlot("hr-seg",[{type:"bar",orientation:"h",x:hs.map(function(d){return d[1];}),y:hs.map(function(d){return d[0].replace(/^\d+\.\s*/,"");}),marker:{color:"#4f46e5"},text:hs.map(function(d){return d[1];}),textposition:"outside",textfont:{size:10},hovertemplate:"%{y}: %{x} open roles<extra></extra>"}],Object.assign({},LAY,{barmode:"group",height:380,title:{text:"Open roles by use case (ATS-covered subset)",font:{size:13}},xaxis:{title:"Open roles",gridcolor:"#f1f1f1"},yaxis:{automargin:true},margin:{l:10,r:60,t:34,b:40},showlegend:false}),CFG);
+ }catch(e){console.error(e);}
+})();
 </script>
 </body></html>
