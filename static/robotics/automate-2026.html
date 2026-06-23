@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Automate 2026 — Prospecting Field Guide</title>
+<style>
+  :root{
+    --bg:#0b0f17; --panel:#141a26; --panel2:#1b2333; --line:#26304a;
+    --txt:#e8edf6; --muted:#9aa7bd; --accent:#5ad1c9; --accent2:#7aa2ff;
+    --a:#ffd166; --b:#8ad0ff; --p:#ff9d9d; --warn:#ff7a7a;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--txt);
+    font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .wrap{max-width:1000px;margin:0 auto;padding:16px 12px 80px}
+  h1{font-size:1.35rem;margin:.1em 0 .1em;line-height:1.2}
+  .sub{color:var(--muted);font-size:.9rem;margin:0 0 12px}
+  .pitch{background:linear-gradient(135deg,#16203a,#142028);border:1px solid var(--line);
+    border-radius:12px;padding:10px 13px;margin:0 0 14px;font-size:.9rem}
+  .pitch b{color:var(--accent)}
+
+  details.clusters{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin:0 0 14px}
+  details.clusters summary{cursor:pointer;padding:11px 14px;font-weight:700;list-style:none;font-size:.92rem}
+  details.clusters summary::-webkit-details-marker{display:none}
+  details.clusters summary::after{content:"▾";float:right;color:var(--muted)}
+  details.clusters[open] summary::after{content:"▴"}
+  .cl{padding:2px 14px 12px;margin:0}
+  .cl li{margin:8px 0;font-size:.88rem}
+  .cl .when{color:var(--accent);font-weight:600}
+
+  .controls{position:sticky;top:0;z-index:30;background:rgba(11,15,23,.94);
+    backdrop-filter:blur(8px);padding:9px 0 8px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+  #q{width:100%;padding:11px 13px;border-radius:11px;border:1px solid var(--line);
+    background:var(--panel);color:var(--txt);font-size:16px;outline:none}
+  #q:focus{border-color:var(--accent)}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px;align-items:center}
+  .chip{border:1px solid var(--line);background:var(--panel);color:var(--muted);
+    padding:6px 11px;border-radius:999px;font-size:.8rem;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+  .chip.active{color:#06121f;font-weight:700;background:var(--accent)}
+  .chip[data-v].active{background:var(--accent2)}
+  .chip[data-t="all"].active{background:var(--accent)}
+  .chip[data-t="A"].active{background:var(--a)}
+  .chip[data-t="B"].active{background:var(--b)}
+  .chip[data-t="P"].active{background:var(--p)}
+  .chip.tc{font-size:.74rem;padding:5px 9px}
+  .vsep{width:1px;align-self:stretch;background:var(--line);margin:0 2px}
+  .count{color:var(--muted);font-size:.78rem;margin-left:auto}
+  .pri{font-weight:800;font-size:.68rem;border-radius:5px;padding:2px 5px;margin-right:5px;white-space:nowrap}
+  .pri.p1{background:#1f8a70;color:#eafff8}
+  .pri.p2{background:#2d3c63;color:#cfe0ff}
+  .pri.p3{background:#222b3d;color:#7d8aa3}
+  .pri.p4{background:#3a2030;color:#ffb3c1}
+  tr.row.missed td{opacity:.62}
+
+  table{width:100%;border-collapse:collapse}
+  thead th{position:sticky;top:0;text-align:left;color:var(--muted);font-weight:600;
+    font-size:.74rem;text-transform:uppercase;letter-spacing:.03em;padding:8px 8px;
+    border-bottom:1px solid var(--line);cursor:pointer;white-space:nowrap;background:var(--bg)}
+  thead th.sorted::after{content:" ▾";color:var(--accent)}
+  thead th.sorted.asc::after{content:" ▴"}
+  tbody tr.row{border-bottom:1px solid var(--line);cursor:pointer}
+  tbody tr.row:active{background:var(--panel)}
+  td{padding:9px 8px;vertical-align:top;font-size:.86rem}
+  .tier{font-weight:800;font-size:.7rem;border-radius:6px;padding:2px 6px;white-space:nowrap}
+  .tier.A{background:var(--a);color:#3a2c00}
+  .tier.B{background:var(--b);color:#062235}
+  .tier.P{background:var(--p);color:#3a0000}
+  .star{color:var(--a)}
+  .who .nm{font-weight:700}
+  .who .co{color:var(--muted);font-size:.8rem;display:block}
+  .booth{color:var(--b);font-weight:600;white-space:nowrap}
+  .when{white-space:nowrap;font-size:.82rem}
+  .when .t{color:var(--accent);font-weight:600}
+  .when .more{color:var(--muted);font-size:.74rem}
+  .links{white-space:nowrap}
+  .links a{display:inline-flex;align-items:center;justify-content:center;margin-right:8px;
+    text-decoration:none;font-size:1.1rem;line-height:1;vertical-align:middle}
+  .links a svg{display:block}
+  .links a:active{opacity:.6}
+  .ex{color:var(--muted);font-size:.7rem}
+  .cev{display:inline-block;color:var(--accent2);transition:transform .15s;font-size:.8rem;margin-right:6px;width:.7em}
+  tr.row.open .cev{transform:rotate(90deg)}
+  tr.row.open>td{background:rgba(122,162,255,.06)}
+  .cl .pp{white-space:nowrap}
+  .cl .pp a{text-decoration:none}
+  .cl .pp .nlink{color:var(--accent2);font-weight:600}
+  .cl .pp .glink{margin-left:2px;font-size:.85em}
+  .cl .pp svg{width:13px;height:13px;vertical-align:-2px}
+
+  tr.detail td{background:var(--panel);border-bottom:1px solid var(--line);padding:0}
+  tr.detail .box{padding:12px 14px}
+  .lab{font-weight:700;color:var(--accent);font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;margin:10px 0 2px}
+  .lab:first-child{margin-top:0}
+  .bio{font-size:.88rem;color:var(--txt)}
+  .opener{font-size:.95rem;color:#cde9ff;font-style:italic}
+  .opener:before{content:"“"}.opener:after{content:"”"}
+  .sline{font-size:.83rem;margin:4px 0;padding:6px 9px;background:var(--panel2);border-radius:8px}
+  .sline .w{color:var(--accent);font-weight:600}
+  .sline .tt{font-style:italic}
+  .dlinks{margin-top:12px;display:flex;gap:14px;align-items:center}
+  .dlinks a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--accent2);font-size:.86rem}
+  .dlinks a svg{display:block}
+
+  .empty{display:none;color:var(--muted);text-align:center;padding:28px 0}
+  .hint{color:var(--muted);font-size:.76rem;margin:8px 2px}
+  details.monday{background:#211925;border:1px solid #55334b;border-radius:12px;margin:18px 0 0}
+  details.monday summary{cursor:pointer;padding:11px 14px;font-weight:700;list-style:none;font-size:.9rem;color:#ffb3c1}
+  details.monday summary::-webkit-details-marker{display:none}
+  details.monday summary::after{content:"▾";float:right;color:var(--muted)}
+  details.monday[open] summary::after{content:"▴"}
+  .monday-inner{padding:0 14px 14px}
+  .monday-note{color:var(--muted);font-size:.82rem;margin:0 0 9px}
+  footer{color:var(--muted);font-size:.76rem;margin-top:24px;text-align:center}
+  a{color:var(--accent2)}
+  @media(max-width:560px){
+    .hide-sm{display:none}
+    td{padding:8px 6px}
+    .wrap{padding:14px 8px 80px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Automate 2026 — Prospecting Field Guide</h1>
+  <p class="sub">McCormick Place, Chicago · June 22–25, 2026 · Halls A &amp; B<br><b style="color:var(--accent2)">▸ tap any row</b> to expand bio · sharp opener · sessions · links</p>
+  <div class="pitch"><b>Pitch:</b> hybrid world-model inference + hosted policy lifecycle — keep latency- and safety-critical control on the robot; use the cloud for training, evaluation, rollout, telemetry, and non-real-time planning. <span style="color:var(--muted)">Booths and agenda verified against the public organizer data on Jun 23, 2026. Bios are public-source summaries; verify titles and availability on-site. LinkedIn links = name searches unless a profile was confirmed.</span></div>
+
+  <details class="clusters" open>
+    <summary>⭐ Can't-miss clusters (several targets, one room)</summary>
+    <ul class="cl" id="cl"></ul>
+  </details>
+
+  <div class="controls">
+    <input id="q" type="search" placeholder="Search name, company, booth, topic…" autocomplete="off">
+    <div class="chips">
+      <span class="chip active" data-v="top">★ P1 targets</span>
+      <span class="chip" data-v="short">P1 + P2</span>
+      <span class="chip" data-v="all">All active targets</span>
+      <span class="vsep"></span>
+      <span class="chip tc active" data-t="all">tier: all</span>
+      <span class="chip tc" data-t="A">A</span>
+      <span class="chip tc" data-t="B">B</span>
+      <span class="chip tc" data-t="P">P</span>
+      <span class="count" id="count"></span>
+    </div>
+  </div>
+
+  <table>
+    <thead><tr>
+      <th data-s="rank" class="sorted">Tier</th>
+      <th data-s="n">Who</th>
+      <th data-s="booth">Booth</th>
+      <th data-s="when" class="hide-sm">Find&nbsp;them</th>
+      <th class="hide-sm">Links</th>
+    </tr></thead>
+    <tbody id="tb"></tbody>
+  </table>
+  <div class="empty" id="empty">No matches — clear the search or pick another tier.</div>
+  <p class="hint"><b>2-day plan (Tue + Wed):</b> realistically you'll get ~8–12 real conversations. Start on <b>★ P1 targets</b>; the Tue 12:45 keynote panel alone puts Pathak, Reger, Velagapudi &amp; Chen on one stage. Drop to <b>P1 + P2</b> only if you have slack.<br>
+  <span style="color:var(--muted)">P1 must-hit · P2 opportunistic · P3 booth walk-by. Tier A = learned-policy/world-model builders · B = vision/AMR/platform prospects · P = ecosystem, enterprise, or coopetition. Monday-only public speakers are excluded from the active list and collected below for offline follow-up; their company booths may still be worthwhile Tue–Thu.</span></p>
+
+  <details class="monday" open>
+    <summary>↩ Monday-only public schedule — offline follow-up / booth-team check</summary>
+    <div class="monday-inner">
+      <p class="monday-note">These people have only Monday sessions in the public agenda. This does not prove they left the show; if their company has a booth, ask the booth team for the product or autonomy lead. Do not plan on catching the named speaker Tue–Thu without confirmation.</p>
+      <table><tbody id="monday-tb"></tbody></table>
+    </div>
+  </details>
+
+  <footer>Sources: <a href="https://www.automateshow.com/exhibitors">official exhibitor directory</a> · <a href="https://automate26.mapyourshow.com/8_0/floorplan/">official agenda and floor plan</a> · internal prospecting use</footer>
+</div>
+
+<script>
+// li:"" -> auto people-search by name+company; web:"" -> auto google search by company
+const P = [
+ {t:"A",star:1,n:"Deepak Pathak",co:"Skild AI",booth:"",web:"https://www.skild.ai",li:"https://www.linkedin.com/in/pathak22/",
+  role:"Co-founder & CEO",
+  who:"CMU robotics professor; built Skild AI into a leading robot foundation-model company (\"Skild Brain\"), backed by SoftBank/Lightspeed/NVIDIA. Known for curiosity-driven RL and Rapid Motor Adaptation.",
+  brain:"Scaling laws for robot foundation models; on-robot vs datacenter serving; world-model rollouts for planning; cost-per-inference at fleet scale.",
+  opener:"You proved one brain can drive many bodies — so why would that brain live on every body instead of one place serving all of them?",
+  sess:[["Tue Jun 23 · 12:45–1:30 PM · Grand Ballroom S100","KEYNOTE PANEL: Next Frontier of Physical AI"]]},
+
+ {t:"A",star:1,n:"Jeff Cardenas",co:"Apptronik",booth:"",web:"https://apptronik.com",li:"https://www.linkedin.com/in/jeffrey-cardenas",
+  role:"Co-founder & CEO",
+  who:"Leads Apptronik (Austin; Apollo humanoid, spun from UT Austin's Human Centered Robotics Lab). Partners with Google DeepMind, Mercedes-Benz, NASA.",
+  brain:"Apollo's brain architecture & on-robot compute budget; OTA policy updates across a fleet; whether DeepMind foundation-model work pushes inference to the cloud.",
+  opener:"Apollo's hardware is basically a solved problem; the brain is the fight now. What's the first thing you'd lift off its onboard compute if power and thermals weren't in the way?",
+  sess:[["Wed Jun 24 · 12:35–1:05 PM · Grand Ballroom S100","Embodied AI: Building Intelligence for the Real World"]]},
+
+ {t:"A",star:1,n:"Ali Agha",co:"FieldAI",booth:"",web:"https://www.fieldai.com",li:"https://www.linkedin.com/in/ali-agha-7aa5212a",
+  role:"Founder & CEO",
+  who:"Building risk-aware \"field foundation models\" for uncontrolled environments. Ex-NASA JPL — led CoSTAR/NeBula, winner of DARPA SubT.",
+  brain:"Risk-aware inference (serving a model that quantifies uncertainty); connectivity field vs factory; edge-cloud split for foundation models.",
+  opener:"Risk-aware models are exactly the ones you can't afford to shrink to fit onboard. When the link's there, how much are you itching to offload?",
+  sess:[["Wed Jun 24 · 1:35–2:05 PM · Grand Ballroom S100","From Factory Floors to the Field: Risk-Aware AI"],["Thu Jun 25 · 10:30–11:15 AM · Show Theater (Booth 2884)","The Automated Podcast: Live with Ali Agha"]]},
+
+ {t:"A",star:1,n:"Erin McColl",co:"Toyota Research Institute",booth:"",web:"https://www.tri.global",li:"https://www.linkedin.com/in/erinmccoll1",
+  role:"Robotics",
+  who:"TRI robotics. TRI pioneered Large Behavior Models and Diffusion Policy (Russ Tedrake's group) for real-world manipulation.",
+  brain:"LBM / diffusion-policy inference cost (heavy = natural cloud-offload); how TRI evaluates policies pre-deployment; manufacturing latency tolerances.",
+  opener:"Diffusion policies are the best results in the room and the worst thing to run in real time — how are you squaring that for an actual production line?",
+  sess:[["Tue Jun 23 · 8:00–8:45 AM · S404bc","Bridging the Gap: TRI's Approach to Real-World Robotics"],["Wed Jun 24 · 3:00–4:00 PM · S100","PANEL: Scaling & Deploying Humanoids"]]},
+
+ {t:"A",star:0,n:"Pras Velagapudi",co:"Agility Robotics",booth:"1891 (A)",web:"https://www.agilityrobotics.com",li:"https://www.linkedin.com/in/pvelagapudi/",
+  role:"CTO",
+  who:"CTO of Agility (Digit humanoid; Agility Arc cloud fleet platform). Deep on real-world humanoid logistics deployment.",
+  brain:"Agility Arc's cloud architecture; where policy inference sits today; appetite for a managed inference layer vs building it.",
+  opener:"Arc already runs the fleet from the cloud. What's the real reason the policy itself hasn't moved up there with everything else?",
+  sess:[["Tue Jun 23 · 12:45–1:30 PM · S100","KEYNOTE PANEL"],["Tue Jun 23 · 3:30–4:00 PM · S100","Humanoids Are Here — What's Next?"]]},
+
+ {t:"A",star:0,n:"David Reger",co:"NEURA Robotics",booth:"2231/2236 (A)",web:"https://neura-robotics.com",li:"https://www.linkedin.com/in/dregerofficial",
+  role:"Founder & CEO",
+  who:"Founder/CEO of NEURA (Germany; 4NE-1 humanoid, MAiRA cognitive cobot, \"Neuraverse\" app ecosystem). Loud Physical-AI evangelist.",
+  brain:"Neuraverse third-party skills/apps imply hosted models; how skills are served; whether the marketplace needs a cloud inference backend.",
+  opener:"An app store for robot skills only works if someone hosts the skills — is Neuraverse going to run that inference, or are you shopping for the layer that does?",
+  sess:[["Tue Jun 23 · 12:45–1:30 PM · S100","KEYNOTE PANEL"],["Tue Jun 23 · 3:00–3:30 PM · S100","The Impact of Physical AI in Industrial Worlds"]]},
+
+ {t:"A",star:0,n:"Nicolaus Radford",co:"Persona AI",booth:"",web:"https://persona.ai",li:"https://www.linkedin.com/in/nicolaus-radford/",
+  role:"Founder & CEO",
+  who:"Houston industrial-humanoid startup (robot-welder for HD Hyundai). Ex-NASA JSC — led Valkyrie/Robonaut; founded Houston Mechatronics / Nauticus Robotics.",
+  brain:"Early-stage compute strategy (greenfield = open to outsourcing vs building); what an industrial humanoid needs from a policy backend.",
+  opener:"You've built humanoids under NASA's constraints before. Starting fresh — is owning the inference stack a hill you actually want, or one you'd rent in a heartbeat?",
+  sess:[["Wed Jun 24 · 1:05–1:35 PM · Grand Ballroom S100","FIRESIDE: Commercial Viability of Humanoids"]]},
+
+ {t:"A",star:0,n:"James Wells",co:"Sanctuary AI",booth:"",web:"https://www.sanctuary.ai",li:"https://www.linkedin.com/in/jamesgwells",
+  role:"",
+  who:"Sanctuary AI (Vancouver) — Phoenix humanoid + \"Carbon\" AI control; heavy teleoperation-to-autonomy data pipeline.",
+  brain:"Carbon's inference path; teleop data → policy training → serving loop; dexterous manipulation compute.",
+  opener:"The second a Carbon policy ships to a robot, does it stop getting smarter — or does keeping it central keep it learning?",
+  sess:[["Tue Jun 23 · 4:00–5:00 PM · S100","PANEL: Hands, Manipulation & State of Physical AI"]]},
+
+ {t:"A",star:0,n:"Massimiliano Moruzzi",co:"Xaba",booth:"",web:"https://www.xaba.ai",li:"",
+  role:"Founder & CEO",
+  who:"CEO of Xaba (Toronto; \"xCognition\" physics-based GenAI \"synthetic brain\" for industrial robots — generates robot/PLC code). Ex-Boeing/Autodesk; tested with Lockheed.",
+  brain:"How xCognition is delivered (SaaS/on-prem); generative/optimization compute at runtime; world-model-style prediction for self-optimization.",
+  opener:"Self-optimizing means the robot never stops thinking — that's continuous inference, not a one-shot model. Where does that thinking physically happen?",
+  sess:[["Tue Jun 23 · 10:15–11:00 AM · S402ab","Built to Adapt: Self-Optimizing Robots in Manufacturing"]]},
+
+ {t:"A",star:0,n:"Yuzhe Qin",co:"Dexmate",booth:"2484 (A)",web:"https://www.dexmate.ai",li:"https://www.linkedin.com/in/yuzheqin/",
+  role:"Co-founder / CTO",
+  who:"Dexterous-manipulation startup (Vega general-purpose robot). PhD UCSD (Hao Su / Xiaolong Wang) — DexMV, low-cost teleop, sim-to-real for hands.",
+  brain:"Dexterous policy inference (high-DOF, tight loop); whether hand policies tolerate cloud latency; teleop data infra.",
+  opener:"Everyone says cloud inference dies on latency at the hand. Have you actually hit that wall, or is it further out than people assume?",
+  sess:[["Tue Jun 23 · 11:45 AM–12:15 PM · Humanoid Pavilion (Booth 1595)","Industrial Physical AI: What Matters for Your Deployment"]]},
+
+ {t:"A",star:0,n:"Zhaopeng Chen",co:"Agile Robots",booth:"",web:"https://www.agile-robots.com",li:"https://www.linkedin.com/in/zhaopeng-chen-b82804100",
+  role:"",
+  who:"Agile Robots (German-Chinese; force-control + AI manipulation; roots in DLR torque-controlled robotics).",
+  brain:"Fusing classical force control (on-robot, real-time) with learned/cloud policies; the latency boundary between the two.",
+  opener:"Your force loop has to stay on the robot — the learned part doesn't. Where are you drawing that line today, and is it where you want it?",
+  sess:[["Tue Jun 23 · 12:45–1:30 PM · S100","KEYNOTE PANEL"]]},
+
+ {t:"A",star:0,n:"Kence Anderson",co:"Amesa",booth:"",web:"https://www.amesa.com",li:"https://www.linkedin.com/in/kence/",
+  role:"Founder & CEO · author 'Designing Autonomous AI'",
+  who:"Author of Designing Autonomous AI (O'Reilly); ex-Microsoft Director of Autonomous AI (Project Bonsai). 200+ industrial RL deployments (Shell, PepsiCo, Delta). Well-connected.",
+  brain:"Where industrial RL/agent systems deploy (edge vs cloud); multi-agent serving; he's a connector to your other targets.",
+  opener:"When one of your students' AI agents graduates from the classroom to a live plant — who ends up hosting it, and how ugly does that get?",
+  sess:[["Mon Jun 22 · 1:30–5:00 PM · S401abc","TUTORIAL: Introduction to Industrial AI Agents"],["Wed Jun 24 · 8:00 AM–12:00 PM · S401abc","TUTORIAL: Designing Multi-Agent Systems for Industrial AI"]]},
+
+ {t:"A",star:0,n:"Martin Elbs",co:"Lightwheel",booth:"2491 (A)",web:"https://lightwheel.ai",li:"https://www.linkedin.com/in/martin-elbs-12bab32/",
+  role:"· world-model adjacency",
+  who:"Lightwheel — SimReady physics data, egocentric human data + RoboFinals eval platform for frontier VLA & world models. Founder ex-Cruise/NVIDIA/NIO sim.",
+  brain:"Sim/world-model as a service; large eval batteries in the cloud; bridging their sim data and your inference layer (natural partnership).",
+  opener:"Sim eval at scale is a GPU firehose customers fire once and let idle — would they rather rent it? And is the same true of the policies they're evaluating?",
+  sess:[["Mon Jun 22 · 2:45–3:15 PM · Humanoid Pavilion (Booth 1595)","Scaling Robot Deployment: Simulation & Evaluation"]]},
+
+ {t:"A",star:0,n:"Wendy Tan White",co:"Intrinsic (Alphabet)",booth:"825 (A)",web:"https://www.intrinsic.ai",li:"https://www.linkedin.com/in/wendytanwhite",
+  role:"CEO",
+  who:"CEO of Intrinsic (Alphabet robotics-software; Flowstate). Ex-Google X VP; founded Moonfruit; deep AI/DeepMind ties.",
+  brain:"Intrinsic's stance on hosted robot intelligence; partnership posture (works with NVIDIA & DeepMind); where Flowstate runs models. Partner or competitor — read the room.",
+  opener:"Intrinsic abstracts almost everything about the robot except one thing you haven't drawn a public line on: where the intelligence actually runs. Where's your head at?",
+  sess:[["Mon Jun 22 · 9:00–9:45 AM · S100","Leadership Roundtable"],["Tue Jun 23 · 1:45–2:15 PM · Show Theater (Booth 2884)","AI Architecture for Intelligent Factories"]]},
+
+ {t:"A",star:0,n:"Jimmy Baraglia",co:"Intrinsic (Alphabet)",booth:"825 (A)",web:"https://www.intrinsic.ai",li:"https://www.linkedin.com/in/jimmy-baraglia/",
+  role:"AI",
+  who:"Intrinsic applied-AI lead presenting the industrial AI challenge.",
+  brain:"Intrinsic's applied inference needs; the electronics-assembly use case's latency/compute profile.",
+  opener:"In that electronics-assembly bottleneck — is the wall perception, planning, or just not having enough compute where the robot is?",
+  sess:[["Mon Jun 22 · 11:15 AM–12:00 PM · S404d","The AI For Industry Challenge: Electronics Assembly"]]},
+
+ {t:"A",star:0,n:"Stefan Nusser",co:"Intrinsic (Alphabet)",booth:"825 (A)",web:"https://www.intrinsic.ai",li:"",
+  role:"Product",
+  who:"Intrinsic product leader; talk on automating data centers.",
+  brain:"Automating data centers with robots — he thinks cloud infra + robotics together; good bridge conversation.",
+  opener:"You're sending robots into data centers — does standing inside all that compute change how you think about robots using it for their own inference?",
+  sess:[["Wed Jun 24 · 12:45–1:30 PM · Show Theater (Booth 2884)","Enabling the Data Center Boom: Intelligent Automation"]]},
+
+ {t:"A",star:0,n:"Henrike Neulen",co:"Intrinsic (Alphabet)",booth:"825 (A)",web:"https://www.intrinsic.ai",li:"",
+  role:"",
+  who:"Intrinsic; emerging-leaders talk (non-technical) — useful as a warm intro into the team.",
+  brain:"Warm intro into Intrinsic; who owns inference decisions there.",
+  opener:"Quick one — who at Intrinsic actually owns the call on where models get served? That's the person I'd love to learn from.",
+  sess:[["Wed Jun 24 · 12:45–1:15 PM · A3 NextGen Theater (Booth 32054)","Diversity and Emerging Leaders in Automation"]]},
+
+ {t:"A",star:0,n:"Rebecca Yeung",co:"Dexterity / FedEx",booth:"",web:"https://www.dexterity.ai",li:"https://www.linkedin.com/in/rebeccayeung",
+  role:"· the buyer's voice",
+  who:"FedEx senior exec (Operations Science & Advanced Technology) working with Dexterity's robot-AI systems. The enterprise-buyer perspective.",
+  brain:"What a Fortune-50 logistics operator demands from robot AI (uptime, reliability, who hosts what); procurement realities.",
+  opener:"You're the buyer everyone here is pitching. What would it genuinely take for FedEx to let a robot's brain live outside your own walls?",
+  sess:[["Wed Jun 24 · 3:00–4:00 PM · S100","PANEL: Scaling & Deploying Humanoids"]]},
+
+ {t:"A",star:0,n:"Gemma Ross",co:"OSARO",booth:"",web:"https://www.osaro.com",li:"",
+  role:"",
+  who:"OSARO — deep-learning piece-picking / perception+control for fulfillment. (Talk is non-technical; catch her after.)",
+  brain:"How OSARO serves its vision+grasp models; cloud vs on-prem at customer sites; cost of inference per pick.",
+  opener:"OSARO's been running learned picking in production longer than almost anyone — has the inference cost curve ever made you rethink where it runs?",
+  sess:[["Tue Jun 23 · 11:15 AM–12:30 PM · A3 NextGen Theater (Booth 32054)","Mentors, Mistakes, and Momentum"]]},
+
+ {t:"A",star:0,n:"Matt Churchill",co:"OSARO",booth:"",web:"https://www.osaro.com",li:"",
+  role:"",
+  who:"OSARO. (Talk is non-technical; catch him after.)",
+  brain:"OSARO's model-serving stack and per-pick inference economics.",
+  opener:"After years of OSARO picks in the wild — what's the thing about serving those models at scale you wish someone else would just handle?",
+  sess:[["Tue Jun 23 · 12:45–1:15 PM · A3 NextGen Theater (Booth 32054)","Automation 101: The Pursuit of Impact"]]},
+
+ {t:"A",star:0,n:"Kevin Reese",co:"Agility Robotics",booth:"1891 (A)",web:"https://www.agilityrobotics.com",li:"",
+  role:"safety / agentic control",
+  who:"Agility Robotics; focus on safe physical AI, agentic control & certification.",
+  brain:"Safety-certification implications of off-board inference (latency/failure modes); the agentic-control compute path.",
+  opener:"If the policy lives in the cloud, how do you write the safety case for the five seconds the link drops?",
+  sess:[["Mon Jun 22 · 11:15 AM–12:00 PM · S404bc","Building Safer Physical AI: Certification & Agentic Control"],["Tue Jun 23 · 2:00–2:30 PM · S100","PANEL: Safety Standards for Humanoids"]]},
+
+ {t:"A",star:0,n:"Chris Chen",co:"FF AI-Robotics (Faraday Future)",booth:"2494 (A)",web:"https://www.ff.com",li:"https://www.linkedin.com/in/chris-chen-476897184/",
+  role:"",
+  who:"Faraday Future's robotics arm; pitching a \"Physical AI Infrastructure Platform.\"",
+  brain:"Their \"infrastructure platform\" is adjacent to your pitch — find out if they build or buy inference.",
+  opener:"Your talk title literally says 'infrastructure platform' — does that include the inference layer, or is that the piece you'd rather not build?",
+  sess:[["Mon Jun 22 · 12:30–1:00 PM · Humanoid Pavilion (Booth 1595)","Build a Physical AI Infrastructure Platform"]]},
+
+ {t:"A",star:0,n:"Patrick Gao",co:"AGIBOT (Zhiyuan Robotics)",booth:"2291 (A)",web:"https://www.google.com/search?q=AGIBOT+Zhiyuan+Robotics",li:"",
+  role:"",
+  who:"Fast-moving Chinese general-purpose/humanoid player with its own embodied-AI models + large datasets.",
+  brain:"Their model-serving stack; whether they'd use Western cloud inference for U.S. deployments.",
+  opener:"Your data and models are the moat — but U.S. customers won't run them on Chinese infra. How are you solving where inference lives over here?",
+  sess:[["Mon Jun 22 · 11:00–11:30 AM · Humanoid Pavilion (Booth 1595)","Deployment Year One: Accelerating Productivity with Embodied AI"]]},
+
+ {t:"A",star:0,n:"Peter Chia",co:"Unitree",booth:"1885 (A)",web:"https://www.unitree.com",li:"",
+  role:"",
+  who:"Unitree — humanoid (G1/H1) + dexterous arms; huge developer community that runs their own policies.",
+  brain:"Unitree ships hardware + lets others run policies — chance to be the inference layer for their developer fleet.",
+  opener:"Everyone builds on Unitree hardware and none of them want to babysit GPUs. Isn't there a hosted-brain gap your whole ecosystem keeps falling into?",
+  sess:[["Mon Jun 22 · 1:15–1:45 PM · Humanoid Pavilion (Booth 1595)","Building Physical AI from Factories"]]},
+
+ {t:"A",star:0,n:"Wei Ding",co:"Noble Machines",booth:"2488 (A)",web:"https://www.noblemachines.ai",li:"https://www.linkedin.com/in/weidingum/",
+  role:"",
+  who:"Noble Machines — general-purpose robots for industry's toughest jobs (founders ex-Apple/SpaceX/NASA/Caltech). \"Robots learning at scale.\"",
+  brain:"\"Learning at scale\" = training+inference pipeline; where it runs.",
+  opener:"'Learning at scale' is a training story — but what about inference at scale? Is that on your infra or somebody else's?",
+  sess:[["Mon Jun 22 · 11:45 AM–12:15 PM · Humanoid Pavilion (Booth 1595)","Industrial Autonomy Powered by Robots Learning at Scale"]]},
+
+ {t:"A",star:0,n:"Christopher McQuin",co:"Noble Machines",booth:"2488 (A)",web:"https://www.noblemachines.ai",li:"",
+  role:"safety/certification",
+  who:"Noble Machines; humanoid safety & certification angle.",
+  brain:"Certification view of cloud inference (pairs with Kevin Reese's angle).",
+  opener:"Does putting the policy in the cloud make your certification story easier or harder — and has anyone actually figured that out yet?",
+  sess:[["Wed Jun 24 · 2:15–3:15 PM · Humanoid Pavilion (Booth 1595)","Beyond the Cage: Humanoid Safety & Certification"]]},
+
+ {t:"A",star:0,n:"Elizabeth Samara Rubio",co:"Noble Machines",booth:"2488 (A)",web:"https://www.noblemachines.ai",li:"",
+  role:"commercial",
+  who:"Commercial/exec leader at Noble Machines.",
+  brain:"Commercial model + buy-vs-build for the AI backend.",
+  opener:"On the P&L, is the inference stack a line item you'd love to turn from capex into someone else's bill?",
+  sess:[["Wed Jun 24 · 3:00–4:00 PM · S100","PANEL: Scaling & Deploying Humanoids"]]},
+
+ {t:"A",star:0,n:"Alex Shao-Feng Hsu",co:"Techman Robot",booth:"3401/441 (A)",web:"https://www.tm-robot.com",li:"",
+  role:"",
+  who:"Techman (Taiwan, Quanta group) — cobots with native vision+AI.",
+  brain:"On-robot AI today vs appetite for heavier cloud models; reshoring customers' infra.",
+  opener:"Techman bakes the AI into the arm — what's the model you'd love to run that simply won't fit in there?",
+  sess:[["Tue Jun 23 · 10:15–11:00 AM · S404bc","Addressing U.S. Reshoring with Techman's Smart Vision & AI"]]},
+
+ {t:"A",star:0,n:"Zach Zweig-Vinegar",co:"Gatlin Robotics",booth:"1792 (A)",web:"https://gatlinrobotics.com",li:"https://www.linkedin.com/in/zach-zweig-vinegar",
+  role:"",
+  who:"Gatlin Robotics — Physical AI; model training + robots-as-a-service; real-to-sim-to-real.",
+  brain:"Environment reconstruction = world-model territory; their sim/inference compute.",
+  opener:"Environment reconstruction is a world model in all but name — are those rollouts a product you sell, or a cost you eat?",
+  sess:[["Tue Jun 23 · 2:00–2:30 PM · Humanoid Pavilion (Booth 1595)","Automating Real-to-Sim-to-Real: Scaling Humanoid Training"]]},
+
+ {t:"A",star:0,n:"Yongkun Wang",co:"Standard Robots",booth:"3467 (A)",web:"https://www.standard-robots.com",li:"",
+  role:"",
+  who:"Standard Robots — industrial embodied-intelligence robots; swarm focus.",
+  brain:"Swarm/embodied coordination — centralized inference is a natural fit for swarms.",
+  opener:"A swarm almost begs for one shared brain instead of N copies — is that brain hosted, and if not, why not?",
+  sess:[["Wed Jun 24 · 8:00–8:45 AM · S403ab","From Individual to Swarm Intelligence for Embodied Robots"]]},
+
+ {t:"A",star:0,n:"Jon Battles",co:"Collaborative Robotics (Cobot)",booth:"1684 (A)",web:"https://www.co.bot",li:"https://www.linkedin.com/in/jon-battles-a3b8481/",
+  role:"VP Technology Strategy",
+  who:"Cobot (Proxie mobile manipulator; founders scaled Amazon Robotics to 500k+ robots). 80+ robotics patents; ex-Amazon ops leader.",
+  brain:"Proxie's compute split; his \"hardest part isn't the robot\" thesis likely = software/intelligence — your wheelhouse.",
+  opener:"You say the hard part isn't the robot. If it's the intelligence — how much of that is really just 'where does inference run, reliably, at scale'?",
+  sess:[["Mon Jun 22 · 1:45–2:30 PM · Show Theater (Booth 2884)","Building a U.S. National Strategy for Robotics"],["Wed Jun 24 · 1:15–1:45 PM · Humanoid Pavilion (Booth 1595)","How to Buy a Robot in 2026"],["Wed Jun 24 · 2:30–3:00 PM · S100","The Hardest Part Isn't the Robot"]]},
+
+ {t:"A",star:0,n:"Bren Pierce",co:"KINISI Robotics",booth:"",web:"https://kinisi.com",li:"https://www.linkedin.com/in/brennandpierce/",
+  role:"Founder & CEO",
+  who:"Founder/CEO of KINISI (low-cost mobile-manipulators). Previously co-founded Bear Robotics & Robotize; deployed 10k+ robots; raised $180M+.",
+  brain:"Low-cost robots can't afford big on-board GPUs — strongest natural case for cloud inference.",
+  opener:"Cheap robots and beefy onboard GPUs are a contradiction — doesn't low-cost hardware basically force the brain into the cloud?",
+  sess:[["Tue Jun 23 · 4:00–5:00 PM · S100","PANEL: Hands, Manipulation & State of Physical AI"]]},
+
+ {t:"A",star:0,n:"Noam Schafer",co:"General Robotics",booth:"",web:"https://www.google.com/search?q=General+Robotics+physical+AI+private+5G",li:"https://www.linkedin.com/in/noamschafer/",
+  role:"",
+  who:"General Robotics; talk ties physical AI to private-5G connectivity.",
+  brain:"He already believes the brain is off-robot (hence 5G) — perfect lead-in to cloud inference.",
+  opener:"You're betting on private 5G precisely because the brain isn't on the robot — so what's running on the far end of that link, and is it built yet?",
+  sess:[["Tue Jun 23 · 1:30–2:15 PM · S404bc","Brains and Brawn: Why Physical AI Needs Private 5G"]]},
+
+ {t:"A",star:0,n:"Juan Aparicio",co:"Reshape Automation",booth:"",web:"https://www.reshapeautomation.com",li:"https://www.linkedin.com/in/juanaparicioojea",
+  role:"Founder & CEO",
+  who:"Reshape Automation (ReshapeX AI sales platform). Ex-Siemens robotics R&D head; ex-Bright Machines/Rapid Robotics lineage.",
+  brain:"Where industrial AI agents run; his Siemens-scale view of who buys inference.",
+  opener:"You ran robotics R&D at Siemens scale — when these industrial agents go live, who actually ends up hosting the inference, and who foots that bill?",
+  sess:[["Tue Jun 23 · 10:15–11:00 AM · S404d","From Chatbots to Agents: AI in Industrial Sales & Service"]]},
+
+ {t:"A",star:0,n:"Matthew Brown",co:"ThoughtForge AI",booth:"4180 (A)",web:"https://www.google.com/search?q=ThoughtForge+AI+robotics",li:"",
+  role:"",
+  who:"ThoughtForge AI; AI control for manufacturing/robotics (presenting via ARM Institute track).",
+  brain:"Their AI control's compute footprint; openness to a hosted backend.",
+  opener:"When ThoughtForge's control ships to a customer, does the heavy thinking go with it — or does it want to phone home to real compute?",
+  sess:[["Wed Jun 24 · 11:15 AM–12:00 PM · S404d","Robotics for Manufacturing: Trends & Best Practices"]]},
+
+ // ---- Tier A booth-only ----
+ {t:"A",star:0,n:"Sereact",co:"Sereact",booth:"17051 (B)",web:"https://www.sereact.ai",li:"",
+  role:"VLA model — booth only",
+  who:"\"Cortex\" Vision-Language-Action model unifying perception, reasoning & robot control — textbook ICP.",
+  brain:"Where Cortex runs at inference; fleet-scale cost.",
+  opener:"Cortex is a VLA — those only get bigger. What happens to where it runs when one robot becomes a thousand?",
+  sess:[]},
+ {t:"A",star:0,n:"Artly",co:"Artly",booth:"17048 (B)",web:"https://www.google.com/search?q=Artly+robot+imitation+learning+VLA",li:"",
+  role:"imitation learning + VLA — booth only",
+  who:"Commercialized AI training program for robots — imitation learning + VLA models for teaching skills via human demo.",
+  brain:"As skills scale, does VLA inference move to the cloud?",
+  opener:"Every new skill you teach adds inference load — at what point does that stop fitting on the robot?",
+  sess:[]},
+ {t:"A",star:1,n:"Lovell AI",co:"Lovell AI",booth:"1788 (A)",web:"https://www.google.com/search?q=Lovell+AI+robot+brains+cloud",li:"",
+  role:"customer OR competitor — booth only",
+  who:"Hybrid-cloud platform to design/train/validate/deploy multi-agent robot brains across embodiments. Overlaps with your pitch — recon priority.",
+  brain:"Their cloud inference backend; whether they're a customer or your closest competitor.",
+  opener:"You're already selling cloud robot-brains — so you've either nailed inference hosting or you're quietly bleeding on it. Which is it?",
+  sess:[]},
+ {t:"A",star:0,n:"Roboligent",co:"Roboligent",booth:"3676 (A)",web:"https://www.roboligent.com",li:"",
+  role:"foundation model + IL — booth only",
+  who:"\"Physical Intelligence\" — foundation model + imitation learning; the \"arms and brains\" for next-gen automation.",
+  brain:"How they serve foundation policies to customer robots.",
+  opener:"You sell the 'brains' — but where do those brains actually think once they're on a customer's floor?",
+  sess:[]},
+ {t:"A",star:0,n:"Mech-Mind Robotics",co:"Mech-Mind",booth:"621 (A)",web:"https://mech-mind.com",li:"",
+  role:"embodied intelligence — booth only",
+  who:"Embodied-intelligence general-purpose robots; \"Eye-Brain-Hand\" with strong generalization.",
+  brain:"Where the 'Brain' in Eye-Brain-Hand computes.",
+  opener:"'Eye-Brain-Hand' is a great pitch — but physically, where does the Brain run, and does it scale per robot?",
+  sess:[]},
+ {t:"A",star:0,n:"Flexiv Robotics",co:"Flexiv",booth:"2844 (A)",web:"https://www.flexiv.com",li:"",
+  role:"adaptive AI robots — booth only",
+  who:"Adaptive 7-axis force-control robots (Rizon) with AI.",
+  brain:"Force control is on-robot — what learned parts could go off-board?",
+  opener:"The force control has to be on-robot — but the smart part doesn't. What would you move off if you could?",
+  sess:[]},
+ {t:"A",star:0,n:"Daxo Robotics",co:"Daxo Robotics",booth:"20154 (B)",web:"https://www.google.com/search?q=Daxo+Robotics+dexterous+hand",li:"",
+  role:"dexterous hand — booth only",
+  who:"General-purpose high-dexterity robotic hand; starting pilots.",
+  brain:"Where the dexterous-hand policy runs at inference.",
+  opener:"A general-purpose hand implies a hefty policy behind it — is that running on the hand, or somewhere with real compute?",
+  sess:[]},
+ {t:"A",star:0,n:"DexRobot",co:"DexRobot",booth:"33030 (B)",web:"https://www.google.com/search?q=DexRobot+dexterous+manipulation",li:"",
+  role:"embodied dexterous — booth only",
+  who:"Embodied-intelligence dexterous manipulation (SJTU-backed).",
+  brain:"Where dexterous manipulation policies run.",
+  opener:"Dexterous manipulation is the case everyone says can't leave the robot — have you actually tested how far off-board you can push it?",
+  sess:[]},
+ {t:"A",star:0,n:"Path Robotics",co:"Path Robotics",booth:"3431 (A)",web:"https://www.path-robotics.com",li:"",
+  role:"foundational welding AI — booth only",
+  who:"\"Obsidian\" foundational welding AI trained on millions of parts; Physical AI for manufacturing.",
+  brain:"Where Obsidian infers; scaling across customer sites.",
+  opener:"Obsidian saw millions of welds to get this good — is each cell really running the full model, or a shrunk-down shadow of it?",
+  sess:[]},
+ {t:"A",star:0,n:"Copper Robotics",co:"Copper Robotics",booth:"19054 (B)",web:"https://www.google.com/search?q=Copper+Robotics+OS+physical+AI",li:"",
+  role:"OS for Physical AI — booth only",
+  who:"Safety-certifiable deterministic OS (Rust) for autonomous driving, drones, AMRs, humanoids.",
+  brain:"Is inference part of their OS or a plug-in layer?",
+  opener:"Your OS is the substrate everything sits on — is inference a first-class part of it, or the gap a partner fills?",
+  sess:[]},
+ {t:"A",star:0,n:"Hellbender",co:"Hellbender",booth:"3425 (A)",web:"https://www.google.com/search?q=Hellbender+industrial+physical+AI+edge",li:"",
+  role:"industrial Physical AI (edge) — booth only",
+  who:"Industrial-grade Physical AI engineered for the edge.",
+  brain:"When does a workload justify going to the cloud vs edge?",
+  opener:"You build for the edge — so where's the line where a workload finally earns a trip to the cloud?",
+  sess:[]},
+ {t:"A",star:0,n:"LingYu Robotics",co:"LingYu Robotics",booth:"30034 (B)",web:"https://www.google.com/search?q=LingYu+Robotics+embodied+AI+teleoperation",li:"",
+  role:"embodied-AI data infra — booth only",
+  who:"Teleoperation systems + embodied-AI data infrastructure for AI training & deployment.",
+  brain:"Their data infra feeds training — do they also serve inference?",
+  opener:"You've built the data infra for training — serving the trained policy is the mirror image. Do you do that too, or stop at the data?",
+  sess:[]},
+ {t:"A",star:0,n:"NovaX Robotics",co:"NovaX Robotics",booth:"19062 (B)",web:"https://www.google.com/search?q=NovaX+Robotics+embodied+AI",li:"",
+  role:"embodied-AI agents — booth only",
+  who:"Full-stack embodied intelligence; builds embodied-AI agent models.",
+  brain:"Where their embodied-AI agent models execute in production.",
+  opener:"You build embodied-AI agent models — but where do they actually execute once a customer deploys them?",
+  sess:[]},
+
+ // ---- Tier B ----
+ {t:"B",star:0,n:"Sina Afrooze",co:"Apera AI",booth:"2840 (A)",web:"https://www.apera.ai",li:"",
+  role:"",who:"Apera AI (Vancouver) — 4D vision AI for robot guidance.",
+  brain:"Apera's 4D-vision inference location and scaling.",
+  opener:"4D vision isn't cheap to run — at fifty cells across a plant, does that inference really still belong on each cell?",
+  sess:[["Tue Jun 23 · 11:15 AM–12:00 PM · S404bc","Winning the Global Manufacturing Race with Vision"]]},
+ {t:"B",star:0,n:"Roboflow",co:"Roboflow",booth:"21015 (B)",web:"https://roboflow.com",li:"",role:"vision foundation-model infra — partner+customer",who:"Vision foundation-model infrastructure used by half the Fortune 100.",brain:"Integration/partner + customer for vision-model serving.",opener:"You're the vision-infra layer for half the Fortune 100 — where does robot policy inference fit next to that?",sess:[]},
+ {t:"B",star:0,n:"Seegrid",co:"Seegrid",booth:"3425 (A)",web:"https://www.seegrid.com",li:"",role:"Physical-AI AMRs",who:"Autonomous mobile robots for material handling.",brain:"Where their autonomy stack runs; fleet inference.",opener:"As your AMR autonomy gets smarter, does any of that compute want to leave the truck?",sess:[]},
+ {t:"B",star:0,n:"KITOV AI",co:"KITOV AI",booth:"3831 (A)",web:"https://www.kitov.ai",li:"",role:"Physical-AI visual inspection",who:"AI-powered visual inspection.",brain:"Inference location for inspection models.",opener:"Inspection models keep growing — on-cell or hosted for you?",sess:[]},
+ {t:"B",star:0,n:"Ahmad Stokes",co:"VisionNav Robotics",booth:"1841 (A)",web:"https://www.visionnav.com",li:"",role:"Director of Automotive Sales",who:"VisionNav builds vision-driven autonomous forklifts for industrial material handling.",brain:"Fleet autonomy ownership, perception updates, and where the cloud can help without touching the safety loop.",opener:"When a forklift fleet learns from one deployment, what is the safe path to rolling that improvement out to the next?",sess:[["Mon Jun 22 · 11:15 AM–12:00 PM · S401d","Forklifts on Autopilot: Deploying Autonomous Material-Handling Solutions in Manufacturing"]]},
+ {t:"B",star:0,n:"Tim Buschur",co:"Invisible AI",booth:"1981 (A)",web:"https://www.invisible.ai",li:"",role:"Chief Strategy Officer",who:"Factory-AI strategy leader with a production-operations and ROI lens.",brain:"The telemetry, root-cause signals, and business KPIs needed before factories will trust AI-driven recommendations or learned robot behaviors.",opener:"What operational data does a factory team need before it will trust an AI-driven recommendation or a learned robotic behavior?",sess:[["Wed Jun 24 · 11:15 AM–12:00 PM · S404bc","The Industrial AI Accelerator: Roadmap for Rapid, Real-World ROI"]]},
+ {t:"B",star:0,n:"Russell Nibblelink",co:"Overview AI",booth:"36027 (B)",web:"https://www.overview.ai",li:"",role:"Co-founder & Head of Sales Engineering",who:"Overview AI deploys industrial AI-vision systems and can explain the evidence factories require before scaling from pilot to production.",brain:"Model evaluation, factory acceptance criteria, edge inference, and fleet-level model governance.",opener:"What model-evaluation evidence gets a factory from a successful pilot to a repeatable rollout?",sess:[["Tue Jun 23 · 1:30–3:15 PM · S401d","Seeing is Solving: Advances in Smart Inspection"]]},
+ {t:"B",star:0,n:"Nitin Gupta",co:"Dori AI",booth:"3871 (A)",web:"https://www.dori.ai",li:"",role:"VP & Co-founder",who:"Dori combines cloud-based and edge-compatible visual intelligence with manufacturing and logistics analytics.",brain:"Where Dori draws the edge/cloud boundary, how it governs models across sites, and whether its roadmap reaches robot action workflows.",opener:"How do you decide which models stay at the edge and which lifecycle functions belong in the cloud?",sess:[["Tue Jun 23 · 1:30–3:15 PM · S401d","Seeing is Solving: Advances in Smart Inspection"]]},
+ {t:"B",star:0,n:"Keven Wang",co:"UnitX",booth:"13000 (B)",web:"https://www.unitxlabs.com",li:"",role:"CEO",who:"Leads an industrial AI-vision company with public sessions on production inspection.",brain:"Same-day deployment, model validation, inspection performance monitoring, and the boundary between edge runtime and hosted lifecycle tooling.",opener:"How do UnitX customers decide that a vision model is ready for production, and how is performance monitored after installation?",sess:[["Tue Jun 23 · 1:30–3:15 PM · S401d","Seeing is Solving: Advances in Smart Inspection"],["Thu Jun 25 · 12:45–1:15 PM · Innovation Stage (Booth 19046)","1 Minute. 5 Images. AI Vision Inspection Go Live on the Same Day."]]},
+ {t:"B",star:0,n:"IPLUSMOBOT",co:"IPLUSMOBOT",booth:"26027 (B)",web:"https://www.google.com/search?q=IPLUSMOBOT+mobile+robots",li:"",role:"general-purpose mobile robots",who:"General-purpose intelligent mobile robots.",brain:"Fleet autonomy compute.",opener:"Mobile-robot fleets and centralized brains pair well — is that your model?",sess:[]},
+ {t:"B",star:0,n:"Flexible Vision",co:"Flexible Vision",booth:"30004 (B)",web:"https://www.flexible-vision.com",li:"",role:"AI machine vision",who:"No-code AI machine vision.",brain:"Where models run.",opener:"No-code vision still needs GPUs somewhere — where, for you?",sess:[]},
+ {t:"B",star:0,n:"Musashi AI",co:"Musashi AI North America",booth:"3837 (A)",web:"https://www.google.com/search?q=Musashi+AI+inspection+robotics",li:"",role:"AI inspection/robotics",who:"AI inspection & autonomous robotics.",brain:"Inference hosting.",opener:"Where does Musashi's inspection/robotics AI actually run?",sess:[]},
+ {t:"B",star:0,n:"Cambrian",co:"Cambrian Inc.",booth:"2070 (A)",web:"https://www.google.com/search?q=Cambrian+robot+vision+AI",li:"",role:"robot vision AI",who:"Robot vision AI.",brain:"Model serving location.",opener:"Robot vision is compute-hungry — on-robot or off for you?",sess:[]},
+ {t:"B",star:0,n:"Eureka Robotics",co:"Eureka Robotics",booth:"4050 (A)",web:"https://www.eurekarobotics.com",li:"",role:"high-precision AI manipulation",who:"High-accuracy AI manipulation.",brain:"Where precision policies run.",opener:"High-precision manipulation policies — any room to offload compute?",sess:[]},
+ {t:"A",star:1,n:"Mbodi AI",co:"Mbodi AI",booth:"20155 (B)",web:"https://www.mbodi.ai",li:"",role:"embodied AI — booth only",who:"Mbodi teaches robots new skills from plain language, adapts behavior in production, and transfers knowledge across fleets.",brain:"Policy training and inference, evaluation, versioning, rollback, and shared learning across customer fleets.",opener:"When one robot learns a new skill and the fleet inherits it, what is the hardest part of proving that update is ready for every site?",sess:[]},
+ {t:"B",star:0,n:"Retrocausal",co:"Retrocausal",booth:"3681 (A)",web:"https://www.retrocausal.ai",li:"",role:"AI for human/robot work",who:"AI for human + robot work guidance.",brain:"Model serving model.",opener:"Where does your work-guidance AI infer — and would hosted scale it?",sess:[]},
+
+ // ---- Tier P (coopetition) ----
+ {t:"P",star:0,n:"NVIDIA",co:"NVIDIA",booth:"2284 (A)",web:"https://www.nvidia.com/en-us/industries/robotics/",li:"",
+  role:"Isaac + Cosmos world models — direct competitor / ecosystem hub",
+  who:"Isaac robotics stack + Cosmos world models. Speakers: Riccardo Mariani, Amit Goel, Alvin Clark, Edith Llontop, Poonam Chitale.",
+  brain:"What Cosmos/Isaac does and doesn't serve; where you complement vs compete; ecosystem partnership.",
+  opener:"Cosmos covers world models and Isaac covers sim — where's the gap you're not filling that a focused inference layer could?",
+  sess:[]},
+ {t:"P",star:0,n:"Amazon Robotics / AWS",co:"Amazon / AWS",booth:"",web:"https://aws.amazon.com/robotics/",li:"",
+  role:"cloud + robotics — partner/competitor",
+  who:"Speakers Aniket Vashisht, Bhavana Chandrashekhar (Amazon Robotics).",
+  brain:"Their robotics-cloud posture; partner vs build.",
+  opener:"Where does AWS see the line between its robotics cloud and a specialized policy-inference layer?",
+  sess:[]},
+ {t:"P",star:0,n:"Microsoft",co:"Microsoft",booth:"",web:"https://azure.microsoft.com",li:"",role:"Azure — infra partner",who:"Zain Gulamali (Microsoft).",brain:"Azure robotics/AI infra posture.",opener:"Is robot-policy inference something Azure wants to own or partner on?",sess:[]},
+ {t:"P",star:0,n:"Google",co:"Google",booth:"",web:"https://cloud.google.com",li:"",role:"cloud/robotics — partner",who:"Dianne Eldridge (Google).",brain:"Google Cloud robotics posture.",opener:"Where does Google Cloud fit for robot-policy inference?",sess:[]},
+ {t:"P",star:0,n:"Dell Technologies",co:"Dell",booth:"",web:"https://www.dell.com",li:"",role:"edge/cloud infra",who:"Daniel Cummins (Dell).",brain:"Edge hardware for robot inference.",opener:"What edge box are robotics customers asking Dell for to run inference?",sess:[]},
+ {t:"P",star:0,n:"Wind River",co:"Wind River",booth:"",web:"https://www.windriver.com",li:"",role:"edge OS for robots",who:"Randy Cox (Wind River).",brain:"Edge OS / real-time for robot AI.",opener:"Where does Wind River draw the real-time line that pushes work off-device?",sess:[]},
+ {t:"P",star:0,n:"BlackBerry QNX",co:"BlackBerry QNX",booth:"(booth)",web:"https://blackberry.qnx.com",li:"",role:"safety-critical OS for physical AI",who:"Safety-critical OS underpinning physical-AI systems.",brain:"How QNX systems offload non-real-time AI.",opener:"QNX keeps the safety-critical loop on-device — where does the non-critical AI want to go?",sess:[]},
+];
+
+// ---- Supplemental targets reconciled from the public exhibitor directory and agenda ----
+P.push(...[
+ {t:"A",star:1,n:"Evan Beard",co:"Standard Bots",booth:"736 (A)",web:"https://standardbots.com",li:"",
+  role:"Co-founder & CEO",who:"Standard Bots is building AI-native industrial robots and robot foundation models for production environments.",brain:"Policy serving, fleet rollout, evaluation gates, and the operational bottleneck after a learned task moves across customer sites.",opener:"Your keynote frames physical AI as a deployment problem, not just a model problem. Where does the operational bottleneck appear once a learned task moves from one site to many?",sess:[["Wed Jun 24 · 9:00–9:45 AM · Grand Ballroom S100","Show Your Robot How It's Done: How Physical AI Automates What Nothing Else Can"]]},
+ {t:"A",star:1,n:"Mowito Robotics",co:"Mowito Robotics",booth:"13063 / 19057 (B)",web:"https://www.mowito.ai",li:"",
+  role:"Adaptive manipulation — booth only",who:"Mowito's NeuralPick combines vision and tactile/force-guided robotic handling with real-time adaptation.",brain:"Policy training, simulation evaluation, and controlled rollout across robotic cells.",opener:"NeuralPick has to adapt to real production variation. Which part of that lifecycle—training, evaluation, versioning, or runtime configuration—is hardest to scale?",sess:[]},
+ {t:"A",star:1,n:"Thoro.AI",co:"Thoro.AI",booth:"3425 (A)",web:"https://thoro.ai",li:"",
+  role:"Industrial autonomy stack — booth only",who:"Thoro provides embodied-AI industrial autonomy, edge runtime, hybrid fleet orchestration, and cloud-enabled operations.",brain:"Model lifecycle and fleet rollout while keeping navigation and safety execution on the edge.",opener:"Your safety and navigation stay on the edge; where do model evaluation, updates, and cross-fleet learning become painful enough to need a stronger control plane?",sess:[]},
+ {t:"A",star:0,n:"Brendan Sterne",co:"Vention",booth:"2848 / 1001 (A)",web:"https://vention.dev",li:"",
+  role:"Chief Product Officer",who:"Vention spans digital-twin design, cloud-to-factory deployment, remote operations, and AI-enabled automation.",brain:"Where learned policies should be versioned, evaluated, and rolled out across installed machines.",opener:"Vention already owns the path from digital twin to factory floor. At what layer should a learned policy be versioned, evaluated, and rolled out?",sess:[["Mon Jun 22 · 2:30–3:15 PM · S404d","Getting Industrial Automation Right the First Time"]]},
+ {t:"A",star:1,n:"Dave Grant",co:"PickNik Robotics",booth:"3775 (A)",web:"https://picknik.ai",li:"",
+  role:"CEO",who:"PickNik builds MoveIt Pro, a runtime and developer platform for advanced robot-arm applications.",brain:"How customers package learned components, evaluate them in simulation, and update production robot applications.",opener:"MoveIt Pro gives application teams a runtime and developer workflow. How are customers packaging, evaluating, and updating learned components today?",sess:[["Wed Jun 24 · 2:30–3:15 PM · S402ab","Assembly: Manufacturing’s Last Great Automation Challenge"]]},
+ {t:"A",star:0,n:"Mike Cicco",co:"FANUC America",booth:"1001 / 1401 (A) · 32051 (B)",web:"https://www.fanucamerica.com",li:"",
+  role:"President & CEO",who:"FANUC is publicly demonstrating Physical AI, real-time 3D vision, generative AI, and digital twins.",brain:"What turns a learned capability from an impressive demo into a supported industrial product.",opener:"What needs to be true for a learned capability to become a supported product rather than an application demo?",sess:[["Mon Jun 22 · 9:00–9:45 AM · Grand Ballroom S100","The State of the Automation Industry: Leadership Roundtable"]]},
+ {t:"A",star:1,n:"David Bruce",co:"FANUC America",booth:"1001 / 1401 (A) · 32051 (B)",web:"https://www.fanucamerica.com",li:"",
+  role:"Engineering Manager",who:"FANUC engineering leader with a machine-vision and system-integrator perspective.",brain:"Customer acceptance tests, data capture, iRVision validation, and proving a policy/version change safe before rollout.",opener:"In vision-guided robotics, where does validation break down when customers want systems to adapt rather than follow a fixed program?",sess:[["Mon Jun 22 · 3:00–3:30 PM · Innovation Stage (Booth 19046)","Physical AI at Production Scale: FANUC’s New Open Interfaces Enable Real Time AI-Driven Robot Motion"],["Tue Jun 23 · 3:00–5:00 PM · S502ab","Advanced Vision Guided Robotics"]]},
+ {t:"A",star:0,n:"Wesley Garrett",co:"FANUC America",booth:"1001 / 1401 (A) · 32051 (B)",web:"https://www.fanucamerica.com",li:"",
+  role:"Executive Director",who:"Executive route into FANUC product, channel, and application priorities.",brain:"The most commercially viable AI-automation wedge and the correct product or engineering owner.",opener:"Where is FANUC seeing demand that requires a more flexible software or AI delivery model than traditional automation?",sess:[["Wed Jun 24 · 1:30–2:15 PM · S401d","Automation Made Simple: Scalable Robotic Solutions for Food & Beverage"]]},
+ {t:"A",star:0,n:"Jerry Perez",co:"FANUC America",booth:"1001 / 1401 (A) · 32051 (B)",web:"https://www.fanucamerica.com",li:"",
+  role:"Business Development Manager",who:"FANUC business-development lead aligned with collaborative-robot applications.",brain:"Which customer segments need adaptive behavior and which implementation constraints keep them from adopting it.",opener:"Which customer applications are asking FANUC for more adaptive behavior, and what makes them hesitate to adopt it?",sess:[["Mon Jun 22 · 8:00–8:45 AM · S401d","Collaborative Robotics in High-Mix Manufacturing Environments"],["Wed Jun 24 · 10:30–11:00 AM · Innovation Stage (Booth 19046)","The Fast Automation Roadmap: Scaling with Standardized Cobot Solutions"]]},
+ {t:"A",star:0,n:"Richtech Robotics",co:"Richtech Robotics",booth:"17060 (B) / 2088 (A)",web:"https://www.richtechrobotics.com",li:"",
+  role:"Embodied-AI / humanoid vendor — booth only",who:"Richtech is exhibiting an embodied-AI humanoid experience in the inaugural Humanoid Pavilion.",brain:"Whether the production roadmap needs managed policy inference, deployment controls, or NVIDIA-stack integration.",opener:"As DEX moves beyond a pavilion demo, where do you expect policy evaluation and rollout to live across customer deployments?",sess:[]},
+ {t:"A",star:0,n:"Dobot",co:"Dobot USA",booth:"841 (A)",web:"https://www.dobot-robots.com",li:"",
+  role:"Embodied robot / cobot vendor — booth only",who:"Dobot is showing embodied-intelligence manufacturing applications plus cobot and quadruped products.",brain:"How policy and perception workloads are deployed across product lines and customer sites.",opener:"You have multiple robot form factors and embodied-AI demos. Which workloads become hardest to update, evaluate, and support at fleet scale?",sess:[]},
+ {t:"B",star:0,n:"Deltia.ai",co:"Deltia.ai",booth:"19060 (B)",web:"https://www.deltia.ai",li:"",
+  role:"Manufacturing AI — booth only",who:"Deltia positions itself as a manufacturing AI copilot built around data, intelligence, and computer vision.",brain:"Industrial model operations, cross-site deployment, and whether the roadmap extends from visibility to robotic action.",opener:"When a factory AI model moves from insight to an automated action, what deployment and governance layer do you need that you do not have today?",sess:[]},
+ {t:"B",star:0,n:"Olis Robotics",co:"Olis Robotics",booth:"1880 (A)",web:"https://www.olisrobotics.com",li:"",
+  role:"Remote robot operations — booth only",who:"Olis provides browser-based remote monitoring and operation for robotic workcells, plus structured operational and camera data for AI-driven diagnostics.",brain:"Policy observability, remote intervention, telemetry, and root-cause analysis for learned robot behavior.",opener:"You already see the operational and video data from robot cells. What would a policy team need to observe before it trusts a new learned behavior in production?",sess:[]},
+ {t:"B",star:0,n:"InOrbit.AI",co:"InOrbit.AI",booth:"25062 (B)",web:"https://www.inorbit.ai",li:"",
+  role:"Robot operations platform — booth only",who:"InOrbit operates at the fleet-operations and observability layer for robots.",brain:"A partnership around policy rollout, telemetry, evaluation, and operations across heterogeneous fleets.",opener:"If a fleet uses learned policies, what has to be visible in operations before an enterprise lets an update expand beyond a small cohort?",sess:[]},
+]);
+
+P.push(...[
+ {t:"B",star:0,n:"Chris Matthieu",co:"RealSense",booth:"12036 (B)",web:"https://www.realsenseai.com",li:"",
+  role:"VP, Developer Ecosystem",who:"Developer-ecosystem leader at a perception platform used in robotics.",brain:"What robotics developers lack when moving perception-heavy AI from a demo to a supported deployment; potential reference architecture or marketplace angle.",opener:"What do robotics developers most lack when they try to take perception-heavy AI from a demo to a supported deployment?",sess:[["Mon Jun 22 · 10:15–11:00 AM · S401d","Let’s Build an Embodied AI Robotics Demo Together"],["Wed Jun 24 · 11:15 AM–12:00 PM · S404bc","The Industrial AI Accelerator: Roadmap for Rapid, Real-World ROI"]]},
+ {t:"B",star:0,n:"Matt Moschner",co:"Cognex",booth:"3101 (A)",web:"https://www.cognex.com",li:"",
+  role:"President & CEO",who:"Senior industrial-vision decision maker with a broad view of enterprise adoption.",brain:"Where deployment, integration, or ongoing performance management becomes the bottleneck after a vision model works.",opener:"Where do you see the next bottleneck after a vision model works: data, deployment, integration, or ongoing performance management?",sess:[["Mon Jun 22 · 9:00–9:45 AM · Grand Ballroom S100","The State of the Automation Industry: Leadership Roundtable"]]},
+ {t:"B",star:0,n:"Eric Hershberger",co:"Cognex",booth:"3101 (A)",web:"https://www.cognex.com",li:"",
+  role:"Principal Application Engineer",who:"Close to how industrial vision technology is integrated and supported in customer environments.",brain:"Field failures, edge constraints, model validation, customer data, and support escalation patterns.",opener:"What field failures or integration constraints prevent AI-vision systems from becoming repeatable products?",sess:[["Wed Jun 24 · 1:30–2:15 PM · S401abc","Machine Vision Made Simple"]]},
+ {t:"B",star:0,n:"Rahul Nambiar",co:"Botsync",booth:"33044 (B)",web:"https://botsync.co",li:"",
+  role:"Chief Executive Officer",who:"Leads an AMR and warehouse-autonomy company.",brain:"Fleet learning, remote rollout, autonomy-stack ownership, and the telemetry required to validate changes across customer sites.",opener:"As AMR deployments scale, where does fleet learning or policy updating become operationally painful?",sess:[["Mon Jun 22 · 8:00–8:45 AM · S404d","From Robots to Results: Why the Future of Automation Is Orchestration, Not More Machines"]]},
+ {t:"B",star:0,n:"Ara Surenian",co:"OTTO by Rockwell Automation",booth:"2267 (A)",web:"https://ottomotors.com",li:"",
+  role:"Business Manager, Production Logistics",who:"Production-logistics lead at an AMR/fleet platform within Rockwell.",brain:"How autonomy evolves across active logistics fleets without disrupting production; hybrid deployment and release controls.",opener:"What is the hardest part of evolving autonomy across an active logistics fleet without disrupting production?",sess:[["Wed Jun 24 · 10:15–11:00 AM · S404bc","From Siloed to Streamlined: Rockwell Boosts Space Utilization by 70% with Production Logistics"]]},
+ {t:"P",star:0,n:"Ernie Neumayr",co:"ABB Robotics",booth:"1241 (A)",web:"https://new.abb.com/products/robotics",li:"",
+  role:"Director, Business Development",who:"Business-development entry point into ABB's collaborative-robot and AI-enabled cell priorities.",brain:"A narrow customer/application wedge and which ABB group owns the software, AI, and lifecycle decision.",opener:"Which AI-enabled applications are customers asking ABB to make repeatable today, and where does deployment complexity still block scale?",sess:[["Wed Jun 24 · 2:30–3:15 PM · S404d","Unlocking Flexible Automation with Collaborative Robots (Cobots)"]]},
+ {t:"P",star:0,n:"Roberta Nelson Shea",co:"Universal Robots",booth:"1250 (A) / 36051 (B)",web:"https://www.universal-robots.com",li:"",
+  role:"Global Technical Compliance Officer",who:"A direct source for the safety, cybersecurity, and compliance constraints any policy-release system must meet.",brain:"Audit trails, change control, data residency, rollback, human override, and governance evidence for learned-skill updates.",opener:"What governance evidence would make a learned-skill update acceptable to a cobot customer, a safety reviewer, and a regulator?",sess:[["Tue Jun 23 · 1:30–2:15 PM · S401abc","Exploring the New ISO 10218 Standards and Revised R15.06"]]},
+ {t:"P",star:0,n:"Sarah Andrzejewski",co:"Yaskawa Motoman",booth:"601 (A) / 34051 (B)",web:"https://www.motoman.com",li:"",
+  role:"Product Manager",who:"Yaskawa product manager focused on software solutions for industrial robotics.",brain:"How software products, AI tools, and customer support handle versions, simulation, and upgrades.",opener:"Where do Yaskawa users feel the friction when they move from programming a cell to maintaining evolving software behavior?",sess:[["Mon Jun 22 · 2:30–3:15 PM · S403ab","Unlocking Unstructured Environments Through AI Robotics"],["Wed Jun 24 · 10:30–11:00 AM · A3 NextGen Theater (Booth 32054)","Empowering Students with Motoman NEXT and Physical AI"]]},
+ {t:"P",star:0,n:"Joshua Leath",co:"Yaskawa Motoman",booth:"601 (A) / 34051 (B)",web:"https://www.motoman.com",li:"",
+  role:"Senior Product Manager",who:"Yaskawa product leader with an application and deployment perspective.",brain:"Which applications need adaptive behavior but fail the economics or supportability test; look for a repeatable learned-skill wedge.",opener:"Which customer applications most need adaptive behavior but still fail the economics or supportability test?",sess:[["Thu Jun 25 · 10:15–11:00 AM · S401d","Beyond Collaborative Robots: How Smarter Automation Redefines Simplicity"]]},
+ {t:"P",star:0,n:"Annemarie Breu",co:"Siemens Digital Industries",booth:"1214 (A)",web:"https://www.siemens.com",li:"",
+  role:"Senior Director, Automation Software Deployment & Incubation",who:"Leads automation-software deployment and incubation at Siemens Digital Industries.",brain:"The deployment path, simulation, identity, governance, and OT evidence required for a learned policy in a software-defined factory.",opener:"In a software-defined factory, where should a learned policy live, and what must its deployment path prove to OT teams?",sess:[["Tue Jun 23 · 9:00–9:45 AM · Grand Ballroom S100","The Automation Impact: AI, Automation, and the Human Element"]]},
+ {t:"P",star:0,n:"Chris Stevens",co:"Siemens Digital Industries",booth:"1214 (A)",web:"https://www.siemens.com",li:"",
+  role:"President, U.S. Automation",who:"Executive sponsor for a strategic industrial-software conversation.",brain:"A co-innovation or lighthouse-customer path where existing stacks cannot yet support a demanded AI automation capability.",opener:"Which AI automation capabilities are customers demanding now that the existing stack cannot support cleanly?",sess:[["Tue Jun 23 · 9:00–9:45 AM · Grand Ballroom S100","The Automation Impact: AI, Automation, and the Human Element"]]},
+ {t:"P",star:0,n:"Jan Bajorat",co:"Siemens",booth:"1214 (A)",web:"https://www.siemens.com",li:"",
+  role:"Senior Director, Software-Defined Automation",who:"Leads Siemens' software-defined automation initiative and brings a developer-workflow perspective.",brain:"Reproducibility, update control, hybrid runtime architecture, and the interfaces required when automation becomes model-driven.",opener:"What interfaces and lifecycle controls are missing when automation code becomes model-driven or policy-driven rather than purely deterministic?",sess:[["Wed Jun 24 · 11:15 AM–12:00 PM · S401d","Software-Defined Automation and the Future Factory"]]},
+ {t:"P",star:0,n:"Christine Bush",co:"Schneider Electric",booth:"2257 (A)",web:"https://www.se.com",li:"",
+  role:"Robotics Center of Excellence Leader",who:"Works on standardizing and scaling industrial-robotics initiatives at Schneider Electric.",brain:"Repeatability, cybersecurity and safety gates, data governance, and the best customer segment for a joint pilot.",opener:"When Schneider evaluates a new robotics capability, what separates a compelling demo from something the Center of Excellence can standardize?",sess:[["Tue Jun 23 · 10:15–11:00 AM · S403ab","Making Automation ROI Practical and Achievable"]]},
+ {t:"P",star:0,n:"André Marino",co:"Schneider Electric",booth:"2257 (A)",web:"https://www.se.com",li:"",
+  role:"SVP, Industrial Automation North America",who:"Executive industrial-automation leader with a broad view of customer demand.",brain:"The highest-value narrow application for a co-development or lighthouse-customer pilot.",opener:"Where is the largest unmet demand for adaptive automation that a conventional controls stack cannot address?",sess:[["Mon Jun 22 · 9:00–9:45 AM · Grand Ballroom S100","The State of the Automation Industry: Leadership Roundtable"],["Tue Jun 23 · 4:15–4:45 PM · Show Theater (Booth 2884)","From Complexity to Autonomy: Your Competitive Advantage"]]},
+ {t:"P",star:0,n:"Marcos Carlotto",co:"Schneider Electric",booth:"2257 (A)",web:"https://www.se.com",li:"",
+  role:"Next Generation Industrial Automation",who:"Works on next-generation industrial automation at Schneider Electric.",brain:"Practical architecture: edge compute, private cloud, simulation, versioning, and IT/OT ownership.",opener:"Which next-generation automation capabilities are closest to needing a robust model and policy deployment layer?",sess:[["Mon Jun 22 · 2:30–3:15 PM · S401d","Design Faster, Deploy Smarter: Engineering with Open, Software-Defined Automation"]]},
+ {t:"P",star:0,n:"Amir Afrasiabi",co:"Boeing",booth:"",web:"https://www.boeing.com",li:"",
+  role:"Associate Technical Fellow, AI & Computer Vision",who:"Boeing technical fellow leading enterprise manufacturing, production, and computer-vision AI initiatives.",brain:"Production validation, traceability, compute locality, security review, and long-term maintenance requirements for factory AI.",opener:"At Boeing scale, what makes an AI deployment trustworthy enough to survive production, security review, and long-term maintenance?",sess:[["Thu Jun 25 · 11:15 AM–12:00 PM · S401abc","Self-Validating Augmented Reality Using Artificial Intelligence"]]},
+ {t:"P",star:0,n:"Joshua Joseph",co:"Tesla",booth:"",web:"https://www.tesla.com",li:"",
+  role:"Manufacturing Engineer",who:"Manufacturing practitioner presenting an AMR deployment case in a legacy-factory setting.",brain:"A concrete workflow where adaptive vision or robot behavior adds commissioning or maintenance burden.",opener:"Where do adaptive vision or robot behaviors still create too much commissioning and maintenance work on the floor?",sess:[["Tue Jun 23 · 11:15 AM–12:00 PM · S401abc","Scaling AMRs in Legacy Factories: Measurable Efficiency Gains and Real-World Deployment Strategies"]]},
+ {t:"P",star:0,n:"Stephen Jones",co:"General Motors",booth:"",web:"https://www.gm.com",li:"",
+  role:"Senior Machine Vision Engineer",who:"Machine-vision practitioner in a major manufacturing environment.",brain:"Vision-system constraints when factories need flexibility or autonomous downstream action; an end-user requirements interview.",opener:"Where do vision systems still break when the factory needs more flexibility or more autonomous downstream action?",sess:[["Tue Jun 23 · 3:30–4:15 PM · S403ab","Requirements for Successful Machine Vision Applications: Past, Present, and Future"]]},
+ {t:"P",star:0,n:"David Berno",co:"DMC",booth:"",web:"https://www.dmcinfo.com",li:"",
+  role:"Senior Manager, Automation",who:"Automation systems-integrator leader and a potential channel/design-partner source.",brain:"Which AI-cell integration and support tasks keep repeating, limit margin, or block customer adoption.",opener:"For AI-enabled cells, which integration or support tasks keep repeating and prevent margin from scaling?",sess:[["Tue Jun 23 · 2:30–3:15 PM · S402ab","Beyond the Basics: Cultivating a Continuous Automation Mindset for Scalable Impact"]]},
+]);
+
+const LI_SVG='<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#0a66c2"/><path fill="#fff" d="M7.1 9.5H4.4V19h2.7V9.5zM5.75 8.3a1.57 1.57 0 1 0 0-3.15 1.57 1.57 0 0 0 0 3.15zM19.6 19h-2.7v-4.64c0-1.1-.02-2.52-1.54-2.52-1.55 0-1.78 1.2-1.78 2.44V19h-2.7V9.5h2.59v1.3h.04c.36-.68 1.24-1.4 2.55-1.4 2.74 0 3.25 1.8 3.25 4.14V19z"/></svg>';
+const SITE_ICON='🌐';
+const TB = document.getElementById('tb'), EMPTY=document.getElementById('empty'), COUNT=document.getElementById('count');
+// Priority ranking: judgment-based (ICP fit x decision-power x reachability x likelihood-to-outsource)
+const P1=new Set(["Deepak Pathak","Jeff Cardenas","Ali Agha","Erin McColl","Pras Velagapudi","David Reger","Nicolaus Radford","Bren Pierce","Lovell AI","Massimiliano Moruzzi","Yuzhe Qin","Sereact","Evan Beard","Mbodi AI","Mowito Robotics","Thoro.AI","Dave Grant","David Bruce"]);
+const P2=new Set(["Kence Anderson","Martin Elbs","Rebecca Yeung","James Wells","Zhaopeng Chen","Jon Battles","Wendy Tan White","Roboligent","Path Robotics","Mech-Mind Robotics","Flexiv Robotics","Chris Chen","Patrick Gao","Peter Chia","Wei Ding","Zach Zweig-Vinegar","Noam Schafer","Richtech Robotics","Dobot","Deltia.ai","Olis Robotics","InOrbit.AI","Chris Matthieu","Eric Hershberger","Ara Surenian","Ernie Neumayr","Roberta Nelson Shea","Sarah Andrzejewski","Joshua Leath","Annemarie Breu","Chris Stevens","Jan Bajorat","Christine Bush","André Marino","Amir Afrasiabi","Joshua Joseph","Stephen Jones","David Berno"]);
+// Public agenda is Monday-only. The company booth may still be useful Tue–Thu, but
+// do not plan around meeting this named person without confirmation.
+const MONDAY_ONLY = p => p.sess.length>0 && p.sess.every(s=>s[0].startsWith('Mon'));
+const priOf = p => MONDAY_ONLY(p)?4 : P1.has(p.n)?1 : P2.has(p.n)?2 : 3;
+const rankOf = p => priOf(p)*100 + (p.t==='A'?0:p.t==='B'?10:20) - (p.star?1:0);
+let view='top', tier='all', q='', sortKey='rank', sortAsc=true;
+
+function liUrl(p){ return p.li || ('https://www.google.com/search?q='+encodeURIComponent('"'+p.n+'" '+(p.n!==p.co?p.co+' ':'')+'site:linkedin.com/in')); }
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function val(p,k){
+  if(k==='rank') return rankOf(p);
+  if(k==='booth') return p.booth? parseInt(p.booth,10)||9e8 : 9e9;
+  if(k==='when') return p.sess.length? p.sess[0][0] : '~';
+  if(k==='n') return p.n.toLowerCase();
+  return '';
+}
+
+// underlying value ignoring the Monday penalty — used to rank the Monday section
+const basePri = p => P1.has(p.n)?1 : P2.has(p.n)?2 : 3;
+const baseRank = p => basePri(p)*100 + (p.t==='A'?0:p.t==='B'?10:20) - (p.star?1:0);
+
+// shared row builder: one tr.row + one tr.detail, tap to expand
+function buildRowInto(tbody,p,pr,prLabel){
+  const tr=document.createElement('tr'); tr.className='row';
+  if(pr===4) tr.classList.add('missed');
+  const firstSess = p.sess.length? `<span class="t">${p.sess[0][0].split(' · ').slice(0,2).join(' · ')}</span>${p.sess.length>1?` <span class="more">+${p.sess.length-1}</span>`:''}` : '<span class="more">—</span>';
+  tr.innerHTML=`
+    <td><span class="cev">▸</span><span class="pri p${pr}">${prLabel}</span><span class="tier ${p.t}">${p.star?'★':''}${p.t}</span></td>
+    <td class="who"><span class="nm">${esc(p.n)}</span>${p.n!==p.co?`<span class="co">${esc(p.co)}</span>`:`<span class="co">${esc(p.role)}</span>`}</td>
+    <td>${p.booth?`<span class="booth">${esc(p.booth)}</span>`:'<span class="more" style="color:var(--muted)">—</span>'}</td>
+    <td class="when hide-sm">${firstSess}</td>
+    <td class="links hide-sm"><a href="${liUrl(p)}" target="_blank" rel="noopener" aria-label="LinkedIn">${LI_SVG}</a><a href="${p.web}" target="_blank" rel="noopener" aria-label="Website">${SITE_ICON}</a></td>`;
+  const det=document.createElement('tr'); det.className='detail'; det.style.display='none';
+  const sessHtml=p.sess.map(s=>`<div class="sline"><span class="w">${esc(s[0])}</span><br><span class="tt">${esc(s[1])}</span></div>`).join('') || '<div class="sline" style="color:var(--muted)">No speaking session — visit the booth.</div>';
+  det.innerHTML=`<td colspan="5"><div class="box">
+    ${MONDAY_ONLY(p)?`<div class="bio" style="color:#ffb3c1;margin-bottom:6px">↩ ${p.booth?('Spoke Monday only (passed) — still reachable at Booth '+esc(p.booth)+', or follow up offline.'):'Spoke Monday only (passed) and no booth — follow up offline via LinkedIn.'}</div>`:''}
+    ${p.role && p.n!==p.co?`<div class="bio" style="color:var(--muted);margin-bottom:6px">${esc(p.role)}</div>`:''}
+    <div class="bio">${esc(p.who)}</div>
+    <div class="lab">Opener</div><div class="opener">${esc(p.opener)}</div>
+    <div class="lab">Pick their brain on</div><div class="bio">${esc(p.brain)}</div>
+    <div class="lab">Sessions</div>${sessHtml}
+    <div class="dlinks"><a href="${liUrl(p)}" target="_blank" rel="noopener">${LI_SVG} LinkedIn</a><a href="${p.web}" target="_blank" rel="noopener">${SITE_ICON} Website</a></div>
+  </div></td>`;
+  tr.addEventListener('click',e=>{ if(e.target.closest('a')) return; const open=det.style.display==='none'; det.style.display=open?'':'none'; tr.classList.toggle('open',open); });
+  tbody.appendChild(tr); tbody.appendChild(det);
+}
+
+function render(){
+  const ql=q.trim().toLowerCase();
+  let rows=P.filter(p=>{
+    if(MONDAY_ONLY(p)) return false;
+    if(view==='top' && priOf(p)!==1) return false;
+    if(view==='short' && priOf(p)>2) return false;
+    if(tier!=='all' && p.t!==tier) return false;
+    if(!ql) return true;
+    const hay=(p.n+' '+p.co+' '+p.role+' '+p.who+' '+p.brain+' '+p.opener+' '+p.booth+' '+p.sess.map(s=>s.join(' ')).join(' ')).toLowerCase();
+    return hay.includes(ql);
+  });
+  rows.sort((a,b)=>{ let x=val(a,sortKey),y=val(b,sortKey); let c = x<y?-1:x>y?1:0; if(c===0) c=rankOf(a)-rankOf(b)||a.n.localeCompare(b.n); return sortAsc?c:-c; });
+
+  TB.innerHTML='';
+  for(const p of rows){ const pr=priOf(p); buildRowInto(TB,p,pr,pr===4?'↩&nbsp;offline':'P'+pr); }
+  EMPTY.style.display = rows.length?'none':'block';
+  COUNT.textContent = rows.length+' shown';
+}
+
+document.getElementById('q').addEventListener('input',e=>{q=e.target.value;render();});
+// view chips (priority) and tier chips are independent groups
+document.querySelectorAll('.chip[data-v]').forEach(c=>c.addEventListener('click',()=>{
+  document.querySelectorAll('.chip[data-v]').forEach(x=>x.classList.remove('active'));
+  c.classList.add('active'); view=c.dataset.v; render();
+}));
+document.querySelectorAll('.chip[data-t]').forEach(c=>c.addEventListener('click',()=>{
+  document.querySelectorAll('.chip[data-t]').forEach(x=>x.classList.remove('active'));
+  c.classList.add('active'); tier=c.dataset.t; render();
+}));
+document.querySelectorAll('thead th[data-s]').forEach(th=>th.addEventListener('click',()=>{
+  const k=th.dataset.s;
+  if(sortKey===k) sortAsc=!sortAsc; else {sortKey=k;sortAsc=true;}
+  document.querySelectorAll('thead th').forEach(x=>x.classList.remove('sorted','asc'));
+  th.classList.add('sorted'); if(sortAsc) th.classList.add('asc');
+  render();
+}));
+
+// ---- Can't-miss clusters: link every name to LinkedIn + website ----
+const CLUSTERS=[
+ {when:"Tue Jun 23, 12:45–1:30 PM · Grand Ballroom S100", note:"KEYNOTE PANEL —", tail:"— work the rope line after.",
+  people:[["Deepak Pathak","Pathak (Skild)"],["David Reger","Reger (NEURA)"],["Pras Velagapudi","Velagapudi (Agility)"],["Zhaopeng Chen","Chen (Agile Robots)"]]},
+ {when:"Tue Jun 23, 4:00–5:00 PM · S100", note:"Manipulation panel:",
+  people:[["Bren Pierce","Pierce (KINISI)"],["James Wells","Wells (Sanctuary)"]]},
+ {when:"Wed Jun 24, 3:00–4:00 PM · S100", note:"Deploying-humanoids panel:",
+  people:[["Erin McColl","McColl (TRI)"],["Rebecca Yeung","Yeung (Dexterity/FedEx)"],["Elizabeth Samara Rubio","Samara Rubio (Noble)"]]},
+ {when:"Humanoid Pavilion Stage · Booth 1595", note:"target-dense all show:",
+  people:[["Chris Chen","Chen (FF)"],["Patrick Gao","Gao (AGIBOT)"],["Peter Chia","Chia (Unitree)"],["Wei Ding","Ding (Noble)"],["Yuzhe Qin","Qin (Dexmate)"],["Zach Zweig-Vinegar","Zweig-Vinegar (Gatlin)"],["Martin Elbs","Elbs (Lightwheel)"],["Christopher McQuin","McQuin (Noble)"],["Jon Battles","Battles (Cobot)"]]},
+];
+function pchip(n,label){
+  const p=P.find(x=>x.n===n); if(!p) return esc(label);
+  return `<span class="pp"><a class="nlink" href="${liUrl(p)}" target="_blank" rel="noopener">${esc(label)}</a><a class="glink" href="${p.web}" target="_blank" rel="noopener" aria-label="${esc(p.co)} website">${SITE_ICON}</a></span>`;
+}
+(function renderClusters(){
+  const ul=document.getElementById('cl'); if(!ul) return;
+  ul.innerHTML=CLUSTERS.map(c=>`<li><span class="when">${esc(c.when)}</span> — ${esc(c.note)} ${c.people.map(x=>pchip(x[0],x[1])).join(', ')}${c.tail?(' '+esc(c.tail)):''}</li>`).join('');
+})();
+
+// ---- Monday-only section: populate with LinkedIn + website ----
+(function renderMonday(){
+  const el=document.getElementById('monday-tb'); if(!el) return;
+  const list=P.filter(MONDAY_ONLY).sort((a,b)=>baseRank(a)-baseRank(b)||a.n.localeCompare(b.n));
+  el.innerHTML='';
+  for(const p of list){ const pr=basePri(p); buildRowInto(el,p,pr,'P'+pr); }
+})();
+
+render();
+</script>
+</body>
+</html>
