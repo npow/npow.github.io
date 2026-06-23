@@ -2,3 +2,7 @@
 public/
 resources/_gen/
 .hugo_build.lock
+
+# Claude Code
+CLAUDE.md
+.claude/
