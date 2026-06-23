@@ -54,6 +54,9 @@
   .pri.p2{background:#2d3c63;color:#cfe0ff}
   .pri.p3{background:#222b3d;color:#7d8aa3}
   .pri.p4{background:#3a2030;color:#ffb3c1}
+  .wmtag{font-weight:800;font-size:.6rem;border-radius:5px;padding:2px 5px;margin-left:6px;letter-spacing:.03em;white-space:nowrap;vertical-align:middle}
+  .wmtag.s{background:#0e6e63;color:#d4fff8;border:1px solid #2bb3a3}
+  .wmtag.p{background:transparent;color:#5ad1c9;border:1px solid #2f5f59}
   tr.row.missed td{opacity:.62}
 
   table{width:100%;border-collapse:collapse}
@@ -145,6 +148,8 @@
       <span class="chip tc" data-t="A">A</span>
       <span class="chip tc" data-t="B">B</span>
       <span class="chip tc" data-t="P">P</span>
+      <span class="vsep"></span>
+      <span class="chip tc" data-wm="on">WM fit only</span>
       <span class="count" id="count"></span>
     </div>
   </div>
@@ -161,7 +166,7 @@
   </table>
   <div class="empty" id="empty">No matches — clear the search or pick another tier.</div>
   <p class="hint"><b>2-day plan (Tue + Wed):</b> realistically you'll get ~8–12 real conversations. Start on <b>★ P1 targets</b>; the Tue 12:45 keynote panel alone puts Pathak, Reger, Velagapudi &amp; Chen on one stage. Drop to <b>P1 + P2</b> only if you have slack.<br>
-  <span style="color:var(--muted)">P1 must-hit · P2 opportunistic · P3 booth walk-by. Tier A = learned-policy/world-model builders · B = vision/AMR/platform prospects · P = ecosystem, enterprise, or coopetition. Monday-only public speakers are excluded from the active list and collected below for offline follow-up; their company booths may still be worthwhile Tue–Thu.</span></p>
+  <span style="color:var(--muted)">P1 must-hit · P2 opportunistic · P3 booth walk-by. <b class="wmtag s" style="margin:0">WM</b> = world-model inference fit (strong) · <b class="wmtag p" style="margin:0">WM?</b> = possible · unmarked = robot-policy hosting. Tier A = learned-policy/world-model builders · B = vision/AMR/platform · P = ecosystem/enterprise/coopetition (NVIDIA Cosmos is a WM competitor). Monday-only speakers are collected below for offline follow-up.</span></p>
 
   <details class="monday" open>
     <summary>↩ Monday-only public schedule — offline follow-up / booth-team check</summary>
@@ -177,7 +182,7 @@
 <script>
 // li:"" -> auto people-search by name+company; web:"" -> auto google search by company
 const P = [
- {t:"A",star:1,n:"Deepak Pathak",co:"Skild AI",booth:"",web:"https://www.skild.ai",li:"https://www.linkedin.com/in/pathak22/",
+ {t:"A",star:1,n:"Deepak Pathak",wm:2,co:"Skild AI",booth:"",web:"https://www.skild.ai",li:"https://www.linkedin.com/in/pathak22/",
   role:"Co-founder & CEO",
   who:"CMU robotics professor; built Skild AI into a leading robot foundation-model company (\"Skild Brain\"), backed by SoftBank/Lightspeed/NVIDIA. Known for curiosity-driven RL and Rapid Motor Adaptation.",
   brain:"Scaling laws for robot foundation models; on-robot vs datacenter serving; world-model rollouts for planning; cost-per-inference at fleet scale.",
@@ -191,14 +196,14 @@ const P = [
   opener:"Apollo's hardware is basically a solved problem; the brain is the fight now. What's the first thing you'd lift off its onboard compute if power and thermals weren't in the way?",
   sess:[["Wed Jun 24 · 12:35–1:05 PM · Grand Ballroom S100","Embodied AI: Building Intelligence for the Real World"]]},
 
- {t:"A",star:1,n:"Ali Agha",co:"FieldAI",booth:"",web:"https://www.fieldai.com",li:"https://www.linkedin.com/in/ali-agha-7aa5212a",
+ {t:"A",star:1,n:"Ali Agha",wm:1,co:"FieldAI",booth:"",web:"https://www.fieldai.com",li:"https://www.linkedin.com/in/ali-agha-7aa5212a",
   role:"Founder & CEO",
   who:"Building risk-aware \"field foundation models\" for uncontrolled environments. Ex-NASA JPL — led CoSTAR/NeBula, winner of DARPA SubT.",
   brain:"Risk-aware inference (serving a model that quantifies uncertainty); connectivity field vs factory; edge-cloud split for foundation models.",
   opener:"Risk-aware models are exactly the ones you can't afford to shrink to fit onboard. When the link's there, how much are you itching to offload?",
   sess:[["Wed Jun 24 · 1:35–2:05 PM · Grand Ballroom S100","From Factory Floors to the Field: Risk-Aware AI"],["Thu Jun 25 · 10:30–11:15 AM · Show Theater (Booth 2884)","The Automated Podcast: Live with Ali Agha"]]},
 
- {t:"A",star:1,n:"Erin McColl",co:"Toyota Research Institute",booth:"",web:"https://www.tri.global",li:"https://www.linkedin.com/in/erinmccoll1",
+ {t:"A",star:1,n:"Erin McColl",wm:2,co:"Toyota Research Institute",booth:"",web:"https://www.tri.global",li:"https://www.linkedin.com/in/erinmccoll1",
   role:"Robotics",
   who:"TRI robotics. TRI pioneered Large Behavior Models and Diffusion Policy (Russ Tedrake's group) for real-world manipulation.",
   brain:"LBM / diffusion-policy inference cost (heavy = natural cloud-offload); how TRI evaluates policies pre-deployment; manufacturing latency tolerances.",
@@ -233,7 +238,7 @@ const P = [
   opener:"The second a Carbon policy ships to a robot, does it stop getting smarter — or does keeping it central keep it learning?",
   sess:[["Tue Jun 23 · 4:00–5:00 PM · S100","PANEL: Hands, Manipulation & State of Physical AI"]]},
 
- {t:"A",star:0,n:"Massimiliano Moruzzi",co:"Xaba",booth:"",web:"https://www.xaba.ai",li:"",
+ {t:"A",star:0,n:"Massimiliano Moruzzi",wm:1,co:"Xaba",booth:"",web:"https://www.xaba.ai",li:"",
   role:"Founder & CEO",
   who:"CEO of Xaba (Toronto; \"xCognition\" physics-based GenAI \"synthetic brain\" for industrial robots — generates robot/PLC code). Ex-Boeing/Autodesk; tested with Lockheed.",
   brain:"How xCognition is delivered (SaaS/on-prem); generative/optimization compute at runtime; world-model-style prediction for self-optimization.",
@@ -261,7 +266,7 @@ const P = [
   opener:"When one of your students' AI agents graduates from the classroom to a live plant — who ends up hosting it, and how ugly does that get?",
   sess:[["Mon Jun 22 · 1:30–5:00 PM · S401abc","TUTORIAL: Introduction to Industrial AI Agents"],["Wed Jun 24 · 8:00 AM–12:00 PM · S401abc","TUTORIAL: Designing Multi-Agent Systems for Industrial AI"]]},
 
- {t:"A",star:0,n:"Martin Elbs",co:"Lightwheel",booth:"2491 (A)",web:"https://lightwheel.ai",li:"https://www.linkedin.com/in/martin-elbs-12bab32/",
+ {t:"A",star:0,n:"Martin Elbs",wm:2,co:"Lightwheel",booth:"2491 (A)",web:"https://lightwheel.ai",li:"https://www.linkedin.com/in/martin-elbs-12bab32/",
   role:"· world-model adjacency",
   who:"Lightwheel — SimReady physics data, egocentric human data + RoboFinals eval platform for frontier VLA & world models. Founder ex-Cruise/NVIDIA/NIO sim.",
   brain:"Sim/world-model as a service; large eval batteries in the cloud; bridging their sim data and your inference layer (natural partnership).",
@@ -373,7 +378,7 @@ const P = [
   opener:"Techman bakes the AI into the arm — what's the model you'd love to run that simply won't fit in there?",
   sess:[["Tue Jun 23 · 10:15–11:00 AM · S404bc","Addressing U.S. Reshoring with Techman's Smart Vision & AI"]]},
 
- {t:"A",star:0,n:"Zach Zweig-Vinegar",co:"Gatlin Robotics",booth:"1792 (A)",web:"https://gatlinrobotics.com",li:"https://www.linkedin.com/in/zach-zweig-vinegar",
+ {t:"A",star:0,n:"Zach Zweig-Vinegar",wm:2,co:"Gatlin Robotics",booth:"1792 (A)",web:"https://gatlinrobotics.com",li:"https://www.linkedin.com/in/zach-zweig-vinegar",
   role:"",
   who:"Gatlin Robotics — Physical AI; model training + robots-as-a-service; real-to-sim-to-real.",
   brain:"Environment reconstruction = world-model territory; their sim/inference compute.",
@@ -423,7 +428,7 @@ const P = [
   sess:[["Wed Jun 24 · 11:15 AM–12:00 PM · S404d","Robotics for Manufacturing: Trends & Best Practices"]]},
 
  // ---- Tier A booth-only ----
- {t:"A",star:0,n:"Sereact",co:"Sereact",booth:"17051 (B)",web:"https://www.sereact.ai",li:"",
+ {t:"A",star:0,n:"Sereact",wm:1,co:"Sereact",booth:"17051 (B)",web:"https://www.sereact.ai",li:"",
   role:"VLA model — booth only",
   who:"\"Cortex\" Vision-Language-Action model unifying perception, reasoning & robot control — textbook ICP.",
   brain:"Where Cortex runs at inference; fleet-scale cost.",
@@ -628,10 +633,11 @@ const P2=new Set(["Kence Anderson","Martin Elbs","Rebecca Yeung","James Wells","
 const MONDAY_ONLY = p => p.sess.length>0 && p.sess.every(s=>s[0].startsWith('Mon'));
 const priOf = p => MONDAY_ONLY(p)?4 : P1.has(p.n)?1 : P2.has(p.n)?2 : 3;
 const rankOf = p => priOf(p)*100 + (p.t==='A'?0:p.t==='B'?10:20) - (p.star?1:0);
-let view='top', tier='all', q='', sortKey='rank', sortAsc=true;
+let view='top', tier='all', q='', sortKey='rank', sortAsc=true, wmOnly=false;
 
 function liUrl(p){ return p.li || ('https://www.google.com/search?q='+encodeURIComponent('"'+p.n+'" '+(p.n!==p.co?p.co+' ':'')+'site:linkedin.com/in')); }
 function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function wmBadge(p){ return p.wm===2?'<span class="wmtag s" title="World-model inference fit (strong)">WM</span>':p.wm===1?'<span class="wmtag p" title="Possible world-model fit">WM?</span>':''; }
 
 function val(p,k){
   if(k==='rank') return rankOf(p);
@@ -652,7 +658,7 @@ function buildRowInto(tbody,p,pr,prLabel){
   const firstSess = p.sess.length? `<span class="t">${p.sess[0][0].split(' · ').slice(0,2).join(' · ')}</span>${p.sess.length>1?` <span class="more">+${p.sess.length-1}</span>`:''}` : '<span class="more">—</span>';
   tr.innerHTML=`
     <td><span class="cev">▸</span><span class="pri p${pr}">${prLabel}</span><span class="tier ${p.t}">${p.star?'★':''}${p.t}</span></td>
-    <td class="who"><span class="nm">${esc(p.n)}</span>${p.n!==p.co?`<span class="co">${esc(p.co)}</span>`:`<span class="co">${esc(p.role)}</span>`}</td>
+    <td class="who"><span class="nm">${esc(p.n)}</span>${wmBadge(p)}${p.n!==p.co?`<span class="co">${esc(p.co)}</span>`:`<span class="co">${esc(p.role)}</span>`}</td>
     <td>${p.booth?`<span class="booth">${esc(p.booth)}</span>`:'<span class="more" style="color:var(--muted)">—</span>'}</td>
     <td class="when hide-sm">${firstSess}</td>
     <td class="links hide-sm"><a href="${liUrl(p)}" target="_blank" rel="noopener" aria-label="LinkedIn">${LI_SVG}</a><a href="${p.web}" target="_blank" rel="noopener" aria-label="Website">${SITE_ICON}</a></td>`;
@@ -662,6 +668,7 @@ function buildRowInto(tbody,p,pr,prLabel){
     ${MONDAY_ONLY(p)?`<div class="bio" style="color:#ffb3c1;margin-bottom:6px">↩ ${p.booth?('Spoke Monday only (passed) — still reachable at Booth '+esc(p.booth)+', or follow up offline.'):'Spoke Monday only (passed) and no booth — follow up offline via LinkedIn.'}</div>`:''}
     ${p.role && p.n!==p.co?`<div class="bio" style="color:var(--muted);margin-bottom:6px">${esc(p.role)}</div>`:''}
     <div class="bio">${esc(p.who)}</div>
+    <div class="lab">Target type</div><div class="bio">${p.wm===2?'🟢 World-model inference — strong fit (runs/eval/consumes learned world models)':p.wm===1?'🟢 World-model inference — possible (also a policy-hosting target)':'Robot-policy inference / cloud-hosted policy'}</div>
     <div class="lab">Opener</div><div class="opener">${esc(p.opener)}</div>
     <div class="lab">Pick their brain on</div><div class="bio">${esc(p.brain)}</div>
     <div class="lab">Sessions</div>${sessHtml}
@@ -675,6 +682,7 @@ function render(){
   const ql=q.trim().toLowerCase();
   let rows=P.filter(p=>{
     if(MONDAY_ONLY(p)) return false;
+    if(wmOnly && !p.wm) return false;
     if(view==='top' && priOf(p)!==1) return false;
     if(view==='short' && priOf(p)>2) return false;
     if(tier!=='all' && p.t!==tier) return false;
@@ -700,6 +708,7 @@ document.querySelectorAll('.chip[data-t]').forEach(c=>c.addEventListener('click'
   document.querySelectorAll('.chip[data-t]').forEach(x=>x.classList.remove('active'));
   c.classList.add('active'); tier=c.dataset.t; render();
 }));
+(function(){ const w=document.querySelector('.chip[data-wm]'); if(w) w.addEventListener('click',()=>{ wmOnly=!wmOnly; w.classList.toggle('active',wmOnly); render(); }); })();
 document.querySelectorAll('thead th[data-s]').forEach(th=>th.addEventListener('click',()=>{
   const k=th.dataset.s;
   if(sortKey===k) sortAsc=!sortAsc; else {sortKey=k;sortAsc=true;}
