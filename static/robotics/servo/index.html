@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Servo — Run robotics foundation models with an API</title>
+<meta name="description" content="One API to run, fine-tune, and deploy any open Vision-Language-Action or world model." />
+<script>
+  (function(){
+    var t = localStorage.getItem('servo-theme');
+    if(!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<style>
+  :root{
+    --bg:#ffffff; --bg2:#f6f7f9; --panel:#ffffff; --panel2:#f1f3f6;
+    --ink:#0b0e14; --muted:#5b6675; --faint:#8a94a3; --line:#e6e9ee;
+    --acc:#0d9488; --acc2:#2563eb; --acc3:#7c3aed;
+    --shadow:0 24px 60px -34px rgba(13,18,28,.22);
+    --r:13px; --maxw:1100px;
+    --mono:"SFMono-Regular",ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  }
+  [data-theme="dark"]{
+    --bg:#0a0c10; --bg2:#0e1117; --panel:#12161f; --panel2:#161b26;
+    --ink:#e8edf6; --muted:#8b97ab; --faint:#5a6577; --line:#1e2533;
+    --acc:#5eead4; --acc2:#38bdf8; --acc3:#a78bfa;
+    --shadow:0 24px 60px -34px rgba(0,0,0,.8);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased;transition:background .2s,color .2s}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .mono{font-family:var(--mono)}
+
+  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:color-mix(in srgb,var(--bg) 80%,transparent);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{display:flex;align-items:center;gap:9px;font-weight:650;letter-spacing:-.02em;font-size:17px}
+  .logo .dot{width:20px;height:20px;border-radius:6px;background:linear-gradient(135deg,var(--acc),var(--acc2));position:relative}
+  .logo .dot::after{content:"";position:absolute;inset:6px;border-radius:2px;background:var(--bg)}
+  .nav-links{display:flex;gap:24px;align-items:center;color:var(--muted);font-size:14px;font-weight:500}
+  .nav-links a:hover{color:var(--ink)}
+  .btn{display:inline-flex;align-items:center;gap:7px;padding:8px 15px;border-radius:9px;font-weight:600;font-size:14px;border:1px solid var(--line);transition:.15s;cursor:pointer;color:var(--ink);background:transparent}
+  .btn.primary{background:var(--ink);color:var(--bg);border:none}
+  .btn.primary:hover{opacity:.88}
+  .btn.ghost:hover{border-color:var(--muted);background:var(--panel2)}
+  .theme-btn{display:inline-grid;place-items:center;width:34px;height:34px;border:1px solid var(--line);border-radius:9px;background:transparent;color:var(--muted);cursor:pointer;transition:.15s}
+  .theme-btn:hover{color:var(--ink);border-color:var(--muted)}
+  .theme-btn svg{width:16px;height:16px}
+  .theme-btn .moon{display:inline}.theme-btn .sun{display:none}
+  [data-theme="dark"] .theme-btn .moon{display:none}[data-theme="dark"] .theme-btn .sun{display:inline}
+  @media(max-width:820px){.nav-links a:not(.btn){display:none}}
+
+  .hero{padding:88px 0 36px}
+  .hero .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  @media(max-width:900px){.hero .grid{grid-template-columns:1fr;gap:34px}}
+  .kicker{font-family:var(--mono);font-size:12.5px;color:var(--acc);margin-bottom:18px}
+  h1{font-size:clamp(36px,5.2vw,56px);line-height:1.05;letter-spacing:-.035em;margin:0 0 20px;font-weight:680}
+  .sub{font-size:18.5px;color:var(--muted);max-width:520px;margin:0 0 28px}
+  .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .undernote{margin-top:20px;font-size:13px;color:var(--faint);font-family:var(--mono)}
+
+  .code{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--bg2);box-shadow:var(--shadow)}
+  .code .bar{display:flex;align-items:center;gap:7px;padding:10px 13px;border-bottom:1px solid var(--line);background:var(--panel2)}
+  .code .bar i{width:10px;height:10px;border-radius:50%;display:inline-block}
+  .code .bar .t{margin-left:9px;font-size:11.5px;color:var(--faint);font-family:var(--mono)}
+  .code pre{margin:0;padding:18px 20px;font-family:var(--mono);font-size:12.8px;line-height:1.72;overflow-x:auto;color:var(--ink)}
+  .c-com{color:var(--faint)}.c-kw{color:var(--acc3)}.c-fn{color:var(--acc2)}.c-str{color:var(--acc)}
+  .c-hi{background:color-mix(in srgb,var(--acc) 14%,transparent);display:inline-block;width:100%;padding-left:6px;margin-left:-6px;border-left:2px solid var(--acc)}
+
+  .proof{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2)}
+  .proof .wrap{padding:22px 24px;text-align:center;color:var(--muted);font-size:14.5px}
+  .proof b{color:var(--ink);font-weight:600}
+
+  section{padding:66px 0}
+  h2{font-size:clamp(26px,3.6vw,34px);letter-spacing:-.03em;margin:0 0 14px;font-weight:660}
+  .lead{color:var(--muted);font-size:17px;max-width:600px}
+  .center{text-align:center}.center .lead,.lead.center{margin:0 auto}
+  .head{max-width:620px;margin-bottom:34px}
+
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:820px){.grid3{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+  .card .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--faint);margin-bottom:14px}
+  .card h3{margin:0 0 9px;font-size:17px;letter-spacing:-.01em;font-weight:620}
+  .card p{margin:0;color:var(--muted);font-size:14.5px}
+
+  .recipes{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:760px){.recipes{grid-template-columns:1fr}}
+  .rec{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+  .rec .rh{padding:14px 18px;border-bottom:1px solid var(--line);font-size:14.5px;font-weight:600;color:var(--ink)}
+  .rec .rh .num{color:var(--faint);font-family:var(--mono);font-size:12px;margin-right:9px}
+  .rec pre{margin:0;padding:15px 18px;font-family:var(--mono);font-size:12.6px;line-height:1.65;color:var(--muted);overflow-x:auto}
+
+  .filters{display:flex;gap:8px;margin:0 0 22px}
+  .chip{font-size:13px;font-weight:600;color:var(--muted);border:1px solid var(--line);background:var(--panel);padding:6px 14px;border-radius:8px;cursor:pointer;transition:.15s}
+  .chip.active{color:var(--bg);background:var(--ink);border-color:var(--ink)}
+  .models{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:900px){.models{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.models{grid-template-columns:1fr}}
+  .m{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:17px}
+  .m .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .m .name{font-weight:650;font-size:15px;letter-spacing:-.01em}
+  .m .vendor{font-size:12.5px;color:var(--faint);margin-top:2px}
+  .m .meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}
+  .tag{font-size:11px;font-family:var(--mono);padding:3px 8px;border-radius:5px;border:1px solid var(--line);color:var(--muted)}
+  .lic{font-size:11px;font-weight:600;font-family:var(--mono);padding:3px 9px;border-radius:6px;color:var(--muted);border:1px solid var(--line)}
+
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.twocol{grid-template-columns:1fr}}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+  .panel .ph{padding:13px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;background:var(--panel2)}
+  .panel .ph .badge{font-family:var(--mono);font-size:12px;color:var(--acc2)}
+  .panel .ph .who{font-size:12px;color:var(--faint)}
+  .panel pre{margin:0;padding:15px 16px;font-family:var(--mono);font-size:12px;color:var(--ink);line-height:1.62;overflow-x:auto}
+  .panel pre + pre{border-top:1px solid var(--line)}
+  .panel .resp{color:var(--muted)}
+  .panel .ok{color:var(--acc)}
+  .panel .body{padding:18px;color:var(--muted);font-size:14.5px}
+  .panel .body ul{margin:8px 0 0;padding-left:18px}.panel .body li{margin:5px 0}
+  .panel .body h4{margin:0;color:var(--ink);font-size:16px;font-weight:620}
+  .panel .body .t{font-family:var(--mono);font-size:12px;color:var(--acc2);margin:4px 0 0}
+
+  .band{text-align:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:52px 24px}
+  footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:13.5px}
+  .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+  .foot a:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap"><nav>
+    <a class="logo" href="#"><span class="dot"></span>Servo</a>
+    <div class="nav-links">
+      <a href="#models">Models</a>
+      <a href="#build">Platform</a>
+      <a href="#api">API</a>
+      <a href="#deploy">Deploy</a>
+      <a href="docs/">Docs</a>
+      <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
+      </button>
+      <a class="btn primary" href="#start">Get started</a>
+    </div>
+  </nav></div>
+</header>
+
+<section class="hero"><div class="wrap"><div class="grid">
+  <div>
+    <div class="kicker">Robotics foundation models</div>
+    <h1>Run robotics foundation models with an API</h1>
+    <p class="sub">One API to run, fine-tune, and deploy any open VLA or world model.</p>
+    <div class="cta">
+      <a class="btn primary" href="#start">Get started</a>
+      <a class="btn ghost" href="#models">Browse models</a>
+    </div>
+    <div class="undernote">pip install servo</div>
+  </div>
+  <div class="code">
+    <div class="bar"><i style="background:#fb7185"></i><i style="background:#fbbf24"></i><i style="background:#34d399"></i><span class="t">control.py</span></div>
+<pre><span class="c-com"># Describe the robot once.</span>
+emb = servo.embodiments.<span class="c-fn">register</span>(
+    templates.<span class="c-fn">so101</span>())
+
+<span class="c-com"># Call any model, one contract:</span>
+servo.<span class="c-fn">act</span>(<span class="c-str">"pi0.5"</span>,      emb, obs)
+<span class="c-hi">servo.<span class="c-fn">act</span>(<span class="c-str">"gr00t-n1.7"</span>, emb, obs)  <span class="c-com"># swap</span></span>
+
+<span class="c-com"># Servo handles preprocessing, norm</span>
+<span class="c-com"># stats, and action decoding.</span></pre>
+  </div>
+</div></div></section>
+
+<div class="proof"><div class="wrap">
+  Open weights from <b>Physical Intelligence</b>, <b>NVIDIA</b>, <b>Stanford</b>, and <b>Hugging Face</b> — one interface.
+</div></div>
+
+<section id="build"><div class="wrap">
+  <div class="head">
+    <h2>Run, fine-tune, and deploy from one API</h2>
+    <p class="lead">Every model has a different interface. Servo gives you one.</p>
+  </div>
+  <div class="grid3">
+    <div class="card">
+      <div class="lab">RUN</div>
+      <h3>One API across every model</h3>
+      <p>Call any policy or world model through one typed contract. Preprocessing, normalization, and action decoding handled for you.</p>
+    </div>
+    <div class="card">
+      <div class="lab">TRAIN &amp; EVALUATE</div>
+      <h3>Fine-tune, then prove it</h3>
+      <p>Fine-tune a base policy on your LeRobot dataset, then gate every version in simulation before it ships.</p>
+    </div>
+    <div class="card">
+      <div class="lab">DEPLOY</div>
+      <h3>Cloud or on the robot</h3>
+      <p>Serve from a hosted endpoint, or export an optimized build that runs the real-time loop on the robot.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="recipes" style="padding-top:0"><div class="wrap">
+  <div class="head"><h2>Examples</h2></div>
+  <div class="recipes">
+    <div class="rec"><div class="rh"><span class="num">01</span>Generate training data</div>
+<pre>servo.synthdata(
+  world_model="cosmos",
+  seed_dataset="lerobot://acme/demos",
+  n_trajectories=5000)</pre></div>
+    <div class="rec"><div class="rh"><span class="num">02</span>Fine-tune on your data</div>
+<pre>servo.finetune(
+  base="pi0.5",
+  dataset="lerobot://acme/pick-2k",
+  method="lora")</pre></div>
+    <div class="rec"><div class="rh"><span class="num">03</span>Evaluate in simulation</div>
+<pre>servo.eval(
+  subject="my-finetune-v3",
+  rung="sim_benchmark",
+  benchmark="libero-90")</pre></div>
+    <div class="rec"><div class="rh"><span class="num">04</span>Deploy an endpoint</div>
+<pre>servo.deployments.create(
+  subject="my-finetune-v3",
+  kind="hosted_endpoint")</pre></div>
+  </div>
+</div></section>
+
+<section id="models"><div class="wrap">
+  <div class="head">
+    <h2>Open-weight models</h2>
+    <p class="lead">VLA policies and world models across vendors, each with its license and supported robots.</p>
+  </div>
+  <div class="filters">
+    <div class="chip active" data-f="all">All</div>
+    <div class="chip" data-f="policy">VLA policies</div>
+    <div class="chip" data-f="world">World models</div>
+  </div>
+  <div class="models" id="modelGrid"></div>
+</div></section>
+
+<section id="api"><div class="wrap">
+  <div class="head">
+    <h2>Two endpoints: act and generate</h2>
+    <p class="lead">Policies return actions. World models return predictions. Authenticate with a bearer token; the request names the model and your embodiment.</p>
+  </div>
+  <div class="twocol">
+    <div class="panel">
+      <div class="ph"><span class="badge">POST /v1/infer/act</span><span class="who">VLA policy</span></div>
+<pre>curl https://api.servo.dev/v1/infer/act \
+  -H <span class="c-str">"Authorization: Bearer $SERVO_KEY"</span> \
+  -d '{
+    "model": "pi0.5",
+    "embodiment": "emb_d27b4be7",
+    "observation": {
+      "images": {"base": "<base64>", "wrist": "<base64>"},
+      "state": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+      "instruction": "pick up the cube"
+    }
+  }'</pre>
+<pre class="resp"><span class="ok">200 OK</span>
+{
+  "actions": [[0.92, -1.50, -1.39, 0.62, -0.37, 0.99, 0.23]],
+  "horizon": 16,
+  "action_space": "joint_position",
+  "decoded": true
+}</pre>
+    </div>
+    <div class="panel">
+      <div class="ph"><span class="badge">POST /v1/infer/generate</span><span class="who">World model</span></div>
+<pre>curl https://api.servo.dev/v1/infer/generate \
+  -H <span class="c-str">"Authorization: Bearer $SERVO_KEY"</span> \
+  -d '{
+    "model": "cosmos",
+    "embodiment": "emb_d27b4be7",
+    "conditioning": {
+      "init_observation": { "...": "..." },
+      "actions": [[0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]],
+      "horizon": 16
+    },
+    "output": "frames"
+  }'</pre>
+<pre class="resp"><span class="ok">200 OK</span>
+{
+  "frames": ["<frame_uri>", "..."],
+  "latents_uri": null,
+  "trajectory_uri": null,
+  "horizon": 16
+}</pre>
+    </div>
+  </div>
+  <p class="lead" style="margin-top:20px;font-size:15px">Incompatible model and embodiment fail closed with <span class="mono" style="color:var(--ink)">409 ActionSpaceIncompatible</span> — never a wrong action. Full reference in the <a href="docs/" style="color:var(--acc2)">docs</a>.</p>
+</div></section>
+
+<section id="deploy"><div class="wrap">
+  <div class="head">
+    <h2>Deploy to the cloud or the robot</h2>
+    <p class="lead">Hosted endpoints for everything async. Edge export for the real-time control loop.</p>
+  </div>
+  <div class="twocol">
+    <div class="panel"><div class="body">
+      <h4>Hosted endpoint</h4>
+      <p class="t">async · batch · latency-tolerant</p>
+      <ul>
+        <li>World-model rollouts and synthetic data generation</li>
+        <li>Offline and simulation evaluation at scale</li>
+        <li>Teleop assist and remote control with action-chunking</li>
+        <li>Metered per call, scales to zero</li>
+      </ul>
+    </div></div>
+    <div class="panel"><div class="body">
+      <h4>Edge export</h4>
+      <p class="t">real-time · safety-critical · on-robot</p>
+      <ul>
+        <li>Optimized and quantized for Jetson and Thor-class hardware</li>
+        <li>Packaged with its runtime, with versioned updates</li>
+        <li>Runs the 10–50 Hz control loop locally</li>
+        <li>No cloud round-trip in the control path</li>
+      </ul>
+    </div></div>
+  </div>
+</div></section>
+
+<section id="start"><div class="wrap">
+  <div class="band">
+    <h2>Get started</h2>
+    <p class="lead center" style="margin-bottom:26px">Run any open robotics foundation model through one API.</p>
+    <div class="cta" style="justify-content:center">
+      <a class="btn primary" href="#">Get started</a>
+      <a class="btn ghost" href="docs/">Read the docs</a>
+    </div>
+    <div class="undernote" style="text-align:center">pip install servo</div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="foot">
+    <div class="logo" style="font-size:15px"><span class="dot"></span>Servo</div>
+    <div style="display:flex;gap:26px;flex-wrap:wrap">
+      <a href="#models">Models</a><a href="#api">API</a><a href="#deploy">Deploy</a><a href="docs/">Docs</a>
+    </div>
+    <div style="color:var(--faint)">© 2026 Servo</div>
+  </div>
+</div></footer>
+
+<script>
+  function toggleTheme(){
+    var cur = document.documentElement.getAttribute('data-theme');
+    var next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('servo-theme', next);
+  }
+  const MODELS=[
+    {name:"π0.5",vendor:"Physical Intelligence",kind:"policy",licT:"Apache-2.0",sub:"flow policy",emb:"arm · bimanual"},
+    {name:"OpenVLA-OFT",vendor:"Stanford / Berkeley",kind:"policy",licT:"MIT",sub:"7B policy",emb:"arm"},
+    {name:"GR00T N1.7",vendor:"NVIDIA",kind:"policy",licT:"Apache-2.0",sub:"reasoning VLA",emb:"arm · bimanual"},
+    {name:"SmolVLA",vendor:"Hugging Face",kind:"policy",licT:"Apache-2.0",sub:"450M policy",emb:"arm"},
+    {name:"MolmoAct",vendor:"Ai2",kind:"policy",licT:"Apache-2.0",sub:"action reasoning",emb:"arm"},
+    {name:"RDT2",vendor:"Tsinghua",kind:"policy",licT:"Apache-2.0",sub:"bimanual diffusion",emb:"bimanual"},
+    {name:"Cosmos Predict 2.5",vendor:"NVIDIA",kind:"world",licT:"NVIDIA OML",sub:"world simulator",emb:"data gen"},
+    {name:"Cosmos Transfer 2.5",vendor:"NVIDIA",kind:"world",licT:"NVIDIA OML",sub:"sim2real transfer",emb:"data gen"},
+    {name:"Vista",vendor:"OpenDriveLab",kind:"world",licT:"Apache-2.0",sub:"driving world model",emb:"data gen"},
+    {name:"iVideoGPT",vendor:"Tsinghua",kind:"world",licT:"MIT",sub:"RL world model",emb:"data gen"},
+  ];
+  const grid=document.getElementById('modelGrid');
+  function render(f){
+    grid.innerHTML='';
+    MODELS.filter(m=>f==='all'||m.kind===f).forEach(m=>{
+      grid.insertAdjacentHTML('beforeend',`
+        <div class="m">
+          <div class="top">
+            <div><div class="name">${m.name}</div><div class="vendor">${m.vendor}</div></div>
+            <span class="lic">${m.licT}</span>
+          </div>
+          <div class="meta">
+            <span class="tag">${m.kind==='policy'?'policy':'world model'}</span>
+            <span class="tag">${m.sub}</span>
+            <span class="tag">${m.emb}</span>
+          </div>
+        </div>`);
+    });
+  }
+  render('all');
+  document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
+    document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
+    c.classList.add('active');render(c.dataset.f);
+  }));
+</script>
+</body>
+</html>
