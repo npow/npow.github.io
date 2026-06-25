@@ -243,13 +243,13 @@ servo.<span class="c-fn">act</span>(<span class="c-str">"pi0.5"</span>,      emb
 
 <section id="api"><div class="wrap">
   <div class="head">
-    <h2>Two endpoints: act and generate</h2>
+    <h2>Two endpoints: action-predictions and rollout-predictions</h2>
     <p class="lead">Policies return actions. World models return predictions. Authenticate with a bearer token; the request names the model and your embodiment.</p>
   </div>
   <div class="twocol">
     <div class="panel">
-      <div class="ph"><span class="badge">POST /v1/infer/act</span><span class="who">VLA policy</span></div>
-<pre>curl https://api.servo.dev/v1/infer/act \
+      <div class="ph"><span class="badge">POST /v1/action-predictions</span><span class="who">VLA policy</span></div>
+<pre>curl https://api.servo.dev/v1/action-predictions \
   -H <span class="c-str">"Authorization: Bearer $SERVO_KEY"</span> \
   -d '{
     "model": "pi0.5",
@@ -269,17 +269,15 @@ servo.<span class="c-fn">act</span>(<span class="c-str">"pi0.5"</span>,      emb
 }</pre>
     </div>
     <div class="panel">
-      <div class="ph"><span class="badge">POST /v1/infer/generate</span><span class="who">World model</span></div>
-<pre>curl https://api.servo.dev/v1/infer/generate \
+      <div class="ph"><span class="badge">POST /v1/rollout-predictions</span><span class="who">World model</span></div>
+<pre>curl https://api.servo.dev/v1/rollout-predictions \
   -H <span class="c-str">"Authorization: Bearer $SERVO_KEY"</span> \
   -d '{
     "model": "cosmos",
     "embodiment": "emb_d27b4be7",
-    "conditioning": {
-      "init_observation": { "...": "..." },
-      "actions": [[0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]],
-      "horizon": 16
-    },
+    "initial_observation": { "...": "..." },
+    "actions": [[0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]],
+    "horizon": 16,
     "output": "frames"
   }'</pre>
 <pre class="resp"><span class="ok">200 OK</span>

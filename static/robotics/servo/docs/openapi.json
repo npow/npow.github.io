@@ -1,9 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Servo API",
-    "version": "1.0.0",
-    "description": "Run, fine-tune, and deploy robotics foundation models from one API.\n\n## Install\n```bash\npip install servo\n```\n\n## First call\n```python\nimport servo\nfrom servo import templates\n\nclient = servo.Servo(base_url=\"https://api.servo.dev\", api_key=\"YOUR_KEY\")\nemb = client.embodiments.register(templates.so101())\nobs = templates.sample_observation(emb)\n\naction = client.act(model=\"pi0.5\", embodiment=emb.id, observation=obs)\nprint(action.actions[0])  # joint_position, decoded\n```\n\nSwitching models is a one-line change \u2014 Servo applies each model's preprocessing,\nnormalization, and action decoding. Incompatible model/embodiment pairs fail closed\nwith `409 ActionSpaceIncompatible` rather than returning a wrong action.\n\nAuthenticate every request with `Authorization: Bearer <key>`."
+    "title": "Servo Control Plane",
+    "version": "0.1.0"
   },
   "paths": {
     "/v1/embodiments/templates": {
@@ -552,13 +551,13 @@
         }
       }
     },
-    "/v1/infer/act": {
+    "/v1/action-predictions": {
       "post": {
         "tags": [
           "inference"
         ],
-        "summary": "Act",
-        "operationId": "act_v1_infer_act_post",
+        "summary": "Action Predictions",
+        "operationId": "action_predictions_v1_action_predictions_post",
         "parameters": [
           {
             "name": "authorization",
@@ -582,7 +581,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ActRequest"
+                "$ref": "#/components/schemas/ActionPredictionRequest"
               }
             }
           }
@@ -593,7 +592,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ActionChunk"
+                  "$ref": "#/components/schemas/ActionPrediction"
                 }
               }
             }
@@ -611,13 +610,13 @@
         }
       }
     },
-    "/v1/infer/generate": {
+    "/v1/rollout-predictions": {
       "post": {
         "tags": [
           "inference"
         ],
-        "summary": "Generate",
-        "operationId": "generate_v1_infer_generate_post",
+        "summary": "Rollout Predictions",
+        "operationId": "rollout_predictions_v1_rollout_predictions_post",
         "parameters": [
           {
             "name": "authorization",
@@ -641,7 +640,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GenerateRequest"
+                "$ref": "#/components/schemas/RolloutPredictionRequest"
               }
             }
           }
@@ -652,7 +651,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GenerationOutput"
+                  "$ref": "#/components/schemas/RolloutPrediction"
                 }
               }
             }
@@ -1724,40 +1723,7 @@
   },
   "components": {
     "schemas": {
-      "ActRequest": {
-        "properties": {
-          "model": {
-            "type": "string",
-            "title": "Model"
-          },
-          "embodiment": {
-            "type": "string",
-            "title": "Embodiment"
-          },
-          "observation": {
-            "$ref": "#/components/schemas/Observation"
-          },
-          "deployment": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Deployment"
-          }
-        },
-        "type": "object",
-        "required": [
-          "model",
-          "embodiment",
-          "observation"
-        ],
-        "title": "ActRequest"
-      },
-      "ActionChunk": {
+      "ActionPrediction": {
         "properties": {
           "actions": {
             "items": {
@@ -1781,6 +1747,28 @@
             "type": "boolean",
             "title": "Decoded",
             "default": true
+          },
+          "telemetry": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Telemetry"
+          },
+          "rollout": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GenerationOutput"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "type": "object",
@@ -1789,64 +1777,23 @@
           "horizon",
           "action_space"
         ],
-        "title": "ActionChunk"
+        "title": "ActionPrediction",
+        "description": "Action-first artifact: the action chunk, plus an optional WAM rollout + telemetry."
       },
-      "Conditioning": {
-        "properties": {
-          "init_observation": {
-            "anyOf": [
-              {
-                "$ref": "#/components/schemas/Observation"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "actions": {
-            "anyOf": [
-              {
-                "items": {
-                  "items": {
-                    "type": "number"
-                  },
-                  "type": "array"
-                },
-                "type": "array"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Actions"
-          },
-          "prompt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Prompt"
-          },
-          "horizon": {
-            "type": "integer",
-            "title": "Horizon",
-            "default": 8
-          }
-        },
-        "type": "object",
-        "title": "Conditioning"
-      },
-      "GenerateRequest": {
+      "ActionPredictionRequest": {
         "properties": {
           "model": {
             "type": "string",
             "title": "Model"
           },
           "embodiment": {
+            "type": "string",
+            "title": "Embodiment"
+          },
+          "observation": {
+            "$ref": "#/components/schemas/Observation"
+          },
+          "instruction": {
             "anyOf": [
               {
                 "type": "string"
@@ -1855,27 +1802,33 @@
                 "type": "null"
               }
             ],
-            "title": "Embodiment"
+            "title": "Instruction"
           },
-          "conditioning": {
-            "$ref": "#/components/schemas/Conditioning"
-          },
-          "output": {
-            "type": "string",
-            "enum": [
-              "frames",
-              "latents",
-              "trajectory"
+          "deployment": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
             ],
-            "title": "Output",
-            "default": "frames"
+            "title": "Deployment"
+          },
+          "include_rollout": {
+            "type": "boolean",
+            "title": "Include Rollout",
+            "default": false
           }
         },
         "type": "object",
         "required": [
-          "model"
+          "model",
+          "embodiment",
+          "observation"
         ],
-        "title": "GenerateRequest"
+        "title": "ActionPredictionRequest",
+        "description": "`POST /v1/action-predictions` \u2014 primary output is an executable action chunk."
       },
       "GenerationOutput": {
         "properties": {
@@ -1970,6 +1923,185 @@
         "type": "object",
         "title": "Observation"
       },
+      "RolloutPrediction": {
+        "properties": {
+          "frames": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Frames"
+          },
+          "latents_uri": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latents Uri"
+          },
+          "trajectory_uri": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trajectory Uri"
+          },
+          "horizon": {
+            "type": "integer",
+            "title": "Horizon"
+          },
+          "states": {
+            "anyOf": [
+              {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "States"
+          },
+          "telemetry": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Telemetry"
+          },
+          "actions": {
+            "anyOf": [
+              {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "horizon"
+        ],
+        "title": "RolloutPrediction",
+        "description": "Rollout-first artifact: the predicted future, plus optional states/actions + telemetry."
+      },
+      "RolloutPredictionRequest": {
+        "properties": {
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "embodiment": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Embodiment"
+          },
+          "initial_observation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Observation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "actions": {
+            "anyOf": [
+              {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actions"
+          },
+          "prompt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prompt"
+          },
+          "horizon": {
+            "type": "integer",
+            "title": "Horizon",
+            "default": 8
+          },
+          "output": {
+            "type": "string",
+            "enum": [
+              "frames",
+              "latents",
+              "trajectory"
+            ],
+            "title": "Output",
+            "default": "frames"
+          },
+          "include_actions": {
+            "type": "boolean",
+            "title": "Include Actions",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "model"
+        ],
+        "title": "RolloutPredictionRequest",
+        "description": "`POST /v1/rollout-predictions` \u2014 primary output is a predicted/imagined future."
+      },
       "ValidationError": {
         "properties": {
           "loc": {
@@ -2011,10 +2143,5 @@
         "title": "ValidationError"
       }
     }
-  },
-  "servers": [
-    {
-      "url": "https://api.servo.dev"
-    }
-  ]
+  }
 }
