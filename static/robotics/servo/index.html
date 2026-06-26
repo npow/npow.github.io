@@ -167,8 +167,8 @@ emb = servo.embodiments.<span class="c-fn">register</span>(
     templates.<span class="c-fn">so101</span>())
 
 <span class="c-com"># Call any model, one contract:</span>
-servo.<span class="c-fn">act</span>(<span class="c-str">"pi0.5"</span>,      emb, obs)
-<span class="c-hi">servo.<span class="c-fn">act</span>(<span class="c-str">"gr00t-n1.7"</span>, emb, obs)  <span class="c-com"># swap</span></span>
+servo.actions.<span class="c-fn">predict</span>(<span class="c-str">"pi0.5"</span>,      emb, obs)
+<span class="c-hi">servo.actions.<span class="c-fn">predict</span>(<span class="c-str">"gr00t-n1.7"</span>, emb, obs)  <span class="c-com"># swap</span></span>
 
 <span class="c-com"># Servo handles preprocessing, norm</span>
 <span class="c-com"># stats, and action decoding.</span></pre>
@@ -305,7 +305,7 @@ servo.<span class="c-fn">act</span>(<span class="c-str">"pi0.5"</span>,      emb
         <li>World-model rollouts and synthetic data generation</li>
         <li>Offline and simulation evaluation at scale</li>
         <li>Teleop assist and remote control with action-chunking</li>
-        <li>Metered per call, scales to zero</li>
+        <li>Usage telemetry per org (frames, GPU-seconds), scales to zero</li>
       </ul>
     </div></div>
     <div class="panel"><div class="body">
