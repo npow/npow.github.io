@@ -131,9 +131,9 @@
 </head>
 <body>
 
-<header>
+<header id="top">
   <div class="wrap"><nav>
-    <a class="logo" href="#"><span class="dot"></span>Servo</a>
+    <a class="logo" href="#top"><span class="dot"></span>Servo</a>
     <div class="nav-links">
       <a href="#models">Models</a>
       <a href="#build">Platform</a>
@@ -144,7 +144,7 @@
         <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
         <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
       </button>
-      <a class="btn primary" href="#start">Get started</a>
+      <a class="btn primary" href="https://github.com/npow/servo">Get started</a>
     </div>
   </nav></div>
 </header>
@@ -155,7 +155,7 @@
     <h1>Run robotics foundation models with an API</h1>
     <p class="sub">One API to run, fine-tune, and deploy any open VLA or world model.</p>
     <div class="cta">
-      <a class="btn primary" href="#start">Get started</a>
+      <a class="btn primary" href="https://github.com/npow/servo">Get started</a>
       <a class="btn ghost" href="#models">Browse models</a>
     </div>
     <div class="undernote">pip install servo</div>
@@ -243,13 +243,13 @@ with sv.session(dep.policy()) as s:
 <section id="api"><div class="wrap">
   <div class="head">
     <h2>Two execution surfaces: actions and rollouts</h2>
-    <p class="lead">A <span class="mono" style="color:var(--ink)">Policy</span> returns actions; a <span class="mono" style="color:var(--ink)">World</span> returns rollouts. Authenticate with a bearer token; the request names the model and your embodiment. For the real-robot control loop, open a <span class="mono" style="color:var(--ink)">Session</span> over <span class="mono" style="color:var(--ink)">/v1/realrobot/sessions</span>.</p>
+    <p class="lead">A <span class="mono" style="color:var(--ink)">Policy</span> returns actions; a <span class="mono" style="color:var(--ink)">World</span> returns rollouts. Servo is <b>BYOK</b> — you run the control plane locally (<span class="mono" style="color:var(--ink)">make dev</span> → <span class="mono" style="color:var(--ink)">http://127.0.0.1:8000</span>) and authenticate with the auto-seeded <span class="mono" style="color:var(--ink)">dev</span> key; GPU compute runs on your own Modal account. The request names the model and your embodiment. For the real-robot control loop, open a <span class="mono" style="color:var(--ink)">Session</span> over <span class="mono" style="color:var(--ink)">/v1/realrobot/sessions</span>.</p>
   </div>
   <div class="twocol">
     <div class="panel">
       <div class="ph"><span class="badge">POST /v1/action-predictions</span><span class="who">VLA policy</span></div>
-<pre>curl https://api.servo.dev/v1/action-predictions \
-  -H <span class="c-str">"Authorization: Bearer $SERVO_KEY"</span> \
+<pre>curl http://127.0.0.1:8000/v1/action-predictions \
+  -H <span class="c-str">"Authorization: Bearer dev"</span> \
   -d '{
     "model": "pi0.5",
     "embodiment": "emb_d27b4be7",
@@ -269,8 +269,8 @@ with sv.session(dep.policy()) as s:
     </div>
     <div class="panel">
       <div class="ph"><span class="badge">POST /v1/rollout-predictions</span><span class="who">World model</span></div>
-<pre>curl https://api.servo.dev/v1/rollout-predictions \
-  -H <span class="c-str">"Authorization: Bearer $SERVO_KEY"</span> \
+<pre>curl http://127.0.0.1:8000/v1/rollout-predictions \
+  -H <span class="c-str">"Authorization: Bearer dev"</span> \
   -d '{
     "model": "cosmos",
     "embodiment": "emb_d27b4be7",
@@ -325,7 +325,7 @@ with sv.session(dep.policy()) as s:
     <h2>Get started</h2>
     <p class="lead center" style="margin-bottom:26px">Run any open robotics foundation model through one API.</p>
     <div class="cta" style="justify-content:center">
-      <a class="btn primary" href="#">Get started</a>
+      <a class="btn primary" href="https://github.com/npow/servo">Get started</a>
       <a class="btn ghost" href="docs/">Read the docs</a>
     </div>
     <div class="undernote" style="text-align:center">pip install servo</div>
