@@ -163,15 +163,17 @@
   <div class="code">
     <div class="bar"><i style="background:#fb7185"></i><i style="background:#fbbf24"></i><i style="background:#34d399"></i><span class="t">control.py</span></div>
 <pre><span class="c-com"># Describe the robot once.</span>
-emb = servo.embodiments.<span class="c-fn">register</span>(
+emb = sv.embodiments.<span class="c-fn">register</span>(
     templates.<span class="c-fn">so101</span>())
 
-<span class="c-com"># Call any model, one contract:</span>
-servo.actions.<span class="c-fn">predict</span>(<span class="c-str">"pi0.5"</span>,      emb, obs)
-<span class="c-hi">servo.actions.<span class="c-fn">predict</span>(<span class="c-str">"gr00t-n1.7"</span>, emb, obs)  <span class="c-com"># swap</span></span>
+<span class="c-com"># Bind a policy: model + embodiment.</span>
+policy = sv.<span class="c-fn">policy</span>(<span class="c-str">"pi0.5"</span>, emb,
+    instruction=<span class="c-str">"pick up the cube"</span>)
 
-<span class="c-com"># Servo handles preprocessing, norm</span>
-<span class="c-com"># stats, and action decoding.</span></pre>
+<span class="c-com"># The control loop is a Session.</span>
+<span class="c-kw">with</span> sv.<span class="c-fn">session</span>(policy) <span class="c-kw">as</span> sess:
+<span class="c-hi">    <span class="c-kw">for</span> obs <span class="c-kw">in</span> robot.<span class="c-fn">stream</span>():
+        robot.<span class="c-fn">execute</span>(sess.<span class="c-fn">act</span>(obs))</span></pre>
   </div>
 </div></div></section>
 
@@ -206,25 +208,22 @@ servo.actions.<span class="c-fn">predict</span>(<span class="c-str">"pi0.5"</spa
 <section id="recipes" style="padding-top:0"><div class="wrap">
   <div class="head"><h2>Examples</h2></div>
   <div class="recipes">
-    <div class="rec"><div class="rh"><span class="num">01</span>Generate training data</div>
-<pre>servo.synthdata(
-  world_model="cosmos",
-  seed_dataset="lerobot://acme/demos",
-  n_trajectories=5000)</pre></div>
+    <div class="rec"><div class="rh"><span class="num">01</span>Import a dataset from the Hub</div>
+<pre>ds = sv.datasets.from_hf(
+  "acme/so101-pick-place",
+  embodiment=emb)</pre></div>
     <div class="rec"><div class="rh"><span class="num">02</span>Fine-tune on your data</div>
-<pre>servo.finetune(
-  base="pi0.5",
-  dataset="lerobot://acme/pick-2k",
-  method="lora")</pre></div>
+<pre>variant = ds.finetune(
+  base="smolvla",
+  method="lora").wait().variant</pre></div>
     <div class="rec"><div class="rh"><span class="num">03</span>Evaluate in simulation</div>
-<pre>servo.eval(
-  subject="my-finetune-v3",
+<pre>variant.evaluate(
   rung="sim_benchmark",
-  benchmark="libero-90")</pre></div>
-    <div class="rec"><div class="rh"><span class="num">04</span>Deploy an endpoint</div>
-<pre>servo.deployments.create(
-  subject="my-finetune-v3",
-  kind="hosted_endpoint")</pre></div>
+  benchmark="libero-90").wait()</pre></div>
+    <div class="rec"><div class="rh"><span class="num">04</span>Deploy, then run a Session</div>
+<pre>dep = variant.deploy(embodiment=emb)
+with sv.session(dep.policy()) as s:
+  robot.execute(s.act(obs))</pre></div>
   </div>
 </div></section>
 
@@ -243,8 +242,8 @@ servo.actions.<span class="c-fn">predict</span>(<span class="c-str">"pi0.5"</spa
 
 <section id="api"><div class="wrap">
   <div class="head">
-    <h2>Two endpoints: action-predictions and rollout-predictions</h2>
-    <p class="lead">Policies return actions. World models return predictions. Authenticate with a bearer token; the request names the model and your embodiment.</p>
+    <h2>Two execution surfaces: actions and rollouts</h2>
+    <p class="lead">A <span class="mono" style="color:var(--ink)">Policy</span> returns actions; a <span class="mono" style="color:var(--ink)">World</span> returns rollouts. Authenticate with a bearer token; the request names the model and your embodiment. For the real-robot control loop, open a <span class="mono" style="color:var(--ink)">Session</span> over <span class="mono" style="color:var(--ink)">/v1/realrobot/sessions</span>.</p>
   </div>
   <div class="twocol">
     <div class="panel">
