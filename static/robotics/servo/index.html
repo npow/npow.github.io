@@ -158,7 +158,7 @@
       <a class="btn primary" href="https://github.com/npow/servo">Get started</a>
       <a class="btn ghost" href="#models">Browse models</a>
     </div>
-    <div class="undernote">pip install servo</div>
+    <div class="undernote">pip install servo-client</div>
   </div>
   <div class="code">
     <div class="bar"><i style="background:#fb7185"></i><i style="background:#fbbf24"></i><i style="background:#34d399"></i><span class="t">control.py</span></div>
@@ -243,13 +243,13 @@ with sv.session(dep.policy()) as s:
 <section id="api"><div class="wrap">
   <div class="head">
     <h2>Two execution surfaces: actions and rollouts</h2>
-    <p class="lead">A <span class="mono" style="color:var(--ink)">Policy</span> returns actions; a <span class="mono" style="color:var(--ink)">World</span> returns rollouts. Servo is <b>BYOK</b> — you run the control plane locally (<span class="mono" style="color:var(--ink)">make dev</span> → <span class="mono" style="color:var(--ink)">http://127.0.0.1:8000</span>) and authenticate with the auto-seeded <span class="mono" style="color:var(--ink)">dev</span> key; GPU compute runs on your own Modal account. The request names the model and your embodiment. For the real-robot control loop, open a <span class="mono" style="color:var(--ink)">Session</span> over <span class="mono" style="color:var(--ink)">/v1/realrobot/sessions</span>.</p>
+    <p class="lead">A <span class="mono" style="color:var(--ink)">Policy</span> returns actions; a <span class="mono" style="color:var(--ink)">World</span> returns rollouts. Install the public client, use an organization key, and call the hosted Servo API. The request names the model and your embodiment. For the real-robot control loop, open a <span class="mono" style="color:var(--ink)">Session</span> over <span class="mono" style="color:var(--ink)">/v1/realrobot/sessions</span>.</p>
   </div>
   <div class="twocol">
     <div class="panel">
       <div class="ph"><span class="badge">POST /v1/action-predictions</span><span class="who">VLA policy</span></div>
-<pre>curl http://127.0.0.1:8000/v1/action-predictions \
-  -H <span class="c-str">"Authorization: Bearer dev"</span> \
+<pre>curl https://api.servo.example/v1/action-predictions \
+  -H <span class="c-str">"Authorization: Bearer sk_..."</span> \
   -d '{
     "model": "pi0.5",
     "embodiment": "emb_d27b4be7",
@@ -269,8 +269,8 @@ with sv.session(dep.policy()) as s:
     </div>
     <div class="panel">
       <div class="ph"><span class="badge">POST /v1/rollout-predictions</span><span class="who">World model</span></div>
-<pre>curl http://127.0.0.1:8000/v1/rollout-predictions \
-  -H <span class="c-str">"Authorization: Bearer dev"</span> \
+<pre>curl https://api.servo.example/v1/rollout-predictions \
+  -H <span class="c-str">"Authorization: Bearer sk_..."</span> \
   -d '{
     "model": "cosmos",
     "embodiment": "emb_d27b4be7",
@@ -328,7 +328,7 @@ with sv.session(dep.policy()) as s:
       <a class="btn primary" href="https://github.com/npow/servo">Get started</a>
       <a class="btn ghost" href="docs/">Read the docs</a>
     </div>
-    <div class="undernote" style="text-align:center">pip install servo</div>
+    <div class="undernote" style="text-align:center">pip install servo-client</div>
   </div>
 </div></section>
 
