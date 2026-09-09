@@ -1,18 +1,19 @@
 +++
-title = "The State of Robotics (May 2026)"
+title = "The State of Robotics (September 2026)"
 date = 2026-05-31
+lastmod = 2026-09-09
 draft = false
 tags = ["robotics", "physical-ai", "data-analysis", "state-of-the-field"]
-description = "A field briefing on the physical-AI industry as of May 2026: ~2,500 companies across 24 use cases — where the money and talent sit, when it was built, where the AI actually runs — plus a browsable directory of every company."
-summary = "A field briefing on the physical-AI industry as of May 2026: ~2,500 companies across 24 use cases — where the money and talent sit, when it was built, where the AI runs — plus a browsable directory."
+description = "A field briefing on the physical-AI industry as of September 2026: 2,538 companies across 24 use cases — where the money and talent sit, when it was built, where the AI actually runs — plus a browsable directory of every company."
+summary = "A field briefing on the physical-AI industry as of September 2026: 2,538 companies across 24 use cases — where the money and talent sit, when it was built, where the AI runs — plus a browsable directory."
 ShowToc = false
 +++
 
-A fast way to get your bearings in the physical-AI industry. I mapped **~2,500 companies across 24 use-case types** — what each builds, where it's based, what it's raised, and when it was founded — and turned it into an interactive briefing: the shape of the field, where the money and talent concentrate, when it all got built, where the "thinking" actually runs (on the robot vs. the cloud), and a browsable directory of every company.
+A fast way to get your bearings in the physical-AI industry. I mapped **2,538 companies across 24 use-case types** — what each builds, where it's based, what it's raised, and when it was founded — and turned it into an interactive briefing: the shape of the field, where the money and talent concentrate, when it all got built, where the "thinking" actually runs (on the robot vs. the cloud), and a browsable directory of every company.
 
-It's a **best-effort census** (May 2026), not a complete registry — coverage skews to companies with a web/English footprint, the long tail is undercounted, and funding is disclosed for only a minority — so treat the shapes as *directional*, not exact.
+It's a **best-effort census** (September 2026), not a complete registry — coverage skews to companies with a web/English footprint, the long tail is undercounted, and funding is disclosed for only a minority — so treat the shapes as *directional*, not exact. This post and its embedded chart update in place as the census is refreshed; the original May 2026 edition is preserved at **[the archived snapshot ↗](/robotics/may-2026.html)**.
 
-Below is the field at a glance: **every kind of robot, sized by the capital it's raised** (flip the toggle to company count). For the rest — money flows, the live hiring signal, geography, deployment reality, and a browsable directory of all ~2,500 companies — **[open the full report ↗](/robotics/)**.
+Below is the field at a glance: **every kind of robot, sized by the capital it's raised** (flip the toggle to company count). For the rest — money flows, the live hiring signal, geography, deployment reality, and a browsable directory of all 2,538 companies — **[open the full report ↗](/robotics/)**.
 
 <style>
 .sor-embed{ width:min(94vw,1024px); background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px 16px 12px; margin:20px 0 6px; margin-left:50%; transform:translateX(-50%); }
