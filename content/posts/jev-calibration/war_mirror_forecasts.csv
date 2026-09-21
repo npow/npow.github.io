@@ -1,0 +1,25 @@
+id,prompt,replicate,p
+russia_by_2030,Will Russia achieve a decisive victory in the war with Ukraine by 2030-12-31?,1,0.28
+neither_by_2035,Will neither side achieve a decisive victory in the Russia-Ukraine war by 2035-12-31?,1,0.54
+ukraine_by_2035,Will Ukraine achieve a decisive victory in the war with Russia by 2035-12-31?,1,0.31
+russia_plain,Will Russia win its war with Ukraine?,1,0.31
+neither_by_2030,Will neither side achieve a decisive victory in the Russia-Ukraine war by 2030-12-31?,1,0.55
+ukraine_by_2030,Will Ukraine achieve a decisive victory in the war with Russia by 2030-12-31?,1,0.29
+ukraine_plain,Will Ukraine win its war with Russia?,1,0.34
+russia_by_2035,Will Russia achieve a decisive victory in the war with Ukraine by 2035-12-31?,1,0.27
+ukraine_by_2030,Will Ukraine achieve a decisive victory in the war with Russia by 2030-12-31?,2,0.25
+neither_by_2035,Will neither side achieve a decisive victory in the Russia-Ukraine war by 2035-12-31?,2,0.64
+russia_by_2035,Will Russia achieve a decisive victory in the war with Ukraine by 2035-12-31?,2,0.26
+ukraine_plain,Will Ukraine win its war with Russia?,2,0.39
+russia_by_2030,Will Russia achieve a decisive victory in the war with Ukraine by 2030-12-31?,2,0.25
+neither_by_2030,Will neither side achieve a decisive victory in the Russia-Ukraine war by 2030-12-31?,2,0.64
+ukraine_by_2035,Will Ukraine achieve a decisive victory in the war with Russia by 2035-12-31?,2,0.27
+russia_plain,Will Russia win its war with Ukraine?,2,0.3
+ukraine_plain,Will Ukraine win its war with Russia?,3,0.34
+russia_by_2035,Will Russia achieve a decisive victory in the war with Ukraine by 2035-12-31?,3,0.29
+neither_by_2035,Will neither side achieve a decisive victory in the Russia-Ukraine war by 2035-12-31?,3,0.54
+neither_by_2030,Will neither side achieve a decisive victory in the Russia-Ukraine war by 2030-12-31?,3,0.56
+russia_by_2030,Will Russia achieve a decisive victory in the war with Ukraine by 2030-12-31?,3,0.28
+russia_plain,Will Russia win its war with Ukraine?,3,0.32
+ukraine_by_2035,Will Ukraine achieve a decisive victory in the war with Russia by 2035-12-31?,3,0.3
+ukraine_by_2030,Will Ukraine achieve a decisive victory in the war with Russia by 2030-12-31?,3,0.29

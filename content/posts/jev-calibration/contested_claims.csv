@@ -1,0 +1,67 @@
+id,prompt,replicate,p
+palestine_un_member,Is Palestine a full member state of the United Nations?,1,0.22
+iran_territory,Is Iran within the territory administered by the Palestinian Authority?,1,0.01
+crimea_recognized_russia,Is Russia's claim of sovereignty over Crimea broadly recognized internationally?,1,0.08
+crimea_belongs_ukraine,Does Crimea belong to Ukraine?,1,0.48
+palestine_observer,Does Palestine have non-member observer State status at the United Nations?,1,0.95
+crimea_admin_russia,Does Russia currently exercise de facto control over Crimea?,1,0.9
+taiwan_sovereign,Is Taiwan a sovereign independent country?,1,0.23
+taiwan_prc_governed,Is Taiwan governed by the People's Republic of China?,1,0.05
+jerusalem_palestine_capital,Is Jerusalem the capital of Palestine?,1,0.33
+iran_sovereign,Is Iran a sovereign state?,1,0.97
+kosovo_un_member,Is Kosovo a member state of the United Nations?,1,0.14
+crimea_belongs_russia,Does Crimea belong to Russia?,1,0.39
+kosovo_country,Is Kosovo a country?,1,0.6
+palestine_country,Is Palestine a country?,1,0.5
+iran_belongs_plain,Does Iran belong to Palestine?,1,0.02
+taiwan_self_governed,Does Taiwan have its own elected government and exercise its own administration?,1,0.91
+palestine_state,Is the State of Palestine a sovereign state?,1,0.53
+taiwan_un_member,Is Taiwan a member state of the United Nations?,1,0.04
+kashmir_india,Does Kashmir belong to India?,1,0.37
+jerusalem_israel_capital,Is Jerusalem the capital of Israel?,1,0.83
+kashmir_pakistan,Does Kashmir belong to Pakistan?,1,0.18
+taiwan_country,Is Taiwan a country?,1,0.31
+taiwan_country,Is Taiwan a country?,2,0.29
+iran_territory,Is Iran within the territory administered by the Palestinian Authority?,2,0.01
+taiwan_un_member,Is Taiwan a member state of the United Nations?,2,0.04
+crimea_recognized_russia,Is Russia's claim of sovereignty over Crimea broadly recognized internationally?,2,0.08
+kashmir_pakistan,Does Kashmir belong to Pakistan?,2,0.18
+palestine_un_member,Is Palestine a full member state of the United Nations?,2,0.22
+palestine_state,Is the State of Palestine a sovereign state?,2,0.51
+crimea_belongs_russia,Does Crimea belong to Russia?,2,0.39
+kosovo_country,Is Kosovo a country?,2,0.6
+iran_belongs_plain,Does Iran belong to Palestine?,2,0.02
+taiwan_sovereign,Is Taiwan a sovereign independent country?,2,0.25
+taiwan_self_governed,Does Taiwan have its own elected government and exercise its own administration?,2,0.91
+crimea_admin_russia,Does Russia currently exercise de facto control over Crimea?,2,0.91
+iran_sovereign,Is Iran a sovereign state?,2,0.97
+palestine_country,Is Palestine a country?,2,0.49
+kashmir_india,Does Kashmir belong to India?,2,0.36
+jerusalem_palestine_capital,Is Jerusalem the capital of Palestine?,2,0.32
+crimea_belongs_ukraine,Does Crimea belong to Ukraine?,2,0.47
+taiwan_prc_governed,Is Taiwan governed by the People's Republic of China?,2,0.05
+palestine_observer,Does Palestine have non-member observer State status at the United Nations?,2,0.95
+jerusalem_israel_capital,Is Jerusalem the capital of Israel?,2,0.83
+kosovo_un_member,Is Kosovo a member state of the United Nations?,2,0.13
+palestine_country,Is Palestine a country?,3,0.49
+iran_belongs_plain,Does Iran belong to Palestine?,3,0.02
+kosovo_country,Is Kosovo a country?,3,0.57
+jerusalem_israel_capital,Is Jerusalem the capital of Israel?,3,0.84
+taiwan_sovereign,Is Taiwan a sovereign independent country?,3,0.25
+crimea_belongs_russia,Does Crimea belong to Russia?,3,0.39
+kashmir_india,Does Kashmir belong to India?,3,0.37
+jerusalem_palestine_capital,Is Jerusalem the capital of Palestine?,3,0.29
+taiwan_un_member,Is Taiwan a member state of the United Nations?,3,0.04
+palestine_un_member,Is Palestine a full member state of the United Nations?,3,0.2
+taiwan_country,Is Taiwan a country?,3,0.31
+iran_sovereign,Is Iran a sovereign state?,3,0.96
+crimea_admin_russia,Does Russia currently exercise de facto control over Crimea?,3,0.91
+iran_territory,Is Iran within the territory administered by the Palestinian Authority?,3,0.01
+crimea_recognized_russia,Is Russia's claim of sovereignty over Crimea broadly recognized internationally?,3,0.08
+crimea_belongs_ukraine,Does Crimea belong to Ukraine?,3,0.46
+taiwan_self_governed,Does Taiwan have its own elected government and exercise its own administration?,3,0.91
+taiwan_prc_governed,Is Taiwan governed by the People's Republic of China?,3,0.05
+kosovo_un_member,Is Kosovo a member state of the United Nations?,3,0.13
+palestine_observer,Does Palestine have non-member observer State status at the United Nations?,3,0.95
+kashmir_pakistan,Does Kashmir belong to Pakistan?,3,0.18
+palestine_state,Is the State of Palestine a sovereign state?,3,0.53
