@@ -1,0 +1,85 @@
+{
+  "model_requested": "jev-latest",
+  "model_returned": "jev-1.13.0",
+  "type": "noul",
+  "state": "",
+  "request_count": 88400,
+  "targets_usd": [
+    50000,
+    100000,
+    200000,
+    500000,
+    1000000,
+    2000000,
+    5000000,
+    10000000,
+    20000000,
+    30000000,
+    40000000,
+    50000000,
+    60000000,
+    70000000,
+    80000000,
+    90000000,
+    100000000
+  ],
+  "horizons": [
+    "no deadline",
+    2026,
+    2027,
+    2028,
+    2029,
+    2030,
+    2031,
+    2032,
+    2033,
+    2034,
+    2035,
+    2036,
+    2037,
+    2038,
+    2039,
+    2040,
+    2041,
+    2042,
+    2043,
+    2044,
+    2045,
+    2046,
+    2047,
+    2048,
+    2049,
+    2050
+  ],
+  "repeats_per_cell": 100,
+  "cells_per_criteria_mode": 442,
+  "criteria_modes": {
+    "blank": {
+      "true": "",
+      "false": ""
+    },
+    "defined": {
+      "true": "Bitcoin reaches N USD per BTC at least once [in the future/by December 31, YEAR].",
+      "false": "Bitcoin does not reach N USD per BTC [in the future/by December 31, YEAR]."
+    }
+  },
+  "question_form": "bitcoin will reach N thousand/million [by December 31, YEAR]",
+  "audit": {
+    "blank": {
+      "responses": 44200,
+      "cells": 442,
+      "repeats_per_cell": [
+        100
+      ],
+      "duplicate_replicate_cells": 0
+    },
+    "defined": {
+      "responses": 44200,
+      "cells": 442,
+      "repeats_per_cell": [
+        100
+      ],
+      "duplicate_replicate_cells": 0
+    }
+  }
+}

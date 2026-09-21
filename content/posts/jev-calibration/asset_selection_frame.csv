@@ -1,0 +1,12 @@
+ticker,sector,sector_etf,weight,selection,holdings_as_of_date,retrieved_date,holdings_source
+META,Communication Services,XLC,19.87%,largest ETF holding,2026-09-17,2026-09-20,https://www.ssga.com/us/en/intermediary/etfs/state-street-communication-services-select-sector-spdr-etf-xlc
+AMZN,Consumer Discretionary,XLY,24.70%,largest ETF holding,2026-09-17,2026-09-20,https://www.ssga.com/us/en/intermediary/etfs/state-street-consumer-discretionary-select-sector-spdr-etf-xly
+WMT,Consumer Staples,XLP,10.19%,largest ETF holding,2026-09-17,2026-09-20,https://www.ssga.com/us/en/intermediary/etfs/state-street-consumer-staples-select-sector-spdr-etf-xlp
+XOM,Energy,XLE,20.03%,largest ETF holding,2026-09-17,2026-09-20,https://www.ssga.com/us/en/intermediary/etfs/state-street-energy-select-sector-spdr-etf-xle
+JPM,Financials,XLF,11.88%,largest ETF holding,2026-09-17,2026-09-20,https://www.ssga.com/us/en/intermediary/etfs/state-street-financial-select-sector-spdr-etf-xlf
+CAT,Industrials,XLI,6.93%,largest ETF holding,2026-09-17,2026-09-20,https://www.ssga.com/us/en/intermediary/etfs/state-street-industrial-select-sector-spdr-etf-xli
+NVDA,Information Technology,XLK,14.16%,largest ETF holding,2026-09-17,2026-09-20,https://www.ssga.com/us/en/intermediary/etfs/state-street-technology-select-sector-spdr-etf-xlk
+LIN,Materials,XLB,12.80%,largest ETF holding,2026-09-17,2026-09-20,https://www.ssga.com/us/en/intermediary/etfs/state-street-materials-select-sector-spdr-etf-xlb
+WELL,Real Estate,XLRE,11.54%,largest ETF holding,2026-09-17,2026-09-20,https://www.ssga.com/us/en/intermediary/etfs/state-street-real-estate-select-sector-spdr-etf-xlre
+NEE,Utilities,XLU,13.06%,largest ETF holding,2026-09-17,2026-09-20,https://www.ssga.com/us/en/intermediary/etfs/state-street-utilities-select-sector-spdr-etf-xlu
+LLY,Health Care,XLV,14.97%,largest ETF holding,2026-09-17,2026-09-20,https://www.ssga.com/us/en/intermediary/etfs/state-street-health-care-select-sector-spdr-etf-xlv

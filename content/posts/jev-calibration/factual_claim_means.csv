@@ -1,0 +1,63 @@
+id,domain,claim,truth,source,p_mean,repeat_range,n
+fact_059,sports,Germany won the 2018 FIFA World Cup.,0,https://www.fifa.com/tournaments/mens/worldcup/2018russia,0.02,0.0,3
+fact_026,history,Victory in Europe Day was 1945-05-08.,1,https://www.iwm.org.uk/history/what-you-need-to-know-about-ve-day,0.92,0.0,3
+fact_032,science,"At 1 atmosphere, pure ice melts at 0 degrees Celsius.",1,https://www.nist.gov/pml/owm/si-units-temperature,0.9499999999999998,0.0,3
+fact_037,science,Mars has one natural moon.,0,https://science.nasa.gov/mars/moons/,0.04,0.0,3
+fact_045,geography,Japan lies west of the Korean Peninsula.,0,https://www.britannica.com/place/Japan,0.14,0.03,3
+fact_011,office,"On 2017-01-21, Donald Trump was President of the United States.",1,https://www.archives.gov/research/census/presidents,0.7433333333333333,0.07000000000000006,3
+fact_020,capitals,Brasília is the capital of Brazil.,1,https://g20.gov.br/pt-br/sobre-o-g20/cidades-sede/brasilia-df,0.9899999999999999,0.0,3
+fact_001,office,"On 2017-01-21, Barack Obama was President of the United States.",0,https://www.archives.gov/research/census/presidents,0.5633333333333334,0.09999999999999998,3
+fact_054,sports,Brazil won the 2002 FIFA World Cup.,1,https://www.fifa.com/tournaments/mens/worldcup/2002korea-japan,0.9833333333333334,0.010000000000000009,3
+fact_006,office,"On 2025-01-21, Donald Trump was President of the United States.",1,https://www.archives.gov/research/census/presidents,0.20333333333333334,0.06,3
+fact_012,office,"On 2018-01-21, Joe Biden was President of the United States.",0,https://www.archives.gov/research/census/presidents,0.02,0.0,3
+fact_030,science,"At 1 atmosphere, pure water boils at 100 degrees Celsius.",1,https://www.usgs.gov/observatories/yvo/news/how-hot-are-yellowstones-boiling-waters-some-are-hotter-others,0.9333333333333335,0.009999999999999898,3
+fact_048,institutions,"As of 2026-09-20, Palestine has non-member observer State status at the UN.",1,https://www.un.org/en/node/123012,0.94,0.019999999999999907,3
+fact_061,sports,The Netherlands won the 2010 FIFA World Cup.,0,https://www.fifa.com/tournaments/mens/worldcup/2010south-africa,0.03,0.0,3
+fact_004,office,"On 2025-01-19, Joe Biden was President of the United States.",1,https://www.archives.gov/research/census/presidents,0.9233333333333333,0.029999999999999916,3
+fact_039,geography,The Equator crosses Chile.,0,https://www.britannica.com/place/Chile,0.04666666666666667,0.010000000000000002,3
+fact_053,institutions,"As of 2026-09-20, Kosovo is a UN member state.",0,https://www.un.org/about-us/member-states,0.13,0.04999999999999999,3
+fact_018,capitals,Ankara is the capital of Turkey.,1,https://www.mfa.gov.tr/,0.9899999999999999,0.0,3
+fact_031,science,"At 1 atmosphere, pure water boils at 90 degrees Celsius.",0,https://www.usgs.gov/observatories/yvo/news/how-hot-are-yellowstones-boiling-waters-some-are-hotter-others,0.02,0.0,3
+fact_029,history,The Titanic sank on 1911-04-15.,0,https://www.noaa.gov/heritage/titanic,0.02,0.0,3
+fact_019,capitals,Istanbul is the capital of Turkey.,0,https://www.mfa.gov.tr/,0.02,0.0,3
+fact_060,sports,Spain won the 2010 FIFA World Cup.,1,https://www.fifa.com/tournaments/mens/worldcup/2010south-africa,0.9866666666666667,0.010000000000000009,3
+fact_007,office,"On 2026-01-21, Donald Trump was President of the United States.",1,https://www.archives.gov/research/census/presidents,0.49,0.020000000000000018,3
+fact_014,capitals,Canberra is the capital of Australia.,1,https://www.nca.gov.au/,0.9899999999999999,0.0,3
+fact_008,office,"On 2024-01-21, Donald Trump was President of the United States.",0,https://www.archives.gov/research/census/presidents,0.05333333333333334,0.009999999999999995,3
+fact_033,science,"At 1 atmosphere, pure ice melts at 5 degrees Celsius.",0,https://www.nist.gov/pml/owm/si-units-temperature,0.016666666666666666,0.01,3
+fact_010,office,"On 2017-01-21, Joe Biden was President of the United States.",0,https://www.archives.gov/research/census/presidents,0.03,0.0,3
+fact_024,history,The Berlin Wall opened on 1989-11-09.,1,https://history.state.gov/milestones/1989-1992/fall-of-communism,0.9266666666666667,0.010000000000000009,3
+fact_056,sports,Argentina won the 2022 FIFA World Cup.,1,https://www.fifa.com/tournaments/mens/worldcup/2022,0.98,0.0,3
+fact_038,geography,The Equator crosses Ecuador.,1,https://www.britannica.com/place/Ecuador,0.9666666666666667,0.010000000000000009,3
+fact_025,history,The Berlin Wall opened on 1987-11-09.,0,https://history.state.gov/milestones/1989-1992/fall-of-communism,0.06333333333333334,0.03,3
+fact_051,institutions,"As of 2026-09-20, the Holy See is a UN non-member observer State.",1,https://www.un.org/en/node/123012,0.9233333333333333,0.010000000000000009,3
+fact_005,office,"On 2025-01-21, Joe Biden was President of the United States.",0,https://www.archives.gov/research/census/presidents,0.9266666666666667,0.010000000000000009,3
+fact_002,office,"On 2021-01-19, Donald Trump was President of the United States.",1,https://www.archives.gov/research/census/presidents,0.86,0.040000000000000036,3
+fact_047,institutions,Iran is one of the five permanent members of the UN Security Council.,0,https://www.un.org/securitycouncil/content/current-members,0.02,0.0,3
+fact_013,office,"On 2023-01-21, Barack Obama was President of the United States.",0,https://www.archives.gov/research/census/presidents,0.016666666666666666,0.01,3
+fact_016,capitals,Ottawa is the capital of Canada.,1,https://www.canada.ca/en/immigration-refugees-citizenship/corporate/publications-manuals/discover-canada/read-online/canadas-regions.html,0.9899999999999999,0.0,3
+fact_049,institutions,"As of 2026-09-20, Palestine is a full UN member state.",0,https://www.un.org/about-us/member-states,0.19333333333333333,0.03,3
+fact_015,capitals,Sydney is the capital of Australia.,0,https://www.nca.gov.au/,0.02666666666666667,0.009999999999999998,3
+fact_043,geography,The Amazon River is in Africa.,0,https://www.britannica.com/place/Amazon-River,0.01,0.0,3
+fact_055,sports,Brazil won the 2018 FIFA World Cup.,0,https://www.fifa.com/tournaments/mens/worldcup/2018russia,0.01,0.0,3
+fact_022,history,Apollo 11 landed on the Moon on 1969-07-20.,1,https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo11info.html,0.91,0.020000000000000018,3
+fact_021,capitals,Rio de Janeiro is the capital of Brazil.,0,https://g20.gov.br/pt-br/sobre-o-g20/cidades-sede/brasilia-df,0.02,0.0,3
+fact_057,sports,France won the 2022 FIFA World Cup.,0,https://www.fifa.com/tournaments/mens/worldcup/2022,0.4033333333333333,0.08000000000000002,3
+fact_028,history,The Titanic sank on 1912-04-15.,1,https://www.noaa.gov/heritage/titanic,0.96,0.0,3
+fact_041,geography,The Sahara Desert is in South America.,0,https://www.britannica.com/place/Sahara-desert-Africa,0.01,0.0,3
+fact_023,history,Apollo 11 landed on the Moon on 1969-07-19.,0,https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo11info.html,0.05333333333333334,0.009999999999999995,3
+fact_017,capitals,Toronto is the capital of Canada.,0,https://www.canada.ca/en/immigration-refugees-citizenship/corporate/publications-manuals/discover-canada/read-online/canadas-regions.html,0.02,0.0,3
+fact_027,history,Victory in Europe Day was 1944-05-08.,0,https://www.iwm.org.uk/history/what-you-need-to-know-about-ve-day,0.03333333333333333,0.010000000000000002,3
+fact_003,office,"On 2021-01-21, Donald Trump was President of the United States.",0,https://www.archives.gov/research/census/presidents,0.7999999999999999,0.04999999999999993,3
+fact_046,institutions,Iran is a member state of the United Nations.,1,https://www.un.org/en/about-us/member-states/iran,0.98,0.0,3
+fact_050,institutions,"As of 2026-09-20, Taiwan is a full UN member state.",0,https://www.un.org/about-us/member-states,0.023333333333333334,0.009999999999999998,3
+fact_036,science,"Mars has two natural moons, Phobos and Deimos.",1,https://science.nasa.gov/mars/moons/,0.98,0.0,3
+fact_035,science,Earth has two permanent natural satellites.,0,https://science.nasa.gov/moon/facts/,0.04666666666666667,0.010000000000000002,3
+fact_009,office,"On 2024-01-21, Joe Biden was President of the United States.",1,https://www.archives.gov/research/census/presidents,0.9733333333333333,0.010000000000000009,3
+fact_044,geography,Japan lies east of the Korean Peninsula.,1,https://www.britannica.com/place/Japan,0.96,0.0,3
+fact_040,geography,The Sahara Desert is in Africa.,1,https://www.britannica.com/place/Sahara-desert-Africa,0.9899999999999999,0.0,3
+fact_034,science,"Earth has one permanent natural satellite, the Moon.",1,https://science.nasa.gov/moon/facts/,0.93,0.0,3
+fact_058,sports,France won the 2018 FIFA World Cup.,1,https://www.fifa.com/tournaments/mens/worldcup/2018russia,0.9866666666666667,0.010000000000000009,3
+fact_042,geography,The Amazon River is in South America.,1,https://www.britannica.com/place/Amazon-River,0.9899999999999999,0.0,3
+fact_052,institutions,"As of 2026-09-20, Israel is a UN member state.",1,https://www.un.org/about-us/member-states,0.9533333333333333,0.010000000000000009,3
+fact_000,office,"On 2017-01-19, Barack Obama was President of the United States.",1,https://www.archives.gov/research/census/presidents,0.8066666666666666,0.039999999999999925,3
