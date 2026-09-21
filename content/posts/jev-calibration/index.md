@@ -71,9 +71,9 @@ On January 21, 2025, Donald Trump was president, according to the [National Arch
 
 Around both inaugurations, I asked “Was Donald Trump President of the United States on [date]?” as a probability question and a YES/NO choice. I also asked “Who was President of the United States on [date]?” with Trump, Biden and “Someone else” as choices. On January 21, 2025, the probability averaged 57%; the other two answers were “Yes” and “Donald Trump” in all three calls.
 
-The chart covers every day in the year before and after the 2021 and 2025 handovers. Download the [date-by-date results](president_daily_3rep_sweep.csv) and the [62 claims, with sources and estimates](factual_claim_means.csv). Each fact claim averages three calls.
+The chart covers every day in the year before and after the 2021 and 2025 handovers. The two lines show independently asked probabilities for “Donald Trump was president” and “Joe Biden was president.” On January 21, 2025, the daily sweep averaged 57% for Trump and 26% for Biden. A separate factual-claim test on the same date averaged 20% for Trump and 93% for Biden. The questions were asked separately, so the probabilities are not constrained to add to 100%. Download the [date-by-date results](president_daily_3rep_sweep.csv) and the [62 claims, with sources and estimates](factual_claim_means.csv). Each fact claim averages three calls.
 
-![Daily results for president questions across the years before and after the 2021 and 2025 handovers.](president_daily_comparison.png)
+![Independent Jev probabilities for Trump and Biden holding office across the years before and after the 2021 and 2025 handovers.](president_daily_comparison.png)
 
 ## $10M, $10,000,000, ten million
 
