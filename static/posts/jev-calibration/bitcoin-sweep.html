@@ -7,12 +7,12 @@
 .keys{display:flex;flex-wrap:wrap;gap:3px 8px;margin:0 0 8px}.year-key{border:0;border-bottom:3px solid var(--year-color);background:transparent;color:#283943;padding:2px 4px;font:inherit;font-size:12px;cursor:pointer;border-radius:2px}
 .year-key:hover,.year-key:focus-visible,.year-key[aria-pressed=true]{background:#eef2f4;outline:2px solid #345;outline-offset:1px}
 svg{display:block;width:100%;height:auto;overflow:visible}.panel-title{font-size:19px;font-weight:700;fill:#182a35}.axis{stroke:#46535a;stroke-width:1}.grid{stroke:#dce2e5;stroke-width:1}.tick{font-size:13px;fill:#43515a}.xlab{font-size:12px}.ylabel{font-size:13px;fill:#43515a}.series{fill:none;stroke-width:1.55;opacity:.77;vector-effect:non-scaling-stroke;transition:opacity .12s,stroke-width .12s}.no-date{fill:none;stroke:#204c67;stroke-width:2.7;opacity:.98;vector-effect:non-scaling-stroke;transition:opacity .12s,stroke-width .12s}.whisker{stroke-width:1.2;opacity:.72;vector-effect:non-scaling-stroke}.legend{font-size:13px;fill:#34434c}.hint{margin:4px 0 2px;font-size:12px;color:#5b6870}
-.annual-whisker{opacity:.05}.annual-whisker.active{opacity:.88}
-.dim{opacity:.09!important}.active{opacity:1!important;stroke-width:3.4!important}.whisker.dim{opacity:.03!important}
+.annual-whisker{opacity:0}.annual-whisker.active{opacity:.88}
+.dim{opacity:.02!important;stroke:#aab4b9!important;stroke-width:1!important}.active{opacity:1!important;stroke-width:3.4!important}.whisker.dim{opacity:0!important}
 @media(max-width:650px){.wrap{padding:8px 4px}.year-key{font-size:11px;padding:2px}.tick{font-size:11px}.xlab{font-size:10px}.panel-title{font-size:17px}.legend{font-size:11px}}
 </style>
 <div class="wrap">
-<p class="guide">Hover over a year to isolate its line across both panels. Click a year to pin it.</p>
+<p class="guide">Hover over a year to highlight its line across both panels; other years fade. The no-deadline line stays visible for reference. Click a year to pin it.</p>
 <div class="keys" aria-label="Annual deadline years"><button type="button" class="year-key" data-year="2026" style="--year-color:hsl(270,62%,42%)" aria-pressed="false">2026</button>
 <button type="button" class="year-key" data-year="2027" style="--year-color:hsl(259,62%,42%)" aria-pressed="false">2027</button>
 <button type="button" class="year-key" data-year="2028" style="--year-color:hsl(248,62%,42%)" aria-pressed="false">2028</button>
@@ -70,9 +70,12 @@ function renderPanel(arm,name,index){
 renderPanel('defined','True/false definitions supplied',0);renderPanel('blank','Criteria strings empty',1);
 const legend=el('g');el('line',{x1:720,y1:745,x2:746,y2:745,stroke:'#204c67','stroke-width':3},legend);const lt=el('text',{x:754,y:750,class:'legend'},legend);lt.textContent='No deadline';
 el('line',{x1:890,y1:745,x2:916,y2:745,stroke:'#555','stroke-width':1},legend);el('line',{x1:890,y1:741,x2:890,y2:749,stroke:'#555','stroke-width':1},legend);el('line',{x1:916,y1:741,x2:916,y2:749,stroke:'#555','stroke-width':1},legend);const tw=el('text',{x:924,y:750,class:'legend'},legend);tw.textContent='10th–90th percentile';
-function selectYear(year){document.querySelectorAll('.series,.no-date,.annual-whisker').forEach(n=>{const reference=n.classList.contains('no-date');n.classList.toggle('dim',year!==null&&!reference&&n.dataset.year!==String(year));n.classList.toggle('active',n.classList.contains('annual-whisker')&&year!==null&&n.dataset.year===String(year));});document.querySelectorAll('.year-key').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.year===String(pinned))));}
-document.querySelectorAll('.year-key').forEach((b,i)=>{b.style.setProperty('--year-color',colors[i]);b.addEventListener('mouseenter',()=>{if(!pinned)selectYear(b.dataset.year)});b.addEventListener('mouseleave',()=>{if(!pinned)selectYear(null)});b.addEventListener('focus',()=>{if(!pinned)selectYear(b.dataset.year)});b.addEventListener('blur',()=>{if(!pinned)selectYear(null)});b.addEventListener('click',()=>{pinned=pinned===b.dataset.year?null:b.dataset.year;selectYear(pinned)});});
-let pinned=null;lineEls.filter(n=>n.classList.contains('series')).forEach(n=>{n.addEventListener('mouseenter',()=>{if(!pinned)selectYear(n.dataset.year)});n.addEventListener('mouseleave',()=>{if(!pinned)selectYear(null)});});
+let pinned=null,hovered=null,focused=null;
+function selectYear(year){document.querySelectorAll('.series,.annual-whisker').forEach(n=>{const selected=year!==null&&n.dataset.year===String(year);n.classList.toggle('dim',year!==null&&!selected);n.classList.toggle('active',selected);});document.querySelectorAll('.year-key').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.year===String(pinned))));}
+const wrap=document.querySelector('.wrap');
+wrap.addEventListener('pointerover',event=>{const button=event.target.closest('.year-key');if(button){hovered=button.dataset.year;if(!pinned)selectYear(hovered);}});
+wrap.addEventListener('pointerleave',()=>{hovered=null;if(!pinned)selectYear(focused);});
+document.querySelectorAll('.year-key').forEach((b,i)=>{b.style.setProperty('--year-color',colors[i]);b.addEventListener('focus',()=>{focused=b.dataset.year;if(!pinned)selectYear(focused);});b.addEventListener('blur',()=>{focused=null;if(!pinned)selectYear(hovered);});b.addEventListener('click',()=>{pinned=pinned===b.dataset.year?null:b.dataset.year;selectYear(pinned||hovered||focused);});});
 const sendHeight=()=>parent.postMessage({kind:'bitcoin-chart-height',height:Math.ceil(document.querySelector('.wrap').scrollHeight+4)},location.origin);
 if(parent!==window){new ResizeObserver(sendHeight).observe(document.querySelector('.wrap'));window.addEventListener('load',sendHeight);sendHeight();}
 </script></html>
