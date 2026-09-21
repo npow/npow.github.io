@@ -15,7 +15,7 @@ Reaching $100 million means passing $1 million, so the higher target should get 
 
 I then filled both fields with matching definitions: a hit at least once in the period for “true,” and no hit for “false.” The no-deadline $20 million estimate went from 59% to 40%; at $1 million, it went from 14% to 39%.
 
-The chart sweeps 17 Bitcoin targets from $50,000 to $100 million, with every year-end deadline from 2026 through 2050 plus no deadline. Each point averages 100 calls. Select a year to focus its line while the no-deadline line stays visible; whiskers show the 10th–90th percentile range.
+The chart sweeps 17 Bitcoin targets from $50,000 to $100 million, with every year-end deadline from 2026 through 2050 plus no deadline. Each point averages 100 calls. Hover over a year to isolate its line; all other lines fade until you move away. Whiskers show the 10th–90th percentile range.
 
 <iframe src="/posts/jev-calibration/bitcoin-sweep.html" title="Bitcoin target probabilities by year and criteria" style="width:100%;height:620px;border:0" loading="lazy"></iframe>
 <script>

@@ -12,7 +12,7 @@ svg{display:block;width:100%;height:auto;overflow:visible}.panel-title{font-size
 @media(max-width:650px){.wrap{padding:8px 4px}.year-key{font-size:11px;padding:2px}.tick{font-size:11px}.xlab{font-size:10px}.panel-title{font-size:17px}.legend{font-size:11px}}
 </style>
 <div class="wrap">
-<p class="guide">Hover over a year to highlight its line across both panels; other years fade. The no-deadline line stays visible for reference. Click a year to pin it.</p>
+<p class="guide">Hover over a year to isolate its line across both panels; every other line fades. Move off the chart to restore all lines. Click a year to pin it.</p>
 <div class="keys" aria-label="Annual deadline years"><button type="button" class="year-key" data-year="2026" style="--year-color:hsl(270,62%,42%)" aria-pressed="false">2026</button>
 <button type="button" class="year-key" data-year="2027" style="--year-color:hsl(259,62%,42%)" aria-pressed="false">2027</button>
 <button type="button" class="year-key" data-year="2028" style="--year-color:hsl(248,62%,42%)" aria-pressed="false">2028</button>
@@ -71,7 +71,7 @@ renderPanel('defined','True/false definitions supplied',0);renderPanel('blank','
 const legend=el('g');el('line',{x1:720,y1:745,x2:746,y2:745,stroke:'#204c67','stroke-width':3},legend);const lt=el('text',{x:754,y:750,class:'legend'},legend);lt.textContent='No deadline';
 el('line',{x1:890,y1:745,x2:916,y2:745,stroke:'#555','stroke-width':1},legend);el('line',{x1:890,y1:741,x2:890,y2:749,stroke:'#555','stroke-width':1},legend);el('line',{x1:916,y1:741,x2:916,y2:749,stroke:'#555','stroke-width':1},legend);const tw=el('text',{x:924,y:750,class:'legend'},legend);tw.textContent='10th–90th percentile';
 let pinned=null,hovered=null,focused=null;
-function selectYear(year){document.querySelectorAll('.series,.annual-whisker').forEach(n=>{const selected=year!==null&&n.dataset.year===String(year);n.classList.toggle('dim',year!==null&&!selected);n.classList.toggle('active',selected);});document.querySelectorAll('.year-key').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.year===String(pinned))));}
+function selectYear(year){document.querySelectorAll('.series,.no-date,.annual-whisker').forEach(n=>{const selected=year!==null&&(n.classList.contains('series')||n.classList.contains('annual-whisker'))&&n.dataset.year===String(year);n.classList.toggle('dim',year!==null&&!selected);n.classList.toggle('active',selected);});document.querySelectorAll('.year-key').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.year===String(pinned))));}
 const wrap=document.querySelector('.wrap');
 wrap.addEventListener('pointerover',event=>{const button=event.target.closest('.year-key');if(button){hovered=button.dataset.year;if(!pinned)selectYear(hovered);}});
 wrap.addEventListener('pointerleave',()=>{hovered=null;if(!pinned)selectYear(focused);});
