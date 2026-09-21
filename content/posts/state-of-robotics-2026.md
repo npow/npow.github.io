@@ -1,19 +1,19 @@
 +++
 title = "The State of Robotics (September 2026)"
 date = 2026-05-31
-lastmod = 2026-09-09
+lastmod = 2026-09-20
 draft = false
 tags = ["robotics", "physical-ai", "data-analysis", "state-of-the-field"]
-description = "A field briefing on the physical-AI industry as of September 2026: 2,538 companies across 24 use cases — where the money and talent sit, when it was built, where the AI actually runs — plus a browsable directory of every company."
-summary = "A field briefing on the physical-AI industry as of September 2026: 2,538 companies across 24 use cases — where the money and talent sit, when it was built, where the AI runs — plus a browsable directory."
+description = "A September 2026 census of 2,538 robotics and physical-AI companies across 24 use cases, with funding, hiring, geography, deployment, and an interactive company directory."
+summary = "A September 2026 census of 2,538 robotics and physical-AI companies across 24 use cases, with funding, hiring, geography, deployment, and an interactive company directory."
 ShowToc = false
 +++
 
-A fast way to get your bearings in the physical-AI industry. I mapped **2,538 companies across 24 use-case types** — what each builds, where it's based, what it's raised, and when it was founded — and turned it into an interactive briefing: the shape of the field, where the money and talent concentrate, when it all got built, where the "thinking" actually runs (on the robot vs. the cloud), and a browsable directory of every company.
+A guide to the companies building robots and the software that helps them act in the physical world. This September 2026 census covers **2,538 companies across 24 use-case types**. For each company, it records what it builds, where it is based, disclosed funding, and founding year. The interactive report maps the field, funding, hiring, geography, and where robot AI runs, with a directory of the companies included.
 
-It's a **best-effort census** (September 2026), not a complete registry — coverage skews to companies with a web/English footprint, the long tail is undercounted, and funding is disclosed for only a minority — so treat the shapes as *directional*, not exact. This post and its embedded chart update in place as the census is refreshed; the original May 2026 edition is preserved at **[the archived snapshot ↗](/robotics/may-2026.html)**.
+This is a **best-effort census**, not a complete registry. It is more likely to include companies with an English-language web presence; smaller, regional, and stealth companies are undercounted. Most companies do not disclose funding, so funding totals are incomplete and all patterns are directional. This post and its chart update as the census changes. The original May 2026 edition is preserved in [the archive](/robotics/may-2026.html).
 
-Below is the field at a glance: **every kind of robot, sized by the capital it's raised** (flip the toggle to company count). For the rest — money flows, the live hiring signal, geography, deployment reality, and a browsable directory of all 2,538 companies — **[open the full report ↗](/robotics/)**.
+The chart below shows companies grouped by the kind of work their robots do. Tile size represents disclosed funding by default; switch to company count with the buttons above it. The [full report](/robotics/) includes funding trends, a May 2026 snapshot of job postings, geography, deployment status, and the company directory.
 
 <style>
 .sor-embed{ width:min(94vw,1024px); background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px 16px 12px; margin:20px 0 6px; margin-left:50%; transform:translateX(-50%); }
