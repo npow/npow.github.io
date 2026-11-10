@@ -1,0 +1,1547 @@
+[
+  {
+    "category": "Fleet operations",
+    "name": "InOrbit",
+    "application": "Mixed fleets",
+    "description": "Fleet monitoring, mission context, remote actions and configured teleoperation.",
+    "url": "https://www.inorbit.ai/operations",
+    "checked": "2026-11-10",
+    "capital": {
+      "amount_m": null,
+      "currency": "USD",
+      "date": "2025-09-30",
+      "kind": "Series A; amount undisclosed",
+      "url": "https://www.inorbit.ai/press/series-a-investment",
+      "note": "Co-led by L’ATTITUDE Ventures and Globant Ventures.",
+      "total_m": null
+    },
+    "jobs": [
+      {
+        "title": "Forward Deployed Engineer",
+        "url": "https://www.inorbit.ai/apply-forward-deployed-engineer",
+        "signal": "Platform & deployment",
+        "location": "US; customer-site travel"
+      }
+    ],
+    "hiring_note": "Selected live listings checked November 10, 2026; not a full headcount or vacancy count.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Turn customer-specific integrations into repeatable factory and warehouse workflows.",
+      "edge": "The deployment role joins robot fleets to WMS, MES and ERP systems; those integrations can make replacement costly.",
+      "risk": "Forward-deployed work can become a services bottleneck unless the next customer reuses the previous integration.",
+      "peers": [
+        "Formant",
+        "Viam"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://www.inorbit.ai/apply-forward-deployed-engineer"
+        },
+        {
+          "label": "Evidence 2",
+          "url": "https://www.inorbit.ai/press/series-a-investment"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Fleet operations",
+    "name": "Formant",
+    "application": "Mixed fleets",
+    "description": "Observability, intervention requests and configured teleoperation interfaces.",
+    "url": "https://www.formant.ai/operations",
+    "checked": "2026-11-10",
+    "capital": {
+      "amount_m": 21,
+      "currency": "USD",
+      "date": "2023-10-11",
+      "kind": "Funding round",
+      "url": "https://www.prnewswire.com/news-releases/formants-explosive-enterprise-growth-attracts-new-investment-led-by-bmw-i-ventures-joined-by-intel-capital-and-gs-futures-301952771.html",
+      "note": "BMW i Ventures led; this is a dated round, not a current cash balance.",
+      "total_m": null
+    },
+    "jobs": [
+      {
+        "title": "Founding Account Executive — Physical AI",
+        "url": "https://ats.rippling.com/formant-careers/jobs/758ad102-662d-4b2e-be24-cc35b0c3c460",
+        "signal": "Enterprise sales",
+        "location": "San Francisco"
+      }
+    ],
+    "hiring_note": "Selected live listings checked November 10, 2026; not a full headcount or vacancy count.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Build a repeatable sales motion into AI labs, OEMs and integrators. The current sales role explicitly asks the hire to discover that motion.",
+      "edge": "Existing fleet observability and customer workflows offer a starting point against new recovery consoles.",
+      "risk": "Viam is recruiting into fleet management; InOrbit targets enterprise orchestration. Formant has to retain the operating relationship as the stack broadens.",
+      "peers": [
+        "InOrbit",
+        "Viam"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://www.formant.ai/about"
+        },
+        {
+          "label": "Evidence 2",
+          "url": "https://ats.rippling.com/formant-careers/jobs/758ad102-662d-4b2e-be24-cc35b0c3c460"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Fleet operations",
+    "name": "Avea Robotics",
+    "application": "Mixed fleets",
+    "description": "Sentinel combines remote recovery, episode capture and rollout evaluation.",
+    "url": "https://www.avearobotics.com/",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Acquired, per YC",
+    "analysis": {
+      "direction": "Historical or acquired entry; see status source before treating it as a standalone supplier.",
+      "edge": "No current standalone competitive assessment.",
+      "risk": "Acquired, per YC",
+      "peers": [],
+      "sources": [
+        {
+          "label": "Status",
+          "url": "https://www.ycombinator.com/companies/avea-robotics"
+        }
+      ]
+    },
+    "status_source": "https://www.ycombinator.com/companies/avea-robotics"
+  },
+  {
+    "category": "Fleet operations",
+    "name": "CTRL+R",
+    "application": "Mixed fleets",
+    "description": "Browser teleoperation, fleet monitoring, logs and configurable ROS commands.",
+    "url": "https://www.ctrlr.cloud/platform",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Unify robot and device operations behind one interface.",
+      "edge": "A ROS-facing integration approach can consolidate heterogeneous hardware.",
+      "risk": "Supported-brand lists are not equivalent to validated deployments on every robot.",
+      "peers": [
+        "InOrbit",
+        "Formant"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://www.ctrlr.cloud/platform"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Connectivity and controls",
+    "name": "FORT Robotics / Mapless AI",
+    "application": "Industrial mobility",
+    "description": "Safety controls with teleoperation and autonomy supervision; Mapless AI was acquired.",
+    "url": "https://www.fortrobotics.com/news/fort-acquires-mapless-ai",
+    "checked": "2026-11-10",
+    "capital": {
+      "amount_m": 20,
+      "currency": "USD",
+      "date": "2026-10-22",
+      "kind": "New commitments",
+      "url": "https://www.fortrobotics.com/news/fort-robotics-secures-approximately-20-million-in-additional-funding-led-by-tiger-global-and-mark-cuban-companies",
+      "note": "Approximately $10M financing expected to close that week plus $10M additional merger PIPE commitment. Not treated as closed funding.",
+      "total_m": null
+    },
+    "jobs": [
+      {
+        "title": "Functional Safety Manager",
+        "url": "https://job-boards.greenhouse.io/fortrobotics/jobs/4736658005",
+        "signal": "Safety & embedded systems",
+        "location": "Remote"
+      },
+      {
+        "title": "Embedded Software Engineer II",
+        "url": "https://job-boards.greenhouse.io/fortrobotics/jobs/4744297005",
+        "signal": "Safety & embedded systems",
+        "location": "Philadelphia, PA"
+      },
+      {
+        "title": "Embedded Test and Validation Engineer",
+        "url": "https://job-boards.greenhouse.io/fortrobotics/jobs/4749921005",
+        "signal": "Safety & embedded systems",
+        "location": "Philadelphia, PA"
+      }
+    ],
+    "hiring_note": "Selected live listings checked November 10, 2026; not a full headcount or vacancy count.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Expand from safety hardware into connectivity, remote operations and recurring software. A public listing remains proposed.",
+      "edge": "Safety engineering and validation requirements give it a different entry point from a browser teleop console.",
+      "risk": "The safety advantage does not establish superiority in video transport or operator workflow; merger commitments are not cash already received.",
+      "peers": [
+        "Ottopia",
+        "DriveU.auto"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://www.fortrobotics.com/news/fort-robotics-secures-approximately-20-million-in-additional-funding-led-by-tiger-global-and-mark-cuban-companies"
+        },
+        {
+          "label": "Evidence 2",
+          "url": "https://job-boards.greenhouse.io/fortrobotics/jobs/4736658005"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Integrated robot operations",
+    "name": "Boston Dynamics",
+    "application": "Inspection",
+    "description": "Scout supports remote Spot operation and autonomous mission management.",
+    "url": "https://bostondynamics.com/news/boston-dynamics-expands-spot-product-line/",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Offer remote inspection and mission operation around Spot.",
+      "edge": "Hardware, mission software and support belong to the same vendor ecosystem.",
+      "risk": "Scout is not a neutral control layer for rival robot bodies.",
+      "peers": [
+        "Formant",
+        "InOrbit"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://bostondynamics.com/news/boston-dynamics-expands-spot-product-line/"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Integrated robot operations",
+    "name": "Waymo",
+    "application": "Road vehicles",
+    "description": "Fleet response supplies human context while the automated driver retains control.",
+    "url": "https://waymo.com/2024/05/fleet-response/",
+    "checked": "2026-11-10",
+    "capital": {
+      "amount_m": 16000,
+      "currency": "USD",
+      "date": "2026-02-02",
+      "kind": "Investment round",
+      "url": "https://waymo.com/blog/2026/02/waymo-raises-usd16-billion-investment-round/",
+      "note": "Whole autonomous-driving business; excluded from the specialist funding chart.",
+      "total_m": null
+    },
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Expand its autonomous-driving service with substantial company financing.",
+      "edge": "Its fleet-response system is coupled to its own autonomy and operating network.",
+      "risk": "The capital is for the whole driving business, not a budget available to intervention vendors.",
+      "peers": [
+        "Aurora"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://waymo.com/2024/05/fleet-response/"
+        },
+        {
+          "label": "Financing",
+          "url": "https://waymo.com/blog/2026/02/waymo-raises-usd16-billion-investment-round/"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Integrated robot operations",
+    "name": "Aurora",
+    "application": "Road vehicles",
+    "description": "Remote specialists suggest actions to the autonomous driving system.",
+    "url": "https://ir.aurora.tech/_assets/_8a4e3a8d916b559e5cf30d6b9e7ec546/aurora/db/937/9838/pdf/Aurora_Driverless_Safety_Report_2025.pdf",
+    "checked": "2026-11-10",
+    "capital": {
+      "amount_m": 277,
+      "currency": "USD",
+      "date": "2026-09-30",
+      "kind": "Equity sold, first nine months of 2026",
+      "url": "https://ir.aurora.tech/sec-filings/all-sec-filings/content/0001828108-26-000094/aur-20260930.htm",
+      "note": "Gross ATM equity proceeds; not a venture round or intervention budget.",
+      "total_m": null
+    },
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Public company",
+    "analysis": {
+      "direction": "Commercialize autonomous trucking with remote assistance inside the vehicle stack.",
+      "edge": "Domain-specific autonomy and fleet operations are tightly integrated.",
+      "risk": "Public-market capital raises cannot be read as standalone teleoperation economics.",
+      "peers": [
+        "Waymo",
+        "FERNRIDE"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://ir.aurora.tech/_assets/_8a4e3a8d916b559e5cf30d6b9e7ec546/aurora/db/937/9838/pdf/Aurora_Driverless_Safety_Report_2025.pdf"
+        },
+        {
+          "label": "Equity proceeds",
+          "url": "https://ir.aurora.tech/sec-filings/all-sec-filings/content/0001828108-26-000094/aur-20260930.htm"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Integrated robot operations",
+    "name": "Coco Robotics",
+    "application": "Delivery",
+    "description": "Remote monitoring and human intervention for sidewalk delivery.",
+    "url": "https://www.cocodelivery.com/blog/scaling-physical-ai-for-sidewalk-autonomy",
+    "checked": "2026-11-10",
+    "capital": {
+      "amount_m": 80,
+      "currency": "USD",
+      "date": "2025-06-11",
+      "kind": "Financing announcement",
+      "url": "https://www.prnewswire.com/news-releases/coco-robotics-raises-80m-to-expand-autonomous-delivery-and-ai-platform-302478405.html",
+      "note": "Spans multiple funding events according to spokesperson clarification reported by TechCrunch; excluded from the single-round chart.",
+      "total_m": null,
+      "clarification_url": "https://techcrunch.com/2025/06/11/sam-altman-backed-coco-robotics-raises-80m/"
+    },
+    "jobs": [
+      {
+        "title": "Head of Service Operations",
+        "url": "https://jobs.ashbyhq.com/cocodelivery/6f701c03-581a-4796-b78e-dd62700d03d0",
+        "signal": "Fleet expansion",
+        "location": "LA"
+      },
+      {
+        "title": "Robot Delivery Technician",
+        "url": "https://jobs.ashbyhq.com/cocodelivery/af56d6ad-f4ef-42ae-ba4e-f2908505286a",
+        "signal": "Fleet expansion",
+        "location": "Miami"
+      }
+    ],
+    "hiring_note": "Selected live listings checked November 10, 2026; not a full headcount or vacancy count.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Expand delivery operations into more cities while improving autonomy. Live roles include service leadership and city technicians.",
+      "edge": "Delivery relationships and local operating infrastructure can matter as much as the robot itself.",
+      "risk": "Starship and Serve compete on the same customer routes; expansion creates maintenance and recovery costs before autonomy removes them.",
+      "peers": [
+        "Starship Technologies",
+        "Serve Robotics"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://www.cocodelivery.com/blog/wolt-and-coco-launch-robot-deliveries-in-turku"
+        },
+        {
+          "label": "Evidence 2",
+          "url": "https://jobs.ashbyhq.com/cocodelivery/6f701c03-581a-4796-b78e-dd62700d03d0"
+        },
+        {
+          "label": "Evidence 3",
+          "url": "https://jobs.ashbyhq.com/cocodelivery/af56d6ad-f4ef-42ae-ba4e-f2908505286a"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Integrated robot operations",
+    "name": "Starship Technologies",
+    "application": "Delivery",
+    "description": "Remote assistants support the company's delivery robots.",
+    "url": "https://www.starship.xyz/",
+    "checked": "2026-11-10",
+    "capital": {
+      "amount_m": 50,
+      "currency": "USD",
+      "date": "2025-11-11",
+      "kind": "Series C; investor confirmation",
+      "url": "https://jimco.com/en/news/jimco-participates-in-starships-us-50-million-series-c-funding-round/",
+      "note": "Date is JIMCO’s confirmation of the round. Whole delivery business financing.",
+      "total_m": null
+    },
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Expand a delivery network supported by its disclosed Series C.",
+      "edge": "An established operating footprint and retailer relationships can strengthen route economics.",
+      "risk": "Coco and Serve compete for similar deliveries; financing does not reveal intervention cost per order.",
+      "peers": [
+        "Coco Robotics",
+        "Serve Robotics"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://www.starship.xyz/"
+        },
+        {
+          "label": "Investor announcement",
+          "url": "https://jimco.com/en/news/jimco-participates-in-starships-us-50-million-series-c-funding-round/"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Integrated robot operations",
+    "name": "Serve Robotics",
+    "application": "Delivery",
+    "description": "Delivery fleet operator; acquired Voysys and selected Phantom Auto assets.",
+    "url": "https://serverobotics.gcs-web.com/news-releases/news-release-details/following-acquisition-phantom-auto-serve-robotics-adds-voysys",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Public company",
+    "analysis": {
+      "direction": "Integrate acquired teleoperation technology into its delivery operation.",
+      "edge": "Owning Voysys can reduce dependence on a separate control supplier.",
+      "risk": "Acquisition alone does not establish lower recovery costs than rival fleets.",
+      "peers": [
+        "Coco Robotics",
+        "Starship Technologies"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://serverobotics.gcs-web.com/news-releases/news-release-details/following-acquisition-phantom-auto-serve-robotics-adds-voysys"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Integrated robot operations",
+    "name": "FERNRIDE",
+    "application": "Industrial mobility",
+    "description": "Truck autonomy with remote human oversight and support.",
+    "url": "https://www.fernride.com/our-platform",
+    "checked": "2026-11-10",
+    "capital": {
+      "amount_m": 75,
+      "currency": "EUR",
+      "date": "2026-11-10",
+      "kind": "Historical venture funding, more than",
+      "url": "https://www.fernride.com/company",
+      "note": "Company states more than €75M raised before acquisition; check date, not a financing date.",
+      "total_m": null
+    },
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Acquired by Quantum Systems",
+    "analysis": {
+      "direction": "Extend ground autonomy within Quantum Systems following acquisition.",
+      "edge": "Structured industrial deployments provide a different starting environment from public-road autonomy.",
+      "risk": "Its ownership and defense direction make it a different comparison from an independent teleop software vendor.",
+      "peers": [
+        "Ottopia",
+        "Roboauto"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://www.fernride.com/company"
+        }
+      ]
+    },
+    "status_source": "https://www.fernride.com/company"
+  },
+  {
+    "category": "Integrated robot operations",
+    "name": "1X",
+    "application": "Home",
+    "description": "NEO combines autonomy, scheduled expert support and remote piloting.",
+    "url": "https://www.1x.tech/neo",
+    "checked": "2026-11-10",
+    "capital": {
+      "amount_m": 100,
+      "currency": "USD",
+      "date": "2024-01-13",
+      "kind": "Series B",
+      "url": "https://www.1x.tech/discover/1x-secures-100m-in-series-b-funding",
+      "note": "Historical company round. Later total not verified; financing supports NEO and other company activities.",
+      "total_m": null
+    },
+    "jobs": [
+      {
+        "title": "Staff Graphics Engineer - VR Teleoperation",
+        "url": "https://jobs.ashbyhq.com/1x/826a14af-fe83-43c9-a9e3-27c8956d7fc6",
+        "signal": "Models & data",
+        "location": "San Carlos, CA"
+      },
+      {
+        "title": "Operator - Data Collection (Swing Shift)",
+        "url": "https://jobs.ashbyhq.com/1x/84efa580-016a-431c-aaa3-1a744bdef6d7",
+        "signal": "Models & data",
+        "location": "San Carlos, CA"
+      },
+      {
+        "title": "AI Researcher - Robot Learning",
+        "url": "https://jobs.ashbyhq.com/1x/a5ad1287-e0a0-471d-9a65-cc24c62b6664",
+        "signal": "Models & data",
+        "location": "San Carlos, CA"
+      }
+    ],
+    "hiring_note": "Selected live listings checked November 10, 2026; not a full headcount or vacancy count.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Develop NEO with a parallel effort in robot learning, data collection and VR teleoperation.",
+      "edge": "An integrated body and data-collection process let the team change hardware and training together.",
+      "risk": "Home environments are diverse; data volume alone does not establish reliable assistance across homes.",
+      "peers": [
+        "Telexistence",
+        "Eden Robotics"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://www.1x.tech/discover/1x-secures-100m-in-series-b-funding"
+        },
+        {
+          "label": "Evidence 2",
+          "url": "https://jobs.ashbyhq.com/1x/826a14af-fe83-43c9-a9e3-27c8956d7fc6"
+        },
+        {
+          "label": "Evidence 3",
+          "url": "https://jobs.ashbyhq.com/1x/84efa580-016a-431c-aaa3-1a744bdef6d7"
+        },
+        {
+          "label": "Evidence 4",
+          "url": "https://jobs.ashbyhq.com/1x/a5ad1287-e0a0-471d-9a65-cc24c62b6664"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Integrated robot operations",
+    "name": "Telexistence",
+    "application": "Retail",
+    "description": "Retail stocking robots use remote human recovery for failures.",
+    "url": "https://tx-inc.com/en/blog/2021/11/02/11451/",
+    "checked": "2026-11-10",
+    "capital": {
+      "amount_m": 170,
+      "currency": "USD",
+      "date": "2023-07-06",
+      "kind": "Series B",
+      "url": "https://tx-inc.com/en/blog/2023/07/06/12082/",
+      "note": "Round included SoftBank Group, Foxconn-associated capital and existing investors.",
+      "total_m": null
+    },
+    "jobs": [
+      {
+        "title": "VP of Robotic Foundation Model",
+        "url": "https://jobs.lever.co/tx-inc.com/819724df-476a-43c5-9643-70fb8d8f1b6e",
+        "signal": "Models & data",
+        "location": "Tokyo"
+      },
+      {
+        "title": "VP of Robotics System Engineering, Humanoid Team",
+        "url": "https://jobs.lever.co/tx-inc.com/ab280654-8bca-4335-9744-aa2ef4e66d66",
+        "signal": "Models & data",
+        "location": "Tokyo"
+      },
+      {
+        "title": "Data Foundry Expert",
+        "url": "https://jobs.lever.co/tx-inc.com/78b1d6ae-9d4d-4a6e-aee6-9a8a0e5990af",
+        "signal": "Models & data",
+        "location": "Tokyo"
+      }
+    ],
+    "hiring_note": "Selected live listings checked November 10, 2026; not a full headcount or vacancy count.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Use retail deployments and data collection to build foundation models and humanoids. Astra’s Seven-Eleven deployment is targeted for 2029.",
+      "edge": "Owning robots, retail integration, operators and data gives a tighter feedback loop than a data-only supplier.",
+      "risk": "The value of stocking data for broader tasks still has to be demonstrated; the humanoid program adds hardware and model risk.",
+      "peers": [
+        "1X",
+        "Contoro Robotics",
+        "PrismaX"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://tx-inc.com/en/blog/2025/09/30/12542/"
+        },
+        {
+          "label": "Evidence 2",
+          "url": "https://jobs.lever.co/tx-inc.com/819724df-476a-43c5-9643-70fb8d8f1b6e"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Integrated robot operations",
+    "name": "Contoro Robotics",
+    "application": "Warehouse manipulation",
+    "description": "Container and trailer unloading with human intervention for edge cases.",
+    "url": "https://contoro.com/technology/",
+    "checked": "2026-11-10",
+    "capital": {
+      "amount_m": 12,
+      "currency": "USD",
+      "date": "2025-03-25",
+      "kind": "Series A",
+      "url": "https://www.globenewswire.com/news-release/2025/03/25/3049120/0/en/Contoro-Robotics-Secures-12M-Series-A-to-Bring-AI-Powered-Trailer-Unloading-to-Scale.html",
+      "note": "Company reported $22M cumulative funding at this announcement.",
+      "total_m": 22
+    },
+    "jobs": [
+      {
+        "title": "Sr. Robotics Engineer, Motion Planning",
+        "url": "https://jobs.ashbyhq.com/contoro/ad34a874-deb3-4bc0-959b-87650ac1a219",
+        "signal": "Deployment & reliability",
+        "location": "Austin, TX"
+      },
+      {
+        "title": "Robotics Field Service Technician [IN]",
+        "url": "https://jobs.ashbyhq.com/contoro/ade19192-d35a-4416-a7c6-cbd664174518",
+        "signal": "Deployment & reliability",
+        "location": "Indianapolis, IN"
+      },
+      {
+        "title": "Engineering Technician, Manufacturing",
+        "url": "https://jobs.ashbyhq.com/contoro/55843bb3-c052-4941-9091-53a559c2d3eb",
+        "signal": "Deployment & reliability",
+        "location": "Austin, TX"
+      }
+    ],
+    "hiring_note": "Selected live listings checked November 10, 2026; not a full headcount or vacancy count.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Make unloading reliable enough to replicate across customer sites; hiring combines motion planning, field service and manufacturing.",
+      "edge": "A bounded warehouse task aligns robot design, recovery procedures and customer economics.",
+      "risk": "Local service needs can consume margin. Avatar and Extend pursue broader labor substitution, while Contoro must win depth in unloading.",
+      "peers": [
+        "Avatar Robotics",
+        "Extend Robotics"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://www.globenewswire.com/news-release/2025/03/25/3049120/0/en/Contoro-Robotics-Secures-12M-Series-A-to-Bring-AI-Powered-Trailer-Unloading-to-Scale.html"
+        },
+        {
+          "label": "Evidence 2",
+          "url": "https://jobs.ashbyhq.com/contoro/ad34a874-deb3-4bc0-959b-87650ac1a219"
+        },
+        {
+          "label": "Evidence 3",
+          "url": "https://jobs.ashbyhq.com/contoro/ade19192-d35a-4416-a7c6-cbd664174518"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Integrated robot operations",
+    "name": "Avatar Robotics",
+    "application": "Warehouse manipulation",
+    "description": "Warehouse robots paired with distributed human operators and AI autonomy.",
+    "url": "https://www.avatarrobotics.com/platform",
+    "checked": "2026-11-10",
+    "capital": {
+      "amount_m": 6.5,
+      "currency": "USD",
+      "date": "2026-08-05",
+      "kind": "Seed",
+      "url": "https://www.prnewswire.com/news-releases/avatar-robotics-raises-6-5-million-seed-to-build-the-unlimited-industrial-workforce-302843349.html",
+      "note": "Led by AlleyCorp; an earlier pre-seed was also mentioned without an amount.",
+      "total_m": null
+    },
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Scale industrial labor supplied through robots, human operators and autonomy.",
+      "edge": "Selling a labor service can reduce the customer’s need to assemble hardware and operations separately.",
+      "risk": "Against Contoro’s narrow unloading focus, a broader task menu demands more integrations and operator procedures.",
+      "peers": [
+        "Contoro Robotics",
+        "Extend Robotics",
+        "Eden Robotics"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://www.prnewswire.com/news-releases/avatar-robotics-raises-6-5-million-seed-to-build-the-unlimited-industrial-workforce-302843349.html"
+        },
+        {
+          "label": "Evidence 2",
+          "url": "https://www.avatarrobotics.com/platform"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Integrated robot operations",
+    "name": "Eden Robotics",
+    "application": "Mixed fleets",
+    "description": "Robot offering describes autonomy, teleoperation and fleet coordination.",
+    "url": "https://edenrobotics.ai/press/eden-robotics-teleoperation-and-autonomy",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [
+      {
+        "title": "AI Engineer (VLAs)",
+        "url": "https://edenrobotics.ai/about/careers",
+        "signal": "Control & autonomy",
+        "location": "San Francisco"
+      },
+      {
+        "title": "Communications Engineer",
+        "url": "https://edenrobotics.ai/about/careers",
+        "signal": "Control & autonomy",
+        "location": "San Francisco"
+      },
+      {
+        "title": "VR Engineer",
+        "url": "https://edenrobotics.ai/about/careers",
+        "signal": "Control & autonomy",
+        "location": "San Francisco"
+      }
+    ],
+    "hiring_note": "Selected live listings checked November 10, 2026; not a full headcount or vacancy count.",
+    "status": "YC-backed private company",
+    "analysis": {
+      "direction": "Build VLA, communications and VR capabilities together for industrial robot services.",
+      "edge": "The integrated service gives one team responsibility for robot behavior and human fallback.",
+      "risk": "Hiring spans several hard disciplines; the public roles do not prove deployment reliability or economic advantage.",
+      "peers": [
+        "Avatar Robotics",
+        "Extend Robotics"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://edenrobotics.ai/about/careers"
+        },
+        {
+          "label": "Evidence 2",
+          "url": "https://www.ycombinator.com/companies/eden-robotics"
+        }
+      ]
+    },
+    "status_source": "https://www.ycombinator.com/companies/eden-robotics"
+  },
+  {
+    "category": "Integrated robot operations",
+    "name": "Sensori Robotics",
+    "application": "Manipulation",
+    "description": "Bimanual robot with force-feedback leader arms, VR control and demonstration capture.",
+    "url": "https://sensorirobotics.com/specs",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Pair a bimanual robot with teleoperation and skill recording.",
+      "edge": "An integrated research platform can reduce the assembly work for manipulation experiments.",
+      "risk": "Funding, current hiring and production-scale reliability remain unverified.",
+      "peers": [
+        "1X",
+        "Eden Robotics"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://sensorirobotics.com/specs"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Staffed recovery",
+    "name": "Homebrew Robotics",
+    "application": "Mixed fleets",
+    "description": "Remote recovery service with incident records for analysis and training.",
+    "url": "https://www.homebrew.build/",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Focus on recovery events and auditable incident datasets.",
+      "edge": "Signed records and replay put emphasis on what happened during a failure.",
+      "risk": "Data provenance alone does not prove better policies or recovery economics.",
+      "peers": [
+        "Proxy Robotics",
+        "PrismaX"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://www.homebrew.build/"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Staffed recovery",
+    "name": "TeleOperator AI",
+    "application": "Mixed fleets",
+    "description": "Teleoperation software, trained remote operators and synchronized session records.",
+    "url": "https://www.teleoperator.ai/",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Offer software, operators and synchronized session records as one service.",
+      "edge": "Bundling can shorten setup for teams without an operations desk.",
+      "risk": "No independently verified deployment or hiring signal in this review.",
+      "peers": [
+        "Aktoria",
+        "Remotics"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://www.teleoperator.ai/"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Staffed recovery",
+    "name": "Aktoria",
+    "application": "Mixed fleets",
+    "description": "Remote-operation software, staffed coverage and teleoperation data.",
+    "url": "https://aktoria.com/",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [
+      {
+        "title": "Robot Learning Researcher (VLA / Foundation Models)",
+        "url": "https://www.ycombinator.com/companies/aktoria-robotics/jobs/WlROHB1-robot-learning-researcher-vla-foundation-models",
+        "signal": "Models & data",
+        "location": "San Francisco"
+      },
+      {
+        "title": "Egocentric Operations Lead",
+        "url": "https://www.ycombinator.com/companies/aktoria-robotics/jobs/eES62Ab-egocentric-operations-lead",
+        "signal": "Models & data",
+        "location": "Delhi"
+      }
+    ],
+    "hiring_note": "Selected live listings checked November 10, 2026; not a full headcount or vacancy count.",
+    "status": "YC-backed private company",
+    "analysis": {
+      "direction": "Build both data-collection operations and the model work that measures data quality.",
+      "edge": "Combining operator access with VLA research could connect collection decisions to downstream learning results.",
+      "risk": "The listed roles indicate intent, not proven model advantage. Data quality and customer access must distinguish it from other operator networks.",
+      "peers": [
+        "PrismaX",
+        "Remotics",
+        "TeleOperator AI"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://www.ycombinator.com/companies/aktoria-robotics/jobs/WlROHB1-robot-learning-researcher-vla-foundation-models"
+        },
+        {
+          "label": "Evidence 2",
+          "url": "https://www.ycombinator.com/companies/aktoria-robotics/jobs/eES62Ab-egocentric-operations-lead"
+        }
+      ]
+    },
+    "status_source": "https://www.ycombinator.com/companies/aktoria-robotics"
+  },
+  {
+    "category": "Staffed recovery",
+    "name": "Remotics",
+    "application": "Mixed fleets",
+    "description": "Teleoperation, autonomy supervision, engineering and field support.",
+    "url": "https://remotics.io/",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Combine Mexico-based operations with data and infrastructure services.",
+      "edge": "Nearshore coverage and field operations differentiate the offer from software-only consoles.",
+      "risk": "Company-reported scale and cost claims were not independently audited.",
+      "peers": [
+        "Aktoria",
+        "TeleOperator AI"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://remotics.io/"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Staffed recovery",
+    "name": "Adamo",
+    "application": "Mixed fleets",
+    "description": "Managed teleoperation for humanoids, arms, vehicles and mobile robots.",
+    "url": "https://adamohq.com/",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Combine a robotics networking protocol, cloud inference and operator access.",
+      "edge": "A custom protocol is a more technical position than staffing alone.",
+      "risk": "Public latency claims lack a common comparison setup in this review.",
+      "peers": [
+        "LiveKit Portal",
+        "Ottopia"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://adamohq.com/"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Staffed recovery",
+    "name": "Noos AI",
+    "application": "Infrastructure",
+    "description": "Takit teleoperation platform paired with a remote operations center.",
+    "url": "https://www.nooos.ai/",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Operate robots for energy and digital infrastructure.",
+      "edge": "Task and site specialization can support repeatable procedures.",
+      "risk": "Funding and current hiring remain unverified.",
+      "peers": [
+        "Remotics",
+        "Extend Robotics"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://www.nooos.ai/"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Staffed recovery",
+    "name": "Astro Robotics",
+    "application": "Retail",
+    "description": "Operator coverage for Telexistence retail robots, described in independent reporting.",
+    "url": "https://restofworld.org/2025/philippines-offshoring-automation-tech-jobs/",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Provide operators for retail robots.",
+      "edge": "A known retail operating context is more specific than a generic global operator promise.",
+      "risk": "Current financing and employer-verified job openings were not established.",
+      "peers": [
+        "Aktoria",
+        "Remotics"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://restofworld.org/2025/philippines-offshoring-automation-tech-jobs/"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Staffed recovery",
+    "name": "Proxy Robotics",
+    "application": "Mixed fleets",
+    "description": "Describes remote recovery and fleet monitoring.",
+    "url": "https://www.proxyrobotics.ai/",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Package remote demonstrations, deployment intervention and training workflows.",
+      "edge": "A single workflow may reduce integration between collection and deployment.",
+      "risk": "Public performance claims do not establish an advantage over rival operator networks.",
+      "peers": [
+        "Aktoria",
+        "Homebrew Robotics"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://www.proxyrobotics.ai/"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Developer platforms",
+    "name": "PrismaX",
+    "application": "Mixed fleets",
+    "description": "Robot teleoperation and on-demand training data, sold through a data library and enterprise collection contracts.",
+    "url": "https://prismax.ai/",
+    "checked": "2026-11-10",
+    "capital": {
+      "amount_m": 11,
+      "currency": "USD",
+      "date": "2025-06-16",
+      "kind": "Launch financing",
+      "url": "https://prismax.ai/blog/prismax-raises-11m-a16z-robotics-funding",
+      "note": "Led by a16z CSX; announced as completed funding.",
+      "total_m": null
+    },
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Sell task-specific robot data through subscriptions and enterprise collection contracts.",
+      "edge": "Its distribution and collection model can serve teams that do not want to own collection stations.",
+      "risk": "Competes with operator services and vertically integrated data sources; the decisive evidence would be downstream model improvement.",
+      "peers": [
+        "Aktoria",
+        "Telexistence"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://prismax.ai/"
+        },
+        {
+          "label": "Evidence 2",
+          "url": "https://prismax.ai/blog/prismax-raises-11m-a16z-robotics-funding"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Staffed recovery",
+    "name": "TeleOp",
+    "application": "Industrial work",
+    "description": "Markets industrial robotic work with remote human guidance.",
+    "url": "https://teleop.eu/",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Offer remotely guided industrial robotic work.",
+      "edge": "Industrial task specialization may simplify operator training and integration.",
+      "risk": "Current financing, hiring and deployment economics were not verified.",
+      "peers": [
+        "Extend Robotics"
+      ],
+      "sources": [
+        {
+          "label": "Company offering",
+          "url": "https://teleop.eu/"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Connectivity and controls",
+    "name": "Ottopia",
+    "application": "Road and industrial vehicles",
+    "description": "Remote assistance and teleoperation technology for mobility.",
+    "url": "https://www.ottopia.tech/markets",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [
+      {
+        "title": "Software Engineer — Office of the CTO",
+        "url": "https://www.ottopia.tech/careers",
+        "signal": "Realtime infrastructure",
+        "location": "Tel Aviv"
+      }
+    ],
+    "hiring_note": "Selected live listings checked November 10, 2026; not a full headcount or vacancy count.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Concentrate on commercial robotics after selling the defense business to Ondas in September 2026.",
+      "edge": "The CTO-office role targets congestion control, network bonding and adaptive video: difficult transport problems that generic streaming leaves to integrators.",
+      "risk": "DriveU.auto targets the same link; LiveKit supplies reusable realtime infrastructure. Customer integrations must justify a specialist product.",
+      "peers": [
+        "DriveU.auto",
+        "LiveKit Portal"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://www.ottopia.tech/blog-posts/defense-transaction"
+        },
+        {
+          "label": "Evidence 2",
+          "url": "https://www.ottopia.tech/careers"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Connectivity and controls",
+    "name": "DriveU.auto",
+    "application": "Road and industrial vehicles",
+    "description": "Video, audio, data and control connectivity for teleoperation.",
+    "url": "https://driveu.auto/teleoperation/driveu-100/",
+    "checked": "2026-11-10",
+    "capital": {
+      "amount_m": 4,
+      "currency": "USD",
+      "date": "2020-06-24",
+      "kind": "Funding round",
+      "url": "https://www.prnewswire.com/news-releases/driveuauto-raises-4m-to-deliver-superior-teleoperation-connectivity-for-autonomous-vehicles-301082749.html",
+      "note": "Historical disclosed round. Later total not verified.",
+      "total_m": null
+    },
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Keep the communication link usable across changing networks and vehicle deployments; no hiring-based roadmap verified.",
+      "edge": "LiveU heritage and a focus on cellular/video transport distinguish it from companies selling staff or fleet dashboards.",
+      "risk": "Ottopia overlaps in resilient networking. A robotics team may instead build on realtime components when its network requirements are simpler.",
+      "peers": [
+        "Ottopia",
+        "Transitive Robotics",
+        "LiveKit Portal"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://driveu.auto/teleoperation/driveu-100/"
+        },
+        {
+          "label": "Evidence 2",
+          "url": "https://www.prnewswire.com/news-releases/driveuauto-raises-4m-to-deliver-superior-teleoperation-connectivity-for-autonomous-vehicles-301082749.html"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Connectivity and controls",
+    "name": "Guident",
+    "application": "Road and industrial vehicles",
+    "description": "Remote monitoring and control-center software.",
+    "url": "https://guident.com/teleoperation",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Provide remote monitoring and control-center infrastructure.",
+      "edge": "Centralized supervision and connectivity partnerships are its stated focus.",
+      "risk": "A registration filing is not evidence of a completed IPO; current financing total was not verified.",
+      "peers": [
+        "Ottopia",
+        "DriveU.auto"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://guident.com/teleoperation"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Staffed recovery",
+    "name": "Extend Robotics",
+    "application": "Manipulation",
+    "description": "AMAS immersive control plus outcome-priced industrial work and a developing operator network.",
+    "url": "https://www.extendrobotics.com/",
+    "checked": "2026-11-10",
+    "capital": {
+      "amount_m": 2.6,
+      "currency": "GBP",
+      "date": "2026-09-28",
+      "kind": "Pre-A",
+      "url": "https://www.extendrobotics.com/post/extend-robotics-raises-2-6-million-to-let-manufacturers-hire-robots-by-the-outcome-not-buy-them-by",
+      "note": "Funds outcome-priced work and a remote operator network.",
+      "total_m": null
+    },
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Move from immersive controls toward selling completed industrial work and operating the supporting human network.",
+      "edge": "A hardware-neutral interface plus named industrial deployments gives it a route from integration to recurring work.",
+      "risk": "Outcome pricing makes task duration, operator utilization and failure recovery the supplier’s economic problem.",
+      "peers": [
+        "Avatar Robotics",
+        "Remotics",
+        "Contoro Robotics"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://www.extendrobotics.com/post/extend-robotics-raises-2-6-million-to-let-manufacturers-hire-robots-by-the-outcome-not-buy-them-by"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Connectivity and controls",
+    "name": "Transitive Robotics",
+    "application": "Mixed fleets",
+    "description": "Robot, cloud and browser components for video and remote control.",
+    "url": "https://transitiverobotics.com/",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Offer reusable robot-cloud-browser components.",
+      "edge": "Embeddable components let customers retain their own application and UI.",
+      "risk": "Customers still assemble the incident workflow and staffing around them.",
+      "peers": [
+        "LiveKit Portal",
+        "Formant"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://transitiverobotics.com/"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Connectivity and controls",
+    "name": "Remote Robotics",
+    "application": "Industrial work",
+    "description": "Remolink supports human-robot work sharing.",
+    "url": "https://www.remoterobotics.net/en/",
+    "checked": "2026-11-10",
+    "capital": {
+      "amount_m": 100,
+      "currency": "JPY",
+      "date": "2026-11-10",
+      "kind": "Registered capital",
+      "url": "https://www.remoterobotics.net/en/",
+      "note": "¥100M registered capital; Kawasaki and Sony each own 50%. Not a venture round.",
+      "total_m": null
+    },
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Kawasaki / Sony joint venture",
+    "analysis": {
+      "direction": "Connect remote workers to industrial tasks through Remolink.",
+      "edge": "The Kawasaki/Sony joint venture combines industrial robotics and remote-interface capabilities.",
+      "risk": "Corporate backing does not establish utilization or unit economics.",
+      "peers": [
+        "Extend Robotics",
+        "Roboauto"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://www.remoterobotics.net/en/"
+        },
+        {
+          "label": "Company ownership",
+          "url": "https://www.remoterobotics.net/en/"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Connectivity and controls",
+    "name": "Roboauto",
+    "application": "Road and industrial vehicles",
+    "description": "Teleoperation software for vehicles and industrial machines.",
+    "url": "https://roboauto.tech/solutions/teleoperation/",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [
+      {
+        "title": "C++20/23 Developer",
+        "url": "https://roboauto.tech/career/",
+        "signal": "Control & autonomy",
+        "location": "Brno"
+      },
+      {
+        "title": "B2B Senior Marketing Specialist",
+        "url": "https://roboauto.tech/career/",
+        "signal": "Enterprise sales",
+        "location": "Brno"
+      }
+    ],
+    "hiring_note": "Selected live listings checked November 10, 2026; not a full headcount or vacancy count.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Sell control and autonomy engineering, with current C++ and marketing openings.",
+      "edge": "Custom integration work fits hardware-specific problems that a fixed SaaS product may not cover.",
+      "risk": "Engineering services scale differently from a repeatable software license.",
+      "peers": [
+        "Ottopia",
+        "Transitive Robotics"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://roboauto.tech/solutions/teleoperation/"
+        },
+        {
+          "label": "Careers",
+          "url": "https://roboauto.tech/career/"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Connectivity and controls",
+    "name": "Imperium Drive",
+    "application": "Road vehicles",
+    "description": "Historical remote-driving company. UK legal entity dissolved October 6, 2026.",
+    "url": "https://imperiumdrive.com/",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Dissolved October 6, 2026",
+    "analysis": {
+      "direction": "Historical or acquired entry; see status source before treating it as a standalone supplier.",
+      "edge": "No current standalone competitive assessment.",
+      "risk": "Dissolved October 6, 2026",
+      "peers": [],
+      "sources": [
+        {
+          "label": "Status",
+          "url": "https://find-and-update.company-information.service.gov.uk/company/12111882"
+        }
+      ]
+    },
+    "status_source": "https://find-and-update.company-information.service.gov.uk/company/12111882"
+  },
+  {
+    "category": "Connectivity and controls",
+    "name": "Voysys",
+    "application": "Road and industrial vehicles",
+    "description": "Acquired teleoperation technology, now part of Serve Robotics.",
+    "url": "https://serverobotics.gcs-web.com/news-releases/news-release-details/following-acquisition-phantom-auto-serve-robotics-adds-voysys",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Acquired technology within Serve",
+    "analysis": {
+      "direction": "Historical or acquired entry; see status source before treating it as a standalone supplier.",
+      "edge": "No current standalone competitive assessment.",
+      "risk": "Acquired technology within Serve",
+      "peers": [],
+      "sources": [
+        {
+          "label": "Status",
+          "url": "https://serverobotics.gcs-web.com/news-releases/news-release-details/following-acquisition-phantom-auto-serve-robotics-adds-voysys"
+        }
+      ]
+    },
+    "status_source": "https://serverobotics.gcs-web.com/news-releases/news-release-details/following-acquisition-phantom-auto-serve-robotics-adds-voysys"
+  },
+  {
+    "category": "Developer platforms",
+    "name": "Viam",
+    "application": "Mixed fleets",
+    "description": "Hardware APIs, remote diagnostics, browser control and data capture.",
+    "url": "https://www.viam.com/platform/overview",
+    "checked": "2026-11-10",
+    "capital": {
+      "amount_m": 30,
+      "currency": "USD",
+      "date": "2025-03-03",
+      "kind": "Series C",
+      "url": "https://www.viam.com/press-releases/viam-announces-30-million-series-c",
+      "note": "Company reported $117M cumulative funding at this announcement.",
+      "total_m": 117
+    },
+    "jobs": [
+      {
+        "title": "Lead Software Engineer, Data Platform",
+        "url": "https://job-boards.greenhouse.io/viamrobotics/jobs/6008423004",
+        "signal": "Platform & deployment",
+        "location": "New York, NY"
+      },
+      {
+        "title": "Senior / Staff Software Engineer, Fleet Management",
+        "url": "https://job-boards.greenhouse.io/viamrobotics/jobs/5821871004",
+        "signal": "Platform & deployment",
+        "location": "New York, NY"
+      },
+      {
+        "title": "Director, Forward Deployed Engineering",
+        "url": "https://job-boards.greenhouse.io/viamrobotics/jobs/6146938004",
+        "signal": "Platform & deployment",
+        "location": "New York, NY"
+      }
+    ],
+    "hiring_note": "Selected live listings checked November 10, 2026; not a full headcount or vacancy count.",
+    "status": "Operating offering",
+    "analysis": {
+      "direction": "Expand a shared device platform through fleet management, deployment engineering and an end-to-end data/ML pipeline.",
+      "edge": "The data role explicitly connects episode capture, datasets, training and edge inference with the fleet platform.",
+      "risk": "That broad scope puts it against Formant and InOrbit in operations and specialized data tools in training. Integrations must remain reusable.",
+      "peers": [
+        "Formant",
+        "InOrbit",
+        "LiveKit Portal"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://job-boards.greenhouse.io/viamrobotics/jobs/6008423004"
+        },
+        {
+          "label": "Evidence 2",
+          "url": "https://job-boards.greenhouse.io/viamrobotics/jobs/5821871004"
+        },
+        {
+          "label": "Evidence 3",
+          "url": "https://job-boards.greenhouse.io/viamrobotics/jobs/6146938004"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Developer platforms",
+    "name": "NVIDIA Isaac Capture",
+    "application": "Manipulation and humanoids",
+    "description": "Input-device plug-ins, retargeting, teleoperation and recording tools.",
+    "url": "https://developer.nvidia.com/isaac/capture",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "NVIDIA product",
+    "analysis": {
+      "direction": "Provide device input, retargeting and recording tools within the Isaac ecosystem.",
+      "edge": "Integration with NVIDIA’s robotics toolchain can simplify development for teams already using it.",
+      "risk": "This is a product, not an independently funded recovery company.",
+      "peers": [
+        "LeRobot",
+        "Viam"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://developer.nvidia.com/isaac/capture"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Developer platforms",
+    "name": "LeRobot",
+    "application": "Manipulation",
+    "description": "Robot and teleoperator interfaces, human correction workflows and datasets.",
+    "url": "https://huggingface.co/docs/lerobot/hil_data_collection",
+    "checked": "2026-11-10",
+    "capital": null,
+    "jobs": [],
+    "hiring_note": "No current role verified in this review.",
+    "status": "Open-source project at Hugging Face",
+    "analysis": {
+      "direction": "Provide open robot interfaces and human-correction learning workflows.",
+      "edge": "Open interfaces and dataset conventions can lower integration cost for developers.",
+      "risk": "Teams must provide deployment operations and staff themselves.",
+      "peers": [
+        "NVIDIA Isaac Capture",
+        "Viam"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://huggingface.co/docs/lerobot/hil_data_collection"
+        }
+      ]
+    }
+  },
+  {
+    "category": "Developer platforms",
+    "name": "LiveKit Portal",
+    "application": "Mixed fleets",
+    "description": "Shared sessions for robot, policy, human and recorder, with control handoff.",
+    "url": "https://docs.livekit.io/robotics/integrations/portal/concepts/",
+    "checked": "2026-11-10",
+    "capital": {
+      "amount_m": 100,
+      "currency": "USD",
+      "date": "2026-01-22",
+      "kind": "Parent company Series C",
+      "url": "https://livekit.com/blog/livekit-series-c",
+      "note": "LiveKit company financing; not a dedicated robotics or Portal budget.",
+      "total_m": null
+    },
+    "jobs": [
+      {
+        "title": "Senior Software Engineer, Distributed Systems",
+        "url": "https://jobs.ashbyhq.com/livekit/ca47c69a-36eb-48cb-b61b-4134eff78030",
+        "signal": "Realtime infrastructure",
+        "location": "North America"
+      },
+      {
+        "title": "Research Engineer (Reinforcement Learning)",
+        "url": "https://jobs.ashbyhq.com/livekit/b0c02c3f-790f-4cd8-960d-220800d35367",
+        "signal": "Realtime infrastructure",
+        "location": "North America"
+      }
+    ],
+    "hiring_note": "Selected live listings checked November 10, 2026; not a full headcount or vacancy count.",
+    "status": "LiveKit product",
+    "analysis": {
+      "direction": "Bring realtime session infrastructure into robotics while the company’s hiring and financing remain centered on voice and agents.",
+      "edge": "Shared media, cloud and developer infrastructure can make robot connectivity inexpensive to adopt.",
+      "risk": "Its reinforcement-learning role is for voice/text agents. That is not evidence of robot-policy research or a staffed recovery service.",
+      "peers": [
+        "DriveU.auto",
+        "Ottopia",
+        "Transitive Robotics"
+      ],
+      "sources": [
+        {
+          "label": "Evidence 1",
+          "url": "https://livekit.com/blog/livekit-series-c"
+        },
+        {
+          "label": "Evidence 2",
+          "url": "https://jobs.ashbyhq.com/livekit/b0c02c3f-790f-4cd8-960d-220800d35367"
+        },
+        {
+          "label": "Evidence 3",
+          "url": "https://docs.livekit.io/robotics/integrations/portal/concepts/"
+        }
+      ]
+    }
+  }
+]
