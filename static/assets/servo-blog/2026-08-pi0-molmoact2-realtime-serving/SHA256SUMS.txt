@@ -1,0 +1,5 @@
+9618ef49a51e8e7cc87606e10d783013196695eb08240797c69e1557bf8af5e0  ./data/wire/wire_payload.json
+7ae0535cc0cc56b3e252a14cc938a3b3fc5f07c7f51b6e0c110d7b914132f6c2  ./video/molmoact2-grid-blocking.mp4
+87ab414811a87b3108ba22fa80d38e2bfcdb26a7b5bbffbee6dd358573ac1ad2  ./video/molmoact2-grid.mp4
+567e045f8aa34d0a98aca7b45473a6b31d62c18305c5d51ff2776d8c12f77b2d  ./video/pi05-grid-blocking.mp4
+a71a27c1b2259a9d1878e72f1df681c79e175eb3fe99c4f71e1d27a71ad48c32  ./video/pi05-grid.mp4
