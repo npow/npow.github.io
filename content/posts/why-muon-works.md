@@ -8,7 +8,7 @@ summary = "I wanted to understand why the Muon optimizer works, so I went back t
 ShowToc = true
 +++
 
-<link rel="stylesheet" href="/muon/muon.css?v=4">
+<link rel="stylesheet" href="/muon/muon.css?v=5">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 
 [Muon](https://kellerjordan.github.io/posts/muon/) is an optimizer for neural networks that Keller Jordan and collaborators published in late 2024. I wanted to understand why it works, because what it does to the gradient looks like it should make training worse.
@@ -90,6 +90,15 @@ Here are SGD, momentum, Nesterov, RMSProp and Adam on two surfaces. The valley h
 </figure>
 
 On the saddle, SGD's step is proportional to the slope, so it slides down to the saddle point and sits there. After 150 steps it still hasn't reached either basin. Momentum builds up the tiny sideways gradient and gets out after about 40 steps. Adam divides by the gradient's size, so a tiny slope still gives a full-sized step, and it is out in about 10. RMSProp leaves on step one, thanks to that oversized first step.
+
+Here is the same saddle run as a video. I slowed down the first 56 steps, where everything happens, and sped up the rest.
+
+<figure class="mu-fig mu-video">
+<video autoplay loop muted playsinline controls preload="metadata" poster="/muon/saddle-race.jpg" width="800" height="800" aria-label="Animation of SGD, momentum, Nesterov, RMSProp and Adam moving from a ridge to a minimum on a saddle-shaped loss surface">
+<source src="/muon/saddle-race.mp4" type="video/mp4">
+</video>
+<figcaption><b>Video 1. The saddle run from Figure 1.</b> The view is cropped to the half of the surface the optimizers end up in. The list underneath shows the step from which each one stays within 0.1 of the minimum.</figcaption>
+</figure>
 
 The valley is easier to read from directly above. This version also plots the loss, and has two sliders: one for κ, and one that rotates the whole valley relative to the coordinate axes.
 

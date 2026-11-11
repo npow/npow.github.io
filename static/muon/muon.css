@@ -63,3 +63,5 @@
 .mu-3d svg{cursor:grab;touch-action:pan-y;user-select:none}
 .mu-3d svg:active{cursor:grabbing}
 .mu-quad{fill:var(--mu-ink);stroke:var(--mu-ink-2);stroke-width:.5;stroke-opacity:.45;stroke-linejoin:round}
+.post-content figure.mu-fig{max-width:920px;margin-left:auto;margin-right:auto}
+.mu-video video{display:block;width:100%;max-width:640px;height:auto;margin:0 auto;border-radius:6px;background:#0b0e14}
