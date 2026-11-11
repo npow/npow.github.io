@@ -1,6 +1,6 @@
 +++
 title = "Why does Muon work?"
-date = 2026-11-10
+date = 2026-11-10T12:00:00-08:00
 draft = false
 tags = ["machine-learning", "optimization", "muon", "adam", "deep-learning"]
 description = "I wanted to understand why the Muon optimizer works, so I went back through SGD, momentum, Adam and Shampoo and built a simulation for each idea."
